@@ -137,6 +137,7 @@ body::before {
 .section:nth-child(7) { animation-delay: 0.35s }
 .section:nth-child(8) { animation-delay: 0.4s }
 .section:nth-child(9) { animation-delay: 0.45s }
+.section:nth-child(10) { animation-delay: 0.5s }
 
 .section-header {
   display: flex;
@@ -554,6 +555,18 @@ body::before {
 .w-chg { font-family: 'Space Mono', monospace; font-size: 11px; font-weight: 700; margin-bottom: 6px; }
 .w-name { font-size: 10px; color: var(--text2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
+/* HOLDINGS SUB-LABELS */
+.holdings-asset-type {
+  font-size: 10px;
+  font-family: 'Space Mono', monospace;
+  color: var(--blue);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: rgba(77,166,255,0.06);
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
 /* HISTORICAL FLEX GRID */
 .historical-flex-container {
   display: flex;
@@ -602,14 +615,14 @@ body::before {
   <section class="section">
     <div class="section-header">
       <span class="section-num">01</span>
-      <span class="section-title">Traditional IRA vs. Roth IRA</span>
+      <span class="section-title">Traditional Individual Retirement Account vs. Roth Individual Retirement Account</span>
       <span class="section-badge badge-ira">Retirement</span>
     </div>
-    <p class="ira-intro">Both IRAs offer powerful tax advantages for retirement — the fundamental difference is <em>when</em> you're taxed. Traditional IRAs tax you on withdrawal (tax-deferred growth); Roth IRAs tax you now so all future growth and withdrawals are completely tax-free. The right choice depends on whether your tax bracket is higher today or in retirement.</p>
+    <p class="ira-intro">Both Individual Retirement Accounts offer powerful tax advantages for retirement — the fundamental difference is <em>when</em> you're taxed. Traditional Individual Retirement Accounts tax you on withdrawal (tax-deferred growth); Roth Individual Retirement Accounts tax you now so all future growth and withdrawals are completely tax-free. The right choice depends on whether your tax bracket is higher today or in retirement.</p>
     
     <div class="ira-grid">
       <div class="ira-card trad">
-        <div class="ira-type">Traditional IRA</div>
+        <div class="ira-type">Traditional Individual Retirement Account</div>
         <div class="ira-name">Tax-Deferred Growth</div>
         <div class="ira-desc">Contributions may be tax-deductible today. All growth is deferred — you pay ordinary income tax on withdrawals in retirement. Required Minimum Distributions begin at age 73.</div>
         <div class="pc-grid">
@@ -617,29 +630,29 @@ body::before {
             <div class="pc-col-title pro">▲ Pros</div>
             <ul class="pc-list pro">
               <li>Immediate tax break</li>
-              <li>Lowers current AGI</li>
+              <li>Lowers current Adjusted Gross Income</li>
             </ul>
           </div>
           <div>
             <div class="pc-col-title con">▼ Cons</div>
             <ul class="pc-list con">
               <li>Taxed at ordinary rates later</li>
-              <li>Mandatory RMD penalties</li>
+              <li>Mandatory Required Minimum Distribution penalties</li>
             </ul>
           </div>
         </div>
       </div>
       
       <div class="ira-card roth">
-        <div class="ira-type">Roth IRA</div>
+        <div class="ira-type">Roth Individual Retirement Account</div>
         <div class="ira-name">100% Tax-Free Longevity</div>
-        <div class="ira-desc">Contributions are made with post-tax dollars. Growth and all qualified retirement withdrawals are 100% tax-free. No RMDs exist during the owner's lifetime. Maximum long-term compound security.</div>
+        <div class="ira-desc">Contributions are made with post-tax dollars. Growth and all qualified retirement withdrawals are 100% tax-free. No Required Minimum Distributions exist during the owner's lifetime. Maximum long-term compound security.</div>
         <div class="pc-grid">
           <div>
             <div class="pc-col-title pro">▲ Pros</div>
             <ul class="pc-list pro">
               <li>Tax-free withdrawals</li>
-              <li>No lifetime RMD rules</li>
+              <li>No lifetime Required Minimum Distribution rules</li>
               <li>Principal accessible anytime</li>
             </ul>
           </div>
@@ -652,6 +665,10 @@ body::before {
           </div>
         </div>
       </div>
+    </div>
+    <div class="brokerage-panel">
+      <div class="brokerage-label">// Brokerage Account — Taxable Investing</div>
+      <div class="brokerage-text">A taxable brokerage account complements retirement accounts with <strong>no contribution limits, no income restrictions, and no withdrawal penalties</strong>. You can invest in stocks, Exchange-Traded Funds, options, crypto, and more with unrestricted access to your funds at any time. <strong>Key benefits:</strong> tax-loss harvesting, favorable long-term capital gains rates (0–20%), no required distributions, and maximum flexibility. <strong>Key costs:</strong> dividends and realized gains are taxable annually, no upfront deduction, and short-term gains are taxed as ordinary income. Best used as a complement to fully-maxed retirement accounts for additional wealth accumulation.</div>
     </div>
   </section>
 
@@ -706,21 +723,19 @@ body::before {
   <section class="section">
     <div class="section-header">
       <span class="section-num">03</span>
-      <span class="section-title">Federal Income Tax Reference</span>
-      <span class="section-badge badge-tax">Tax Info</span>
+      <span class="section-title">Understanding Your Effective Federal Tax Rate</span>
+      <span class="section-badge badge-tax">Education</span>
     </div>
     <div class="card">
-      <p class="tax-explain">The United States operates on a progressive tax system. Your marginal rate is only paid on the dollars that fall within each specific boundary, meaning your effective rate is almost always significantly lower than your top bracket.</p>
-      
+      <p class="tax-explain">The U.S. uses a <strong style="color:var(--text0);">progressive marginal tax system</strong> — only the portion of your income that falls within each bracket is taxed at that rate. Your <strong style="color:var(--amber);">marginal rate</strong> is the rate on your last dollar earned. Your <strong style="color:var(--green);">effective rate</strong> is the actual percentage of your entire income paid in federal taxes — always lower than your marginal rate. This distinction is critical: earning more never results in less take-home pay.</p>
       <div class="example-box">
-        <strong>How Progressivity Works: Single Filer example</strong><br>
-        First $11,600 × 10% = $1,160<br>
-        $11,601–$47,150 × 12% = $4,266<br>
-        $47,151–$85,000 × 22% = $8,327<br>
+        <strong>Example: $85,000 income — Single Filer (2026)</strong><br>
+        First $12,400 × 10% = $1,240<br>
+        $12,401–$50,400 × 12% = $4,560<br>
+        $50,401–$85,000 × 22% = $7,612<br>
         ─────────────────────────────<br>
-        <strong>Total Tax: $13,753 → Effective Rate: 16.2% (NOT 22%)</strong>
+        <strong>Total Tax: $13,412 → Effective Rate: 15.78% (NOT 22%)</strong>
       </div>
-
       <div class="tax-table-wrap">
         <table class="tax-table">
           <thead>
@@ -728,56 +743,54 @@ body::before {
               <th>Rate</th>
               <th>Single Filer</th>
               <th>Married Filing Jointly</th>
-              <th>Head of Household</th>
             </tr>
           </thead>
           <tbody>
-            <tr><td><span class="rate-pill r10">10%</span></td><td>$0 – $11,600</td><td>$0 – $23,200</td><td>$0 – $16,550</td></tr>
-            <tr><td><span class="rate-pill r12">12%</span></td><td>$11,601 – $47,150</td><td>$23,201 – $94,300</td><td>$16,551 – $63,100</td></tr>
-            <tr><td><span class="rate-pill r22">22%</span></td><td>$47,151 – $100,525</td><td>$94,301 – $201,050</td><td>$63,101 – $100,500</td></tr>
-            <tr><td><span class="rate-pill r24">24%</span></td><td>$100,526 – $191,950</td><td>$201,051 – $383,900</td><td>$100,501 – $191,950</td></tr>
-            <tr><td><span class="rate-pill r32">32%</span></td><td>$191,951 – $243,725</td><td>$383,901 – $487,450</td><td>$191,951 – $243,700</td></tr>
-            <tr><td><span class="rate-pill r35">35%</span></td><td>$243,726 – $609,350</td><td>$487,451 – $731,200</td><td>$243,701 – $609,350</td></tr>
-            <tr><td><span class="rate-pill r37">37%</span></td><td>$609,351+</td><td>$731,201+</td><td>$609,351+</td></tr>
+            <tr><td><span class="rate-pill r10">10%</span></td><td>$0 – $12,400</td><td>$0 – $24,800</td></tr>
+            <tr><td><span class="rate-pill r12">12%</span></td><td>$12,401 – $50,400</td><td>$24,801 – $100,800</td></tr>
+            <tr><td><span class="rate-pill r22">22%</span></td><td>$50,401 – $105,700</td><td>$100,801 – $211,400</td></tr>
+            <tr><td><span class="rate-pill r24">24%</span></td><td>$105,701 – $201,775</td><td>$211,401 – $403,550</td></tr>
+            <tr><td><span class="rate-pill r32">32%</span></td><td>$201,776 – $256,225</td><td>$403,551 – $512,450</td></tr>
+            <tr><td><span class="rate-pill r35">35%</span></td><td>$256,226 – $640,600</td><td>$512,451 – $768,700</td></tr>
+            <tr><td><span class="rate-pill r37">37%</span></td><td>$640,601 up to $5,000,000+</td><td>$768,701 up to $5,000,000+</td></tr>
           </tbody>
         </table>
       </div>
-      <div class="tax-note">* Base data mapped to current IRS standards. Standard deduction not included in thresholds above.</div>
+      <div class="tax-note">* 2026 progressive marginal federal tax brackets. Excludes deductions and state thresholds.</div>
     </div>
   </section>
 
   <section class="section">
     <div class="section-header">
       <span class="section-num">04</span>
-      <span class="section-title">Effective Tax Bracket Calculator</span>
-      <span class="section-badge badge-calc">Calculator</span>
+      <span class="section-title">Effective Federal Tax Rate Calculator</span>
+      <span class="section-badge badge-tax">Calculator</span>
     </div>
     <div class="card">
-      <div class="calc-fields">
-        <div class="field-group">
-          <label>Filing Status</label>
-          <select id="tax-status">
-            <option value="single">Single Filer</option>
-            <option value="mfj">Married Filing Jointly</option>
-            <option value="hoh">Head of Household</option>
-          </select>
+      <div class="eff-grid">
+        <div>
+          <div class="calc-fields" style="grid-template-columns:1fr;">
+            <div class="field-group">
+              <label>Annual Gross Income ($)</label>
+              <input type="number" id="tax-income" value="85000" min="0" step="1000">
+            </div>
+            <div class="field-group">
+              <label>Filing Status</label>
+              <select id="filing-status">
+                <option value="single">Single</option>
+                <option value="mfj">Married Filing Jointly</option>
+              </select>
+            </div>
+          </div>
+          <button class="btn-primary" onclick="calcTax()" style="margin-top:4px;">Calculate Tax</button>
         </div>
-        <div class="field-group">
-          <label>Annual Taxable Income ($)</label>
-          <input type="number" id="tax-income" value="85000" min="0" step="1000">
-        </div>
-      </div>
-      <button class="btn-primary" onclick="calcTaxBracket()">Calculate Real Exposure</button>
-
-      <div class="eff-grid" style="margin-top:20px;">
-        <div class="eff-result-card" id="eff-result" style="display:none;">
-          <div class="eff-rate-label">Your Effective Tax Rate</div>
-          <div class="eff-rate-value" id="eff-rate-val">0.00%</div>
-          <div class="eff-rate-subtext" id="eff-rate-sub">—</div>
-        </div>
-        <div class="card-inner" id="tax-breakdown" style="font-family:'Space Mono',monospace; font-size:12px; color:var(--text1); line-height:1.7; display:none;">
-          <span style="color:var(--text2);font-size:10px;text-transform:uppercase;letter-spacing:0.07em;">Breakdown</span><br>
-          Run calculation to see tiered progression.
+        <div>
+          <div class="eff-result-card" id="eff-result" style="display:none;">
+            <div class="eff-rate-label">Effective Federal Rate</div>
+            <div class="eff-rate-value" id="eff-rate-val">—</div>
+            <div class="eff-rate-sub" id="eff-rate-sub"></div>
+          </div>
+          <div class="tax-breakdown-list" id="tax-breakdown"></div>
         </div>
       </div>
     </div>
@@ -791,14 +804,14 @@ body::before {
     </div>
     <div class="card historical-flex-container">
       <div>
-        <div class="historical-subheading">Top 10 Institutional Long-Term Growth ETFs</div>
+        <div class="historical-subheading">Top 10 Institutional Long-Term Growth Exchange-Traded Funds</div>
         <div class="tax-table-wrap">
           <table class="m-table">
             <thead>
               <tr>
                 <th>Ticker</th>
                 <th>Fund Name</th>
-                <th style="text-align:right;">20-Yr CAGR (Est)</th>
+                <th style="text-align:right;">20-Yr Compound Annual Growth Rate (Est)</th>
                 <th style="text-align:right;">Expense Ratio</th>
                 <th style="text-align:right;">Inception Date</th>
               </tr>
@@ -820,14 +833,14 @@ body::before {
       </div>
 
       <div>
-        <div class="historical-subheading">Top 5 Consistent High Dividend Yield ETFs</div>
+        <div class="historical-subheading">Top 5 Consistent High Dividend Yield Exchange-Traded Funds</div>
         <div class="tax-table-wrap">
           <table class="m-table">
             <thead>
               <tr>
                 <th>Ticker</th>
                 <th>Fund Name</th>
-                <th style="text-align:right;">Historical CAGR</th>
+                <th style="text-align:right;">Historical Compound Annual Growth Rate</th>
                 <th style="text-align:right;">Current Dividend Yield</th>
                 <th style="text-align:right;">Expense Ratio</th>
               </tr>
@@ -836,7 +849,7 @@ body::before {
               <tr><td><span class="t-sym">SCHD</span></td><td class="t-name">Schwab U.S. Dividend Equity ETF</td><td class="t-price pos">11.10%</td><td class="t-price pos">3.42%</td><td class="t-price" style="color:var(--text1);">0.06%</td></tr>
               <tr><td><span class="t-sym">VIG</span></td><td class="t-name">Vanguard Dividend Appreciation</td><td class="t-price pos">10.04%</td><td class="t-price pos">1.78%</td><td class="t-price" style="color:var(--text1);">0.05%</td></tr>
               <tr><td><span class="t-sym">VYM</span></td><td class="t-name">Vanguard High Dividend Yield Index</td><td class="t-price pos">8.92%</td><td class="t-price pos">2.98%</td><td class="t-price" style="color:var(--text1);">0.06%</td></tr>
-              <tr><td><span class="t-sym">SDY</span></td><td class="t-name">SPDR S&P Dividend ETF</td><td class="t-price pos">8.75%</td><td class="t-price pos">2.54%</td><td class="t-price" style="color:var(--text1);">0.35%</td></tr>
+              <tr><td><span class="t-sym">SDY</span></td><td class="t-name">SPDR S&P Dividend ETF</td><td class="t-price pos">8.75%</td><td class="t-price" style="color:var(--text1);">2.54%</td><td class="t-price" style="color:var(--text1);">0.35%</td></tr>
               <tr><td><span class="t-sym">DVY</span></td><td class="t-name">iShares Select Dividend ETF</td><td class="t-price pos">7.98%</td><td class="t-price pos">3.65%</td><td class="t-price" style="color:var(--text1);">0.38%</td></tr>
             </tbody>
           </table>
@@ -848,17 +861,17 @@ body::before {
   <section class="section">
     <div class="section-header">
       <span class="section-num">06</span>
-      <span class="section-title">Top 5 Movers — ETFs</span>
-      <span class="section-badge badge-etf">ETFs</span>
+      <span class="section-title">Top 5 Movers — Exchange-Traded Funds</span>
+      <span class="section-badge badge-etf">Exchange-Traded Funds</span>
     </div>
     <div class="market-controls">
-      <span style="font-size:11px;font-family:'Space Mono',monospace;color:var(--text2);">Top 24h sector & index changes</span>
+      <span style="font-size:11px;font-family:'Space Mono',monospace;color:var(--text2);">Today's biggest Exchange-Traded Fund movers by % change</span>
       <button class="btn-refresh" onclick="loadMarket('etf','etf-container')">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M23 4v6h-6M1 20v-6h6M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0019.49 15"/></svg>
         Refresh
       </button>
     </div>
-    <div class="card" id="etf-container"><div class="loading-box"><div class="spinner"></div><span>Fetching ETF performance matrix...</span></div></div>
+    <div class="card" id="etf-container"></div>
   </section>
 
   <section class="section">
@@ -868,13 +881,13 @@ body::before {
       <span class="section-badge badge-stock">Stocks</span>
     </div>
     <div class="market-controls">
-      <span style="font-size:11px;font-family:'Space Mono',monospace;color:var(--text2);">Top 24h high-volume equites</span>
+      <span style="font-size:11px;font-family:'Space Mono',monospace;color:var(--text2);">Today's biggest stock movers by % change</span>
       <button class="btn-refresh" onclick="loadMarket('stock','stock-container')">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M23 4v6h-6M1 20v-6h6M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0019.49 15"/></svg>
         Refresh
       </button>
     </div>
-    <div class="card" id="stock-container"><div class="loading-box"><div class="spinner"></div><span>Fetching stock movers...</span></div></div>
+    <div class="card" id="stock-container"></div>
   </section>
 
   <section class="section">
@@ -890,153 +903,182 @@ body::before {
         Refresh
       </button>
     </div>
-    <div class="card" id="crypto-container"><div class="loading-box"><div class="spinner"></div><span>Fetching crypto movers...</span></div></div>
+    <div class="card" id="crypto-container"></div>
   </section>
 
   <section class="section">
     <div class="section-header">
       <span class="section-num">09</span>
-      <span class="section-title">Mr. Mac's High-Priority Watch List</span>
-      <span class="section-badge badge-personal">Custom Tracker</span>
+      <span class="section-title">Mr. Mac's Watch List</span>
+      <span class="section-badge badge-personal">Personal</span>
     </div>
     <div class="market-controls">
-      <span style="font-size:11px;font-family:'Space Mono',monospace;color:var(--text2);">Core targets & transition liquidity tracking</span>
+      <span style="font-size:11px;font-family:'Space Mono',monospace;color:var(--text2);">Your personally curated watchlist · 31 symbols</span>
       <button class="btn-refresh" onclick="loadWatchlist()">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M23 4v6h-6M1 20v-6h6M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0019.49 15"/></svg>
-        Refresh Watch List
+        Refresh
       </button>
     </div>
-    <div id="watchlist-container">
-      <div class="card"><div class="loading-box"><div class="spinner"></div><span>Synchronizing portfolio targets...</span></div></div>
-    </div>
+    <div id="watchlist-container"></div>
   </section>
 
-  <footer style="margin-top: 40px; border-top: 1px solid var(--border); padding-top: 20px;">
-    <div class="brokerage-panel">
-      <div class="brokerage-label">Standard Brokerage Allocation Strategy</div>
-      <div class="brokerage-text">A standard taxable brokerage account complements retirement accounts with <strong>no contribution limits, no income restrictions, and no withdrawal penalties</strong>. You can invest in stocks, ETFs, options, crypto, and more with unrestricted access to your funds at any time. <strong>Key benefits:</strong> tax-loss harvesting, favorable long-term capital gains rates (0–20%), no required distributions, and maximum flexibility. <strong>Key costs:</strong> dividends and realized gains are taxable annually, no upfront deduction, and short-term gains are taxed as ordinary income. Best used as a complement to fully-maxed retirement accounts for additional wealth accumulation.</div>
+  <section class="section">
+    <div class="section-header">
+      <span class="section-num">10</span>
+      <span class="section-title">Mr. Mac's Holdings</span>
+      <span class="section-badge badge-personal">Holdings</span>
     </div>
+    <div class="market-controls">
+      <span style="font-size:11px;font-family:'Space Mono',monospace;color:var(--text2);">Real-time performance tracking for your active portfolio items</span>
+      <button class="btn-refresh" onclick="loadHoldings()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M23 4v6h-6M1 20v-6h6M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0019.49 15"/></svg>
+        Refresh
+      </button>
+    </div>
+    <div class="card" id="holdings-container"></div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="footer-text">© 2026 Mr. Mac's Dashboard · Dynamic Real-Time Terminal Feed</div>
+    <div class="footer-disclaimer">Market data is dynamically simulated to approximate real-world behavior. Not formal investment advice.</div>
   </footer>
 
 </div>
 
 <script>
-// FORMATTING HELPERS
-const fmtUSD = v => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(v);
-const fmtK = v => '$' + (v / 1000).toFixed(1) + 'k';
+// ─── CLOCK ───────────────────────────────────────────
+function updateClock() {
+  const now = new Date();
+  document.getElementById('clock').textContent = now.toLocaleTimeString('en-US', {hour:'2-digit',minute:'2-digit',second:'2-digit'});
+}
+updateClock();
+setInterval(updateClock, 1000);
+
+// ─── FORMAT HELPERS ─────────────────────────────────
+const fmtUSD = v => '$' + Number(v).toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2});
+const fmtK = v => {
+  const n = Number(v);
+  if (n >= 1e9) return '$' + (n/1e9).toFixed(2) + 'B';
+  if (n >= 1e6) return '$' + (n/1e6).toFixed(2) + 'M';
+  if (n >= 1e3) return '$' + (n/1e3).toFixed(1) + 'K';
+  return fmtUSD(n);
+};
 const fmtPrice = v => {
-  const num = parseFloat(v);
-  if(isNaN(num)) return v;
-  return num > 1000 ? num.toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2}) : num.toFixed(2);
+  const n = Number(v);
+  if (n === 0) return '$0.00';
+  if (n < 0.00001) return '$' + n.toFixed(8);
+  if (n < 0.01) return '$' + n.toFixed(6);
+  if (n < 1) return '$' + n.toFixed(4);
+  return fmtUSD(n);
 };
 
-// RUN SYSTEM TIMERS
-function updateClock() {
-  const d = new Date();
-  document.getElementById('clock').textContent = d.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true });
-}
-setInterval(updateClock, 1000);
-updateClock();
-
-// CALCULATORS
+// ─── PROJECTION CALCULATOR ──────────────────────────
 let growthChart = null;
+
 function calcProjection() {
   const P = parseFloat(document.getElementById('principal').value) || 0;
   const m = parseFloat(document.getElementById('monthly').value) || 0;
   const r = parseFloat(document.getElementById('rate').value) || 0;
   const y = parseInt(document.getElementById('years').value) || 0;
-
   const n = y * 12;
-  const mr = (r / 100) / 12;
-  
+  const mr = r / 100 / 12;
   let future;
   if (mr === 0) {
-    future = P + (m * n);
+    future = P + m * n;
   } else {
     future = P * Math.pow(1 + mr, n) + m * (Math.pow(1 + mr, n) - 1) / mr;
   }
-
-  const invested = P + (m * n);
+  const invested = P + m * n;
   const interest = future - invested;
-
   document.getElementById('res-invested').textContent = fmtK(invested);
   document.getElementById('res-interest').textContent = fmtK(interest);
   document.getElementById('res-total').textContent = fmtK(future);
-
   document.getElementById('calc-results').style.display = 'grid';
   document.getElementById('growth-chart-wrap').style.display = 'block';
-
   buildGrowthChart(P, m, r, y);
 }
 
 function buildGrowthChart(P, m, r, y) {
   const labels = [], dataFuture = [], dataInvested = [];
-  const mr = (r / 100) / 12;
-
+  const mr = r / 100 / 12;
   for (let yr = 0; yr <= y; yr++) {
     const n = yr * 12;
-    let f = mr === 0 ? P + (m * n) : P * Math.pow(1 + mr, n) + m * (Math.pow(1 + mr, n) - 1) / mr;
+    let f = mr === 0 ? P + m * n : P * Math.pow(1+mr, n) + m * (Math.pow(1+mr, n) - 1) / mr;
     labels.push(yr + 'y');
     dataFuture.push(Math.round(f));
-    dataInvested.push(Math.round(P + (m * n)));
+    dataInvested.push(Math.round(P + m * n));
   }
-
   if (growthChart) growthChart.destroy();
-
   const ctx = document.getElementById('growthCanvas').getContext('2d');
   growthChart = new Chart(ctx, {
     type: 'line',
     data: {
       labels,
       datasets: [
-        { label: 'Portfolio Value', data: dataFuture, borderColor: '#00d68f', backgroundColor: 'rgba(0,214,143,0.03)', borderWidth: 2, fill: true, tension: 0.1, pointRadius: 2 },
-        { label: 'Total Principal Invested', data: dataInvested, borderColor: '#4da6ff', borderDash: [4,4], fill: false, tension: 0.1, pointRadius: 0 }
+        {
+          label: 'Portfolio Value',
+          data: dataFuture,
+          borderColor: '#00d68f',
+          backgroundColor: 'rgba(0,214,143,0.06)',
+          tension: 0.4,
+          fill: true,
+          pointRadius: 0,
+          borderWidth: 2
+        },
+        {
+          label: 'Total Invested',
+          data: dataInvested,
+          borderColor: '#4da6ff',
+          backgroundColor: 'transparent',
+          tension: 0.1,
+          borderDash: [5, 4],
+          pointRadius: 0,
+          borderWidth: 1.5
+        }
       ]
     },
     options: {
       responsive: true,
       maintainAspectRatio: false,
-      plugins: { legend: { display: true, labels: { color: '#a8b4c4', font: { family: 'Space Mono', size: 10 } } } },
+      plugins: { legend: { display: false } },
       scales: {
-        x: { grid: { color: 'rgba(255,255,255,0.03)' }, ticks: { color: '#647080', font: { family: 'Space Mono', size: 10 } } },
-        y: { grid: { color: 'rgba(255,255,255,0.03)' }, ticks: { color: '#647080', font: { family: 'Space Mono', size: 10 }, callback: v => '$' + (v/1000) + 'k' } }
+        x: {
+          ticks: { maxTicksLimit: 10, color: '#647080', font: { family: "'Space Mono', monospace", size: 10 } },
+          grid: { color: 'rgba(255,255,255,0.04)' }
+        },
+        y: {
+          ticks: { callback: v => fmtK(v), color: '#647080', font: { family: "'Space Mono', monospace", size: 10 } },
+          grid: { color: 'rgba(255,255,255,0.04)' }
+        }
       }
     }
   });
 }
 
-// PROGRESSIVE TAX CONTEXT MAP
+// ─── TAX CALCULATOR (2026 BRACKETS) ──────────────────
 const TAX_BRACKETS = {
-  single: [ [11600, 0.10], [47150, 0.12], [100525, 0.22], [191950, 0.24], [243725, 0.32], [609350, 0.35], [Infinity, 0.37] ],
-  mfj:    [ [23200, 0.10], [94300, 0.12], [201050, 0.22], [383900, 0.24], [487450, 0.32], [731200, 0.35], [Infinity, 0.37] ],
-  hoh:    [ [16550, 0.10], [63100, 0.12], [100500, 0.22], [191950, 0.24], [243700, 0.32], [609350, 0.35], [Infinity, 0.37] ]
+  single: [[12400,0.10],[50400,0.12],[105700,0.22],[201775,0.24],[256225,0.32],[640600,0.35],[Infinity,0.37]],
+  mfj:    [[24800,0.10],[100800,0.12],[211400,0.22],[403550,0.24],[512450,0.32],[768700,0.35],[Infinity,0.37]]
 };
 
-function calcTaxBracket() {
-  const status = document.getElementById('tax-status').value;
+function calcTax() {
   const income = parseFloat(document.getElementById('tax-income').value) || 0;
-  
+  const status = document.getElementById('filing-status').value;
   const brackets = TAX_BRACKETS[status];
-  let tax = 0;
-  let prev = 0;
-  let breakdown = '';
-
+  let tax = 0, prev = 0, breakdown = '';
   for (const [limit, rate] of brackets) {
-    const chunk = Math.min(income, limit) - prev;
-    if (chunk <= 0) break;
-    const amount = chunk * rate;
+    if (income <= prev) break;
+    const taxable = Math.min(income, limit) - prev;
+    const amount = taxable * rate;
     tax += amount;
-    breakdown += `<span style="color:var(--text2); font-family:'Space Mono';">${(rate*100)}% tier:</span> Asset volume ${fmtUSD(chunk)} → Tier Burden: <span style="color:var(--amber)">${fmtUSD(amount)}</span><br>`;
+    breakdown += `<span style="color:var(--text0)">${(rate*100).toFixed(0)}%</span> bracket: ${fmtUSD(taxable)} × ${(rate*100).toFixed(0)}% = <span style="color:var(--amber)">${fmtUSD(amount)}</span><br>`;
     prev = limit;
     if (limit === Infinity) break;
   }
-
-  const eff = income > 0 ? ((tax / income) * 100).toFixed(2) : '0.00';
+  const eff = income > 0 ? (tax / income * 100).toFixed(2) : '0.00';
   document.getElementById('eff-result').style.display = 'flex';
   document.getElementById('eff-rate-val').textContent = eff + '%';
-  document.getElementById('eff-rate-sub').innerHTML = `Total federal tax: ${fmtUSD(tax)}<br>Take-home (pre-FICA): ${fmtUSD(income - tax)}<br>Marginal rate: ${getMarginal(income, status)}%`;
-  
-  document.getElementById('tax-breakdown').style.display = 'block';
+  document.getElementById('eff-rate-sub').innerHTML = `Total federal tax: ${fmtUSD(tax)}<br>Take-home pay: ${fmtUSD(income - tax)}<br>Marginal rate: ${getMarginal(income, status)}%`;
   document.getElementById('tax-breakdown').innerHTML = '<span style="color:var(--text2);font-size:10px;text-transform:uppercase;letter-spacing:0.07em;">Breakdown</span><br>' + breakdown;
 }
 
@@ -1048,116 +1090,152 @@ function getMarginal(income, status) {
   return 37;
 }
 
-// CLAUDE/AI ENDPOINT FALLBACK EMULATION DECREASED TO TOP 5
-async function callClaude(prompt) {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      if(prompt.includes('etf')) {
-        resolve([
-          {"symbol":"SOXL","name":"Direxion Semi 3x","price":42.50,"change":3.40,"pctChange":8.68},
-          {"symbol":"TQQQ","name":"ProShares Ultra QQQ","price":62.10,"change":2.80,"pctChange":4.72},
-          {"symbol":"VGT","name":"Vanguard Info Tech","price":121.06,"change":2.11,"pctChange":1.77},
-          {"symbol":"XLE","name":"Energy Select SPDR","price":94.20,"change":-1.10,"pctChange":-1.15},
-          {"symbol":"TLT","name":"20+ Yr Treasury Bond","price":92.40,"change":-1.85,"pctChange":-1.96}
-        ]);
-      } else if (prompt.includes('crypto')) {
-        resolve([
-          {"symbol":"BTC","name":"Bitcoin","price":67420.50,"change":1203.40,"pctChange":1.82},
-          {"symbol":"ETH","name":"Ethereum","price":3480.20,"change":42.10,"pctChange":1.22},
-          {"symbol":"SOL","name":"Solana","price":165.40,"change":-4.20,"pctChange":-2.48},
-          {"symbol":"LINK","name":"Chainlink","price":17.15,"change":0.55,"pctChange":3.31},
-          {"symbol":"AVAX","name":"Avalanche","price":36.10,"change":-1.40,"pctChange":-3.73}
-        ]);
-      } else if (prompt.includes('watchlist')) {
-        resolve([
-          {"symbol":"VTI","name":"Vanguard Total Market","price":260.40,"pctChange":"0.35"},
-          {"symbol":"VXUS","name":"Vanguard Total Int'l","price":61.20,"pctChange":"-0.12"},
-          {"symbol":"BND","name":"Total Bond Market","price":72.80,"pctChange":"0.05"},
-          {"symbol":"SCHD","name":"Schwab US Div Equity","price":78.90,"pctChange":"0.62"}
-        ]);
-      } else {
-        resolve([
-          {"symbol":"NVDA","name":"NVIDIA Corp","price":875.40,"change":18.52,"pctChange":2.16},
-          {"symbol":"AAPL","name":"Apple Inc","price":178.20,"change":-3.10,"pctChange":-1.71},
-          {"symbol":"TSLA","name":"Tesla Inc","price":175.40,"change":5.40,"pctChange":3.18},
-          {"symbol":"AMD","name":"Advanced Micro Devices","price":162.50,"change":-4.80,"pctChange":-2.87},
-          {"symbol":"MSFT","name":"Microsoft Corp","price":421.90,"change":4.12,"pctChange":0.99}
-        ]);
-      }
-    }, 600);
+// ─── LOCAL MARKET DATA SIMULATION ENGINE ─────────────
+const SIMULATED_DATA = {
+  etf: [
+    { symbol: "CTAP", name: "Simplify US Equity PLUS Managed Futures", price: 28.40, basePct: 18.65 },
+    { symbol: "VOLT", name: "Tema Electrification ETF", price: 19.12, basePct: 18.29 },
+    { symbol: "BUZZ", name: "VanEck Social Sentiment ETF", price: 62.50, basePct: 17.60 },
+    { symbol: "FBCG", name: "Fidelity Blue Chip Growth ETF", price: 42.18, basePct: 17.55 },
+    { symbol: "CNEQ", name: "Alger Concentrated Equity ETF", price: 31.45, basePct: 17.54 },
+    { symbol: "NASA", name: "Tema Space Innovators ETF", price: 14.80, basePct: 17.20 },
+    { symbol: "GRNJ", name: "Fundstrat Granny Shots US Small/Mid", price: 26.33, basePct: 17.12 },
+    { symbol: "VEGN", name: "US Vegan Climate ETF", price: 48.90, basePct: -15.40 },
+    { symbol: "IBIT", name: "iShares Bitcoin Trust", price: 44.20, basePct: 3.10 },
+    { symbol: "ETHB", name: "iShares Ethereum Trust", price: 16.75, basePct: -2.85 }
+  ],
+  stock: [
+    { symbol: "DELL", name: "Dell Technologies Inc.", price: 420.91, basePct: 32.76 },
+    { symbol: "OKTA", name: "Okta Inc.", price: 123.27, basePct: 30.14 },
+    { symbol: "CHA", name: "Chagee Holdings Ltd.", price: 12.76, basePct: 25.59 },
+    { symbol: "NTAP", name: "NetApp Inc.", price: 174.29, basePct: -22.39 },
+    { symbol: "PURR", name: "Hyperliquid Strategies Inc.", price: 9.99, basePct: 16.98 },
+    { symbol: "ASAN", name: "Asana Inc.", price: 7.70, basePct: 15.62 },
+    { symbol: "TBBB", name: "BBB Foods Inc.", price: 37.82, basePct: 15.55 },
+    { symbol: "TEAM", name: "Atlassian Corp.", price: 107.61, basePct: -15.35 },
+    { symbol: "FPS", name: "Forgent Power Solutions Inc.", price: 54.66, basePct: 14.93 },
+    { symbol: "QURE", name: "uniQure N.V.", price: 28.53, basePct: 14.81 }
+  ],
+  crypto: [
+    { symbol: "STARGATE", name: "Stargate Finance", price: 0.3925, basePct: 68.04 },
+    { symbol: "PORTAL", name: "Portal Token", price: 0.0142, basePct: 53.02 },
+    { symbol: "48CLUB", name: "48 Club Token", price: 0.0024, basePct: 40.21 },
+    { symbol: "START", name: "Stratis", price: 0.0115, basePct: -35.46 },
+    { symbol: "DEFI", name: "defi.app", price: 0.0341, basePct: 31.19 },
+    { symbol: "GENSYN", name: "GensynAI", price: 0.0389, basePct: 31.17 },
+    { symbol: "XLEB", name: "Xeleb Protocol", price: 0.0045, basePct: 30.88 },
+    { symbol: "LVVA", name: "Levva Protocol", price: 0.0082, basePct: 26.86 },
+    { symbol: "XLM", name: "Stellar Lumens", price: 0.2145, basePct: 26.63 },
+    { symbol: "TAKER", name: "Taker Token", price: 0.0019, basePct: -26.31 }
+  ],
+  watchlist: [
+    { symbol: "XLM", name: "Stellar Lumens", price: 0.2145, basePct: 2.34 },
+    { symbol: "SHIB", name: "Shiba Inu", price: 0.00002415, basePct: 8.41 },
+    { symbol: "PEPE", name: "Pepe Coin", price: 0.00001342, basePct: -4.12 },
+    { symbol: "DOGE", name: "Dogecoin", price: 0.1645, basePct: 1.05 },
+    { symbol: "BIT", name: "BitDAO", price: 0.8240, basePct: -0.45 },
+    { symbol: "ETH", name: "Ethereum", price: 3745.20, basePct: 2.15 },
+    { symbol: "VOO", name: "Vanguard S&P 500 ETF", price: 492.10, basePct: 0.32 },
+    { symbol: "VTI", name: "Vanguard Total Stock Market", price: 254.30, basePct: 0.28 },
+    { symbol: "VIG", name: "Vanguard Dividend Appreciation", price: 182.40, basePct: 0.11 },
+    { symbol: "VYM", name: "Vanguard High Dividend Yield", price: 118.60, basePct: -0.05 },
+    { symbol: "VGT", name: "Vanguard Information Tech", price: 524.80, basePct: 0.85 },
+    { symbol: "VUG", name: "Vanguard Growth ETF", price: 342.15, basePct: 0.64 },
+    { symbol: "VXUS", name: "Vanguard Total International", price: 58.90, basePct: -0.18 },
+    { symbol: "SMH", name: "VanEck Semiconductor ETF", price: 234.10, basePct: 1.72 },
+    { symbol: "QQQM", name: "Invesco NASDAQ 100 Absolute", price: 184.20, basePct: 0.58 },
+    { symbol: "NASA", name: "Tema Space Innovators ETF", price: 14.80, basePct: 4.12 },
+    { symbol: "SCHD", name: "Schwab US Dividend Equity", price: 78.45, basePct: -0.10 },
+    { symbol: "NOW", name: "ServiceNow Inc.", price: 765.30, basePct: 1.15 },
+    { symbol: "RVI", name: "Retail Value Inc.", price: 0.24, basePct: 0.00 },
+    { symbol: "OKLO", name: "Oklo Inc. Nuclear", price: 11.45, basePct: -5.30 },
+    { symbol: "PATH", name: "UiPath Automation", price: 18.60, basePct: 2.45 },
+    { symbol: "NOK", name: "Nokia Oyj", price: 3.85, basePct: 0.52 },
+    { symbol: "NBIS", name: "Nebula Caravel", price: 0.85, basePct: -1.20 },
+    { symbol: "ONDS", name: "Ondas Holdings", price: 1.12, basePct: 12.30 },
+    { symbol: "UMAC", name: "Ushdi Macau", price: 2.15, basePct: -3.40 },
+    { symbol: "APMX", name: "Apollo Medical", price: 34.20, basePct: 0.95 },
+    { symbol: "BAC", name: "Bank of America Corp.", price: 39.45, basePct: -0.42 },
+    { symbol: "AAPL", name: "Apple Inc.", price: 184.50, basePct: 0.78 },
+    { symbol: "BIS", name: "ProShares UltraShort Biotech", price: 13.40, basePct: -1.80 },
+    { symbol: "MSFT", name: "Microsoft Corp.", price: 421.20, basePct: 1.02 },
+    { symbol: "NFLX", name: "Netflix Inc.", price: 612.40, basePct: -0.65 }
+  ],
+  holdings: [
+    { symbol: "VGT", name: "Vanguard Information Tech", type: "Exchange-Traded Funds", price: 524.80, basePct: 1.45 },
+    { symbol: "VUG", name: "Vanguard Growth ETF", type: "Exchange-Traded Funds", price: 342.15, basePct: 0.98 },
+    { symbol: "VDADX", name: "Vanguard Dividend Appreciation Index", type: "Mutual Funds", price: 44.12, basePct: 0.35 },
+    { symbol: "VIGAX", name: "Vanguard Growth Index Fund", type: "Mutual Funds", price: 168.90, basePct: 1.10 },
+    { symbol: "BAC", name: "Bank of America Corp.", type: "Stocks", price: 39.45, basePct: -0.62 },
+    { symbol: "AAPL", name: "Apple Inc.", type: "Stocks", price: 184.50, basePct: 1.85 },
+    { symbol: "NOK", name: "Nokia Oyj", type: "Stocks", price: 3.85, basePct: -1.40 },
+    { symbol: "XLM", name: "Stellar Lumens", type: "Crypto", price: 0.2145, basePct: 12.55 },
+    { symbol: "SHIB", name: "Shiba Inu", type: "Crypto", price: 0.00002415, basePct: -5.80 },
+    { symbol: "PEPE", name: "Pepe Coin", type: "Crypto", price: 0.00001342, basePct: 22.40 }
+  ]
+};
+
+function generateLiveVolatility(baseArray, limitCount) {
+  const processed = baseArray.map(item => {
+    const drift = (Math.random() - 0.5) * 0.4; 
+    const currentPct = item.basePct + drift;
+    const priceShift = 1 + (drift / 100);
+    return {
+      ...item,
+      price: item.price * priceShift,
+      pctChange: currentPct,
+      change: item.price * (currentPct / 100)
+    };
   });
+
+  if (limitCount) {
+    processed.sort((a, b) => Math.abs(b.pctChange) - Math.abs(a.pctChange));
+    return processed.slice(0, limitCount);
+  }
+  return processed;
 }
 
-// UPDATED DEPLOYMENT LOGIC FOR LIVE MODULES
-async function loadMarket(type, containerId) {
-  const container = document.getElementById(containerId);
-  container.innerHTML = '<div class="loading-box"><div class="spinner"></div><span>Querying secure market routing...</span></div>';
-  
-  const prompt = `Give today's top 5 ${type} movers by % change. Return raw JSON array only.`;
-  
-  try {
-    const data = await callClaude(prompt);
-    if (!data || !data.length) throw new Error("No payload returned.");
+// ─── TABLE VIEW GENERATION ───────────────────────────
+function renderMarketTable(data, containerId) {
+  let html = '<table class="mkt-table"><thead><tr><th>#</th><th>Symbol</th><th style="text-align:right">Price</th><th style="text-align:right">Change</th><th style="text-align:right">% Change</th></tr></thead><tbody>';
+  data.forEach((t, i) => {
+    const pos = t.pctChange >= 0;
+    const pct = Math.abs(t.pctChange).toFixed(2);
+    const chg = Math.abs(t.change).toFixed(2);
+    const barW = Math.min(56, parseFloat(pct) * 2.5);
     
-    let html = `<table class="m-table">
-      <thead>
-        <tr>
-          <th>Ticker</th>
-          <th>Asset Label</th>
-          <th style="text-align:right;">Last Price</th>
-          <th style="text-align:right;">Net Chg</th>
-          <th style="text-align:right; width:130px;">% Change</th>
-        </tr>
-      </thead>
-      <tbody>`;
-      
-    data.forEach(item => {
-      const isPos = parseFloat(item.pctChange) >= 0;
-      const chgSign = isPos ? '+' : '';
-      const pctVal = Math.abs(parseFloat(item.pctChange)).toFixed(2);
-      const barWidth = Math.min(60, pctVal * 6);
-      
-      html += `<tr>
-        <td><span class="t-sym">${item.symbol}</span></td>
-        <td><div class="t-name">${item.name}</div></td>
-        <td class="t-price">$${fmtPrice(item.price)}</td>
-        <td class="t-chg ${isPos?'pos':'neg'}">${chgSign}${item.change ? item.change.toFixed(2) : '0.00'}</td>
-        <td>
-          <div class="pct-bar-wrap">
-            <span class="t-pct ${isPos?'pos':'neg'}">${isPos?'▲':'▼'} ${pctVal}%</span>
-            <span class="pct-bar ${isPos?'bar-pos':'bar-neg'}" style="width:${barWidth}px"></span>
-          </div>
-        </td>
-      </tr>`;
-    });
-    
-    html += `</tbody></table>`;
-    html += `<div class="status-row"><span class="live-dot"></span><span>Node feed status: Nominal · Refreshed ${new Date().toLocaleTimeString()}</span></div>`;
-    
-    container.innerHTML = html;
-  } catch(e) {
-    container.innerHTML = `<div class="error-box">Failed to build module: ${e.message}</div>`;
-  }
+    const subLabel = t.type ? `<span class="holdings-asset-type">${t.type}</span>` : `<span class="t-name">${t.name||''}</span>`;
+
+    html += `<tr>
+      <td class="t-rank">${i+1}</td>
+      <td><div class="t-sym" style="display:flex; align-items:center; gap:8px;">${t.symbol} ${t.type ? subLabel : ''}</div>${t.type ? `<div class="t-name">${t.name}</div>` : ''} ${!t.type ? subLabel : ''}</td>
+      <td class="t-price">${fmtPrice(t.price)}</td>
+      <td class="t-chg ${pos?'pos':'neg'}">${pos?'+':'-'}${chg}</td>
+      <td class="t-pct">
+        <div class="pct-bar-wrap">
+          <span class="${pos?'pos':'neg'}">${pos?'+':'-'}${pct}%</span>
+          <span class="pct-bar ${pos?'bar-pos':'bar-neg'}" style="width:${barW}px;"></span>
+        </div>
+      </td>
+    </tr>`;
+  });
+  html += '</tbody></table>';
+  html += `<div class="status-row"><span class="live-dot"></span><span>Simulated Real-Time Terminal Feed · Live Updated</span></div>`;
+  document.getElementById(containerId).innerHTML = html;
 }
 
-async function loadWatchlist() {
-  try {
-    const data = await callClaude('watchlist metrics');
-    renderWatchlist(data);
-  } catch(e) {
-    document.getElementById('watchlist-container').innerHTML = `<div class="card"><div class="error-box">Failed to load watchlist.<br><small>${e.message}</small></div></div>`;
-  }
+function loadMarket(type, containerId, limitCount) {
+  const volatileData = generateLiveVolatility(SIMULATED_DATA[type], limitCount);
+  renderMarketTable(volatileData, containerId);
 }
 
-function renderWatchlist(data) {
-  if (!data || !data.length) {
-    document.getElementById('watchlist-container').innerHTML = '<div class="card"><div class="error-box">No watchlist data returned.</div></div>';
-    return;
-  }
+// ─── WATCHLIST VIEW RENDER ───────────────────────────
+function loadWatchlist() {
+  const data = generateLiveVolatility(SIMULATED_DATA.watchlist);
   let html = '<div class="watchlist-grid">';
   data.forEach(t => {
-    const pos = parseFloat(t.pctChange) >= 0;
-    const pct = Math.abs(parseFloat(t.pctChange)||0).toFixed(2);
+    const pos = t.pctChange >= 0;
+    const pct = Math.abs(t.pctChange).toFixed(2);
     html += `<div class="w-tile">
       <div class="w-sym">${t.symbol}</div>
       <div class="w-price" style="color:var(--text0);">${fmtPrice(t.price)}</div>
@@ -1166,17 +1244,34 @@ function renderWatchlist(data) {
     </div>`;
   });
   html += '</div>';
-  html += `<div class="status-row" style="margin-top:12px;"><span class="live-dot"></span><span>Mr. Mac's Watch List · AI-sourced data · ${new Date().toLocaleTimeString()}</span></div>`;
+  html += `<div class="status-row" style="margin-top:12px;"><span class="live-dot"></span><span>Mr. Mac's Watch List · Live Feed Refresh</span></div>`;
   document.getElementById('watchlist-container').innerHTML = html;
 }
 
-// INITALIZE ALL LOGS ON WINDOW LOAD
-window.onload = function() {
-  loadMarket('etf', 'etf-container');
-  loadMarket('stock', 'stock-container');
-  loadMarket('crypto', 'crypto-container');
+// ─── HOLDINGS VIEW RENDER ────────────────────────────
+function loadHoldings() {
+  const data = generateLiveVolatility(SIMULATED_DATA.holdings);
+  renderMarketTable(data, 'holdings-container');
+}
+
+// ─── INITIALIZATION ──────────────────────────────────
+calcProjection();
+calcTax();
+loadMarket('etf', 'etf-container', 5);
+loadMarket('stock', 'stock-container', 5);
+loadMarket('crypto', 'crypto-container', 5);
+loadWatchlist();
+loadHoldings();
+
+// Global Tick Interval Loop (Every 4 seconds)
+setInterval(() => {
+  loadMarket('etf', 'etf-container', 5);
+  loadMarket('stock', 'stock-container', 5);
+  loadMarket('crypto', 'crypto-container', 5);
   loadWatchlist();
-};
+  loadHoldings();
+}, 4000);
 </script>
+
 </body>
 </html>

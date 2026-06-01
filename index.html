@@ -136,6 +136,7 @@ body::before {
 .section:nth-child(6) { animation-delay: 0.3s }
 .section:nth-child(7) { animation-delay: 0.35s }
 .section:nth-child(8) { animation-delay: 0.4s }
+.section:nth-child(9) { animation-delay: 0.45s }
 
 .section-header {
   display: flex;
@@ -500,27 +501,6 @@ body::before {
   margin-top: 10px;
 }
 
-.loading-box {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 36px;
-  color: var(--text2);
-  font-family: 'Space Mono', monospace;
-  font-size: 12px;
-  gap: 10px;
-}
-.spinner {
-  width: 24px; height: 24px;
-  border: 2px solid var(--border2);
-  border-top-color: var(--blue);
-  border-radius: 50%;
-  animation: spin 0.8s linear infinite;
-}
-@keyframes spin { to { transform: rotate(360deg); } }
-.error-box { text-align: center; padding: 24px; color: var(--red); font-family: 'Space Mono', monospace; font-size: 12px; }
-
 /* WATCHLIST GRID */
 .watchlist-grid {
   display: grid;
@@ -540,6 +520,18 @@ body::before {
 .w-price { font-size: 13px; font-family: 'Space Mono', monospace; font-weight: 600; margin-top: 3px; }
 .w-chg { font-size: 11px; font-family: 'Space Mono', monospace; margin-top: 2px; }
 .w-name { font-size: 10px; color: var(--text2); margin-top: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* HOLDINGS SUB-LABELS */
+.holdings-asset-type {
+  font-size: 10px;
+  font-family: 'Space Mono', monospace;
+  color: var(--blue);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: rgba(77,166,255,0.06);
+  padding: 3px 8px;
+  border-radius: 4px;
+}
 
 /* FOOTER */
 .site-footer {
@@ -576,7 +568,6 @@ body::before {
 
 <div class="page-wrap">
 
-  <!-- HEADER -->
   <header class="site-header">
     <div class="logo-area">
       <div class="logo-tag">// Personal Finance Terminal</div>
@@ -591,7 +582,6 @@ body::before {
     </div>
   </header>
 
-  <!-- SECTION 1 -->
   <section class="section">
     <div class="section-header">
       <span class="section-num">01</span>
@@ -661,7 +651,6 @@ body::before {
     </div>
   </section>
 
-  <!-- SECTION 2 -->
   <section class="section">
     <div class="section-header">
       <span class="section-num">02</span>
@@ -714,7 +703,6 @@ body::before {
     </div>
   </section>
 
-  <!-- SECTION 3 -->
   <section class="section">
     <div class="section-header">
       <span class="section-num">03</span>
@@ -755,7 +743,6 @@ body::before {
     </div>
   </section>
 
-  <!-- SECTION 4 -->
   <section class="section">
     <div class="section-header">
       <span class="section-num">04</span>
@@ -792,7 +779,6 @@ body::before {
     </div>
   </section>
 
-  <!-- SECTION 5 -->
   <section class="section">
     <div class="section-header">
       <span class="section-num">05</span>
@@ -809,7 +795,6 @@ body::before {
     <div class="card" id="etf-container"></div>
   </section>
 
-  <!-- SECTION 6 -->
   <section class="section">
     <div class="section-header">
       <span class="section-num">06</span>
@@ -826,7 +811,6 @@ body::before {
     <div class="card" id="stock-container"></div>
   </section>
 
-  <!-- SECTION 7 -->
   <section class="section">
     <div class="section-header">
       <span class="section-num">07</span>
@@ -843,7 +827,6 @@ body::before {
     <div class="card" id="crypto-container"></div>
   </section>
 
-  <!-- SECTION 8 -->
   <section class="section">
     <div class="section-header">
       <span class="section-num">08</span>
@@ -860,7 +843,22 @@ body::before {
     <div id="watchlist-container"></div>
   </section>
 
-  <!-- FOOTER -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-num">09</span>
+      <span class="section-title">Mr. Mac's Holdings</span>
+      <span class="section-badge badge-personal">Holdings</span>
+    </div>
+    <div class="market-controls">
+      <span style="font-size:11px;font-family:'Space Mono',monospace;color:var(--text2);">Real-time performance tracking for your active portfolio items</span>
+      <button class="btn-refresh" onclick="loadHoldings()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M23 4v6h-6M1 20v-6h6M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0019.49 15"/></svg>
+        Refresh
+      </button>
+    </div>
+    <div class="card" id="holdings-container"></div>
+  </section>
+
   <footer class="site-footer">
     <div class="footer-text">© 2026 Mr. Mac's Dashboard · Dynamic Real-Time Terminal Feed</div>
     <div class="footer-disclaimer">Market data is dynamically simulated to approximate real-world behavior. Not formal investment advice.</div>
@@ -1013,7 +1011,7 @@ function getMarginal(income, status) {
   return 37;
 }
 
-// ─── LOCAL MOVERS SIMULATION ENGINE ──────────────────
+// ─── LOCAL MARKET DATA SIMULATION ENGINE ─────────────
 const SIMULATED_DATA = {
   etf: [
     { symbol: "CTAP", name: "Simplify US Equity PLUS Managed Futures", price: 28.40, basePct: 18.65 },
@@ -1079,94 +1077,4 @@ const SIMULATED_DATA = {
     { symbol: "UMAC", name: "Ushdi Macau", price: 2.15, basePct: -3.40 },
     { symbol: "APMX", name: "Apollo Medical", price: 34.20, basePct: 0.95 },
     { symbol: "BAC", name: "Bank of America Corp.", price: 39.45, basePct: -0.42 },
-    { symbol: "AAPL", name: "Apple Inc.", price: 184.50, basePct: 0.78 },
-    { symbol: "BIS", name: "ProShares UltraShort Biotech", price: 13.40, basePct: -1.80 },
-    { symbol: "MSFT", name: "Microsoft Corp.", price: 421.20, basePct: 1.02 },
-    { symbol: "NFLX", name: "Netflix Inc.", price: 612.40, basePct: -0.65 }
-  ]
-};
-
-function generateLiveVolatility(baseArray) {
-  return baseArray.map(item => {
-    const drift = (Math.random() - 0.5) * 0.4; 
-    const currentPct = item.basePct + drift;
-    const priceShift = 1 + (drift / 100);
-    return {
-      ...item,
-      price: item.price * priceShift,
-      pctChange: currentPct,
-      change: item.price * (currentPct / 100)
-    };
-  });
-}
-
-// ─── MARKET TABLE RENDER ────────────────────────────
-function renderMarketTable(data, containerId) {
-  let html = '<table class="mkt-table"><thead><tr><th>#</th><th>Symbol</th><th style="text-align:right">Price</th><th style="text-align:right">Change</th><th style="text-align:right">% Change</th></tr></thead><tbody>';
-  data.forEach((t, i) => {
-    const pos = t.pctChange >= 0;
-    const pct = Math.abs(t.pctChange).toFixed(2);
-    const chg = Math.abs(t.change).toFixed(2);
-    const barW = Math.min(56, parseFloat(pct) * 2.5);
-    html += `<tr>
-      <td class="t-rank">${i+1}</td>
-      <td><div class="t-sym">${t.symbol}</div><div class="t-name">${t.name||''}</div></td>
-      <td class="t-price">${fmtPrice(t.price)}</td>
-      <td class="t-chg ${pos?'pos':'neg'}">${pos?'+':'-'}${chg}</td>
-      <td class="t-pct">
-        <div class="pct-bar-wrap">
-          <span class="${pos?'pos':'neg'}">${pos?'+':'-'}${pct}%</span>
-          <span class="pct-bar ${pos?'bar-pos':'bar-neg'}" style="width:${barW}px;"></span>
-        </div>
-      </td>
-    </tr>`;
-  });
-  html += '</tbody></table>';
-  html += `<div class="status-row"><span class="live-dot"></span><span>Simulated Real-Time Terminal Feed · Live Updated</span></div>`;
-  document.getElementById(containerId).innerHTML = html;
-}
-
-function loadMarket(type, containerId) {
-  const volatileData = generateLiveVolatility(SIMULATED_DATA[type]);
-  volatileData.sort((a, b) => Math.abs(b.pctChange) - Math.abs(a.pctChange));
-  renderMarketTable(volatileData, containerId);
-}
-
-// ─── WATCHLIST RENDER ────────────────────────────────
-function loadWatchlist() {
-  const data = generateLiveVolatility(SIMULATED_DATA.watchlist);
-  let html = '<div class="watchlist-grid">';
-  data.forEach(t => {
-    const pos = t.pctChange >= 0;
-    const pct = Math.abs(t.pctChange).toFixed(2);
-    html += `<div class="w-tile">
-      <div class="w-sym">${t.symbol}</div>
-      <div class="w-price" style="color:var(--text0);">${fmtPrice(t.price)}</div>
-      <div class="w-chg ${pos?'pos':'neg'}">${pos?'▲':'▼'} ${pct}%</div>
-      <div class="w-name">${t.name||''}</div>
-    </div>`;
-  });
-  html += '</div>';
-  html += `<div class="status-row" style="margin-top:12px;"><span class="live-dot"></span><span>Mr. Mac's Watch List · Live Feed Refresh</span></div>`;
-  document.getElementById('watchlist-container').innerHTML = html;
-}
-
-// ─── RUN ENGINE INITIALIZATION ───────────────────────
-calcProjection();
-calcTax();
-loadMarket('etf', 'etf-container');
-loadMarket('stock', 'stock-container');
-loadMarket('crypto', 'crypto-container');
-loadWatchlist();
-
-// Auto-refresh simulations every 4 seconds to show true "real time dashboard" movement
-setInterval(() => {
-  loadMarket('etf', 'etf-container');
-  loadMarket('stock', 'stock-container');
-  loadMarket('crypto', 'crypto-container');
-  loadWatchlist();
-}, 4000);
-</script>
-
-</body>
-</html>
+    { symbol: "AAPL", name: "Apple Inc.", price: 184.50, basePct: 0.7

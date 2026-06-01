@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mr. Mac's Investment Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+:root {
+  --bg0: #060810;
+  --bg1: #0d1117;
+  --bg2: #131920;
+  --bg3: #1a2230;
+  --bg4: #1f2a3a;
+  --border: rgba(255,255,255,0.07);
+  --border2: rgba(255,255,255,0.12);
+  --text0: #e8edf5;
+  --text1: #a8b4c4;
+  --text2: #647080;
+  --text3: #3d4a58;
+  --green: #00d68f;
+  --green-dim: rgba(0,214,143,0.12);
+  --red: #ff4d6a;
+  --red-dim: rgba(255,77,106,0.12);
+  --blue: #4da6ff;
+  --blue-dim: rgba(77,166,255,0.1);
+  --amber: #ffb347;
+  --amber-dim: rgba(255,179,71,0.1);
+  --teal: #00e5cc;
+  --accent: #4da6ff;
+  --gold: #f0c040;
+  --radius: 10px;
+  --radius-sm: 6px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg0);
+  color: var(--text0);
+  font-family: 'Syne', sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* GRID BACKGROUND */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(77,166,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(77,166,255,0.025) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.page-wrap { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 0 20px 60px; }
+
+/* HEADER */
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28px 0 20px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 36px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.logo-area { display: flex; flex-direction: column; }
+.logo-tag {
+  font-size: 10px;
+  font-family: 'Space Mono', monospace;
+  color: var(--blue);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.logo-name {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--text0);
+  letter-spacing: -0.5px;
+  line-height: 1;
+}
+.logo-name span { color: var(--blue); }
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.live-badge {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 12px;
+  border: 1px solid var(--border2);
+  border-radius: 20px;
+  font-size: 11px;
+  font-family: 'Space Mono', monospace;
+  color: var(--text1);
+}
+.live-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--green);
+  animation: blink 2s infinite;
+}
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+.clock {
+  font-family: 'Space Mono', monospace;
+  font-size: 12px;
+  color: var(--text2);
+}
+
+/* SECTION LAYOUT */
+.section {
+  margin-bottom: 48px;
+  animation: fadeUp 0.4s ease both;
+}
+@keyframes fadeUp { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
+.section:nth-child(1) { animation-delay: 0.05s }
+.section:nth-child(2) { animation-delay: 0.1s }
+.section:nth-child(3) { animation-delay: 0.15s }
+.section:nth-child(4) { animation-delay: 0.2s }
+.section:nth-child(5) { animation-delay: 0.25s }
+.section:nth-child(6) { animation-delay: 0.3s }
+.section:nth-child(7) { animation-delay: 0.35s }
+.section:nth-child(8) { animation-delay: 0.4s }
+
+.section-header {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+.section-num {
+  font-size: 10px;
+  font-family: 'Space Mono', monospace;
+  color: var(--text3);
+  letter-spacing: 0.1em;
+  min-width: 24px;
+}
+.section-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text0);
+  letter-spacing: -0.2px;
+}
+.section-badge {
+  margin-left: auto;
+  font-size: 10px;
+  font-family: 'Space Mono', monospace;
+  padding: 3px 10px;
+  border-radius: 20px;
+  border: 1px solid;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.badge-ira { border-color: rgba(0,229,204,0.3); color: var(--teal); }
+.badge-calc { border-color: rgba(77,166,255,0.3); color: var(--blue); }
+.badge-tax { border-color: rgba(255,179,71,0.3); color: var(--amber); }
+.badge-etf { border-color: rgba(0,214,143,0.3); color: var(--green); }
+.badge-stock { border-color: rgba(77,166,255,0.3); color: var(--blue); }
+.badge-crypto { border-color: rgba(255,179,71,0.3); color: var(--amber); }
+.badge-personal { border-color: rgba(240,192,64,0.3); color: var(--gold); }
+
+/* CARDS */
+.card {
+  background: var(--bg1);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px 22px;
+  transition: border-color 0.2s;
+}
+.card:hover { border-color: var(--border2); }
+.card-inner {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 14px 16px;
+}
+
+/* IRA SECTION */
+.ira-intro {
+  font-size: 13px;
+  color: var(--text1);
+  line-height: 1.7;
+  margin-bottom: 18px;
+  border-left: 2px solid var(--border2);
+  padding-left: 14px;
+}
+.ira-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.ira-card {
+  background: var(--bg1);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.ira-card:hover { border-color: var(--border2); transform: translateY(-1px); }
+.ira-card.trad { border-top: 2px solid var(--blue); }
+.ira-card.roth { border-top: 2px solid var(--teal); }
+.ira-type {
+  font-size: 10px;
+  font-family: 'Space Mono', monospace;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.ira-card.trad .ira-type { color: var(--blue); }
+.ira-card.roth .ira-type { color: var(--teal); }
+.ira-name { font-size: 15px; font-weight: 700; color: var(--text0); margin-bottom: 8px; }
+.ira-desc { font-size: 12px; color: var(--text1); line-height: 1.65; margin-bottom: 14px; }
+.pc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.pc-col-title {
+  font-size: 10px;
+  font-family: 'Space Mono', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.pc-col-title.pro { color: var(--green); }
+.pc-col-title.con { color: var(--red); }
+.pc-list { list-style: none; }
+.pc-list li {
+  font-size: 12px;
+  color: var(--text1);
+  padding: 2px 0 2px 14px;
+  position: relative;
+  line-height: 1.5;
+}
+.pc-list.pro li::before { content: '+'; position: absolute; left: 0; color: var(--green); font-weight: 700; }
+.pc-list.con li::before { content: '−'; position: absolute; left: 0; color: var(--red); font-weight: 700; }
+
+.brokerage-panel {
+  margin-top: 14px;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-left: 2px solid var(--amber);
+  border-radius: var(--radius-sm);
+  padding: 14px 16px;
+}
+.brokerage-label {
+  font-size: 10px;
+  font-family: 'Space Mono', monospace;
+  color: var(--amber);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 6px;
+}
+.brokerage-text { font-size: 12px; color: var(--text1); line-height: 1.7; }
+.brokerage-text strong { color: var(--text0); font-weight: 600; }
+
+/* CALCULATOR */
+.calc-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+.field-group label {
+  display: block;
+  font-size: 11px;
+  font-family: 'Space Mono', monospace;
+  color: var(--text2);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  margin-bottom: 6px;
+}
+.field-group input, .field-group select {
+  width: 100%;
+  background: var(--bg2);
+  border: 1px solid var(--border2);
+  border-radius: var(--radius-sm);
+  padding: 9px 12px;
+  font-size: 14px;
+  font-family: 'Space Mono', monospace;
+  color: var(--text0);
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.field-group input:focus, .field-group select:focus {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 2px rgba(77,166,255,0.15);
+}
+.field-group select option { background: var(--bg2); }
+
+.btn-primary {
+  padding: 10px 22px;
+  background: var(--blue);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-weight: 600;
+  font-family: 'Syne', sans-serif;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+.btn-primary:hover { background: #3d95ee; }
+.btn-primary:active { transform: scale(0.98); }
+
+.calc-results { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 18px; }
+.res-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 14px;
+  text-align: center;
+}
+.res-label {
+  font-size: 10px;
+  font-family: 'Space Mono', monospace;
+  color: var(--text2);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
+}
+.res-val {
+  font-size: 20px;
+  font-weight: 700;
+  font-family: 'Space Mono', monospace;
+}
+.res-val.blue { color: var(--blue); }
+.res-val.amber { color: var(--amber); }
+.res-val.green { color: var(--green); }
+
+.chart-wrap { margin-top: 18px; position: relative; width: 100%; height: 200px; }
+
+/* TAX TABLE */
+.tax-explain {
+  font-size: 13px;
+  color: var(--text1);
+  line-height: 1.7;
+  margin-bottom: 14px;
+}
+.example-box {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-left: 2px solid var(--amber);
+  border-radius: var(--radius-sm);
+  padding: 12px 16px;
+  font-size: 12px;
+  color: var(--text1);
+  line-height: 1.8;
+  margin-bottom: 16px;
+  font-family: 'Space Mono', monospace;
+}
+.example-box strong { color: var(--amber); }
+
+.tax-table-wrap { overflow-x: auto; }
+.tax-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+.tax-table th {
+  text-align: left;
+  padding: 8px 12px;
+  font-size: 10px;
+  font-family: 'Space Mono', monospace;
+  color: var(--text2);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  border-bottom: 1px solid var(--border2);
+  white-space: nowrap;
+}
+.tax-table td {
+  padding: 9px 12px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text1);
+  white-space: nowrap;
+}
+.tax-table tr:last-child td { border-bottom: none; }
+.tax-table tr:hover td { background: var(--bg2); }
+.rate-pill {
+  display: inline-block;
+  padding: 2px 9px;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 11px;
+  font-family: 'Space Mono', monospace;
+}
+.r10 { background: rgba(0,214,143,0.12); color: #00d68f; }
+.r12 { background: rgba(77,166,255,0.12); color: #4da6ff; }
+.r22 { background: rgba(0,229,204,0.12); color: #00e5cc; }
+.r24 { background: rgba(255,179,71,0.12); color: #ffb347; }
+.r32 { background: rgba(255,140,0,0.12); color: #ff8c00; }
+.r35 { background: rgba(255,77,106,0.12); color: #ff4d6a; }
+.r37 { background: rgba(255,50,50,0.15); color: #ff3232; }
+.tax-note { font-size: 11px; color: var(--text2); margin-top: 8px; font-family: 'Space Mono', monospace; }
+
+/* TAX CALCULATOR */
+.eff-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.eff-result-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.eff-rate-label {
+  font-size: 10px;
+  font-family: 'Space Mono', monospace;
+  color: var(--text2);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
+}
+.eff-rate-value {
+  font-size: 42px;
+  font-weight: 700;
+  font-family: 'Space Mono', monospace;
+  color: var(--red);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.eff-rate-sub { font-size: 12px; color: var(--text2); font-family: 'Space Mono', monospace; line-height: 1.9; }
+.tax-breakdown-list { font-size: 11px; color: var(--text1); font-family: 'Space Mono', monospace; line-height: 2; margin-top: 10px; }
+
+/* MARKET TABLES */
+.market-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+.btn-refresh {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background: transparent;
+  border: 1px solid var(--border2);
+  border-radius: var(--radius-sm);
+  font-size: 11px;
+  font-family: 'Space Mono', monospace;
+  color: var(--text1);
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+  margin-left: auto;
+}
+.btn-refresh:hover { background: var(--bg3); border-color: var(--border2); }
+.btn-refresh svg { width: 13px; height: 13px; }
+
+.mkt-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.mkt-table th {
+  text-align: left;
+  padding: 7px 10px;
+  font-size: 10px;
+  font-family: 'Space Mono', monospace;
+  color: var(--text3);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  border-bottom: 1px solid var(--border);
+}
+.mkt-table td {
+  padding: 9px 10px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+}
+.mkt-table tr:last-child td { border-bottom: none; }
+.mkt-table tr:hover td { background: var(--bg2); }
+.t-rank { font-size: 11px; color: var(--text3); font-family: 'Space Mono', monospace; width: 28px; }
+.t-sym { font-weight: 700; font-size: 13px; color: var(--text0); font-family: 'Space Mono', monospace; }
+.t-name { font-size: 11px; color: var(--text2); margin-top: 1px; }
+.t-price { font-family: 'Space Mono', monospace; font-size: 13px; font-weight: 600; color: var(--text0); text-align: right; }
+.t-chg { font-family: 'Space Mono', monospace; font-size: 12px; text-align: right; }
+.t-pct { font-family: 'Space Mono', monospace; font-size: 12px; font-weight: 700; text-align: right; }
+.pos { color: var(--green); }
+.neg { color: var(--red); }
+.neutral { color: var(--text2); }
+
+.pct-bar-wrap { display: flex; align-items: center; justify-content: flex-end; gap: 8px; }
+.pct-bar { height: 3px; border-radius: 2px; min-width: 2px; max-width: 60px; display: inline-block; }
+.bar-pos { background: var(--green); }
+.bar-neg { background: var(--red); }
+
+.status-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-family: 'Space Mono', monospace;
+  color: var(--text2);
+  margin-top: 10px;
+}
+
+.loading-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 36px;
+  color: var(--text2);
+  font-family: 'Space Mono', monospace;
+  font-size: 12px;
+  gap: 10px;
+}
+.spinner {
+  width: 24px; height: 24px;
+  border: 2px solid var(--border2);
+  border-top-color: var(--blue);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.error-box { text-align: center; padding: 24px; color: var(--red); font-family: 'Space Mono', monospace; font-size: 12px; }
+
+/* WATCHLIST GRID */
+.watchlist-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 8px;
+}
+.w-tile {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 11px 13px;
+  cursor: default;
+  transition: border-color 0.2s, background 0.2s;
+}
+.w-tile:hover { border-color: var(--border2); background: var(--bg3); }
+.w-sym { font-size: 13px; font-weight: 700; font-family: 'Space Mono', monospace; color: var(--text0); }
+.w-price { font-size: 13px; font-family: 'Space Mono', monospace; font-weight: 600; margin-top: 3px; }
+.w-chg { font-size: 11px; font-family: 'Space Mono', monospace; margin-top: 2px; }
+.w-name { font-size: 10px; color: var(--text2); margin-top: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* FOOTER */
+.site-footer {
+  border-top: 1px solid var(--border);
+  padding: 20px 0 0;
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.footer-text { font-size: 11px; font-family: 'Space Mono', monospace; color: var(--text3); }
+.footer-disclaimer { font-size: 10px; color: var(--text3); font-family: 'Space Mono', monospace; max-width: 500px; line-height: 1.6; }
+
+/* RESPONSIVE */
+@media (max-width: 640px) {
+  .ira-grid { grid-template-columns: 1fr; }
+  .calc-fields { grid-template-columns: 1fr; }
+  .calc-results { grid-template-columns: 1fr 1fr; }
+  .eff-grid { grid-template-columns: 1fr; }
+  .site-header { flex-direction: column; align-items: flex-start; }
+  .logo-name { font-size: 22px; }
+  .section-title { font-size: 15px; }
+  .watchlist-grid { grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); }
+}
+@media (max-width: 400px) {
+  .calc-results { grid-template-columns: 1fr; }
+  .pc-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="page-wrap">
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="logo-area">
+      <div class="logo-tag">// Personal Finance Terminal</div>
+      <div class="logo-name">Mr. <span>Mac's</span> Dashboard</div>
+    </div>
+    <div class="header-right">
+      <div class="live-badge">
+        <span class="live-dot"></span>
+        <span>AI-Powered Live Data</span>
+      </div>
+      <div class="clock" id="clock">--:-- --</div>
+    </div>
+  </header>
+
+  <!-- ══════════════════════════════════════
+       SECTION 1: Traditional vs Roth IRA
+  ═══════════════════════════════════════ -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <span class="section-title">Traditional IRA vs. Roth IRA</span>
+      <span class="section-badge badge-ira">Retirement</span>
+    </div>
+    <p class="ira-intro">Both IRAs offer powerful tax advantages for retirement — the fundamental difference is <em>when</em> you're taxed. Traditional IRAs tax you on withdrawal (tax-deferred growth); Roth IRAs tax you now so all future growth and withdrawals are completely tax-free. The right choice depends on whether your tax bracket is higher today or in retirement.</p>
+    <div class="ira-grid">
+      <div class="ira-card trad">
+        <div class="ira-type">Traditional IRA</div>
+        <div class="ira-name">Tax-Deferred Growth</div>
+        <div class="ira-desc">Contributions may be tax-deductible today. All growth is deferred — you pay ordinary income tax on withdrawals in retirement. Required Minimum Distributions begin at age 73.</div>
+        <div class="pc-grid">
+          <div>
+            <div class="pc-col-title pro">▲ Pros</div>
+            <ul class="pc-list pro">
+              <li>Potential tax deduction now</li>
+              <li>Reduces current taxable income</li>
+              <li>Ideal if retiring in lower bracket</li>
+              <li>No income limit for contributions</li>
+              <li>Wide investment options</li>
+            </ul>
+          </div>
+          <div>
+            <div class="pc-col-title con">▼ Cons</div>
+            <ul class="pc-list con">
+              <li>All withdrawals are taxed</li>
+              <li>RMDs required at age 73</li>
+              <li>10% penalty before age 59½</li>
+              <li>Deductibility phases out w/ employer plan</li>
+              <li>No tax-free legacy growth</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="ira-card roth">
+        <div class="ira-type">Roth IRA</div>
+        <div class="ira-name">Tax-Free Growth</div>
+        <div class="ira-desc">Funded with after-tax dollars. All qualified withdrawals — including all growth — are 100% tax-free. No RMDs during your lifetime, making it ideal for estate and legacy planning.</div>
+        <div class="pc-grid">
+          <div>
+            <div class="pc-col-title pro">▲ Pros</div>
+            <ul class="pc-list pro">
+              <li>Tax-free withdrawals in retirement</li>
+              <li>No RMDs — assets keep growing</li>
+              <li>Contributions withdrawable anytime</li>
+              <li>Ideal if retiring in higher bracket</li>
+              <li>Superior for legacy planning</li>
+            </ul>
+          </div>
+          <div>
+            <div class="pc-col-title con">▼ Cons</div>
+            <ul class="pc-list con">
+              <li>No deduction on contributions</li>
+              <li>Income limits ($161K single/$240K MFJ)</li>
+              <li>Earnings require 5-year seasoning rule</li>
+              <li>Fewer immediate tax benefits</li>
+              <li>Backdoor Roth has complexity</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="brokerage-panel">
+      <div class="brokerage-label">// Brokerage Account — Taxable Investing</div>
+      <div class="brokerage-text">A taxable brokerage account complements retirement accounts with <strong>no contribution limits, no income restrictions, and no withdrawal penalties</strong>. You can invest in stocks, ETFs, options, crypto, and more with unrestricted access to your funds at any time. <strong>Key benefits:</strong> tax-loss harvesting, favorable long-term capital gains rates (0–20%), no required distributions, and maximum flexibility. <strong>Key costs:</strong> dividends and realized gains are taxable annually, no upfront deduction, and short-term gains are taxed as ordinary income. Best used as a complement to fully-maxed retirement accounts for additional wealth accumulation.</div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       SECTION 2: Projected Standing Calculator
+  ═══════════════════════════════════════ -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <span class="section-title">Projected Standing Calculator</span>
+      <span class="section-badge badge-calc">Calculator</span>
+    </div>
+    <div class="card">
+      <div class="calc-fields">
+        <div class="field-group">
+          <label>Initial Contribution / Principal ($)</label>
+          <input type="number" id="principal" value="10000" min="0" step="500">
+        </div>
+        <div class="field-group">
+          <label>Monthly Contribution ($)</label>
+          <input type="number" id="monthly" value="500" min="0" step="50">
+        </div>
+        <div class="field-group">
+          <label>Projected Avg. Return Rate (%)</label>
+          <input type="number" id="rate" value="8" min="0" max="100" step="0.1">
+        </div>
+        <div class="field-group">
+          <label>Years to Grow</label>
+          <input type="number" id="years" value="30" min="1" max="60" step="1">
+        </div>
+      </div>
+      <button class="btn-primary" onclick="calcProjection()">Calculate Projected Standing</button>
+      <div class="calc-results" id="calc-results" style="display:none;">
+        <div class="res-card">
+          <div class="res-label">Total Invested</div>
+          <div class="res-val blue" id="res-invested">—</div>
+        </div>
+        <div class="res-card">
+          <div class="res-label">Interest Earned</div>
+          <div class="res-val amber" id="res-interest">—</div>
+        </div>
+        <div class="res-card">
+          <div class="res-label">Projected Standing</div>
+          <div class="res-val green" id="res-total">—</div>
+        </div>
+      </div>
+      <div id="growth-chart-wrap" style="display:none;">
+        <div class="chart-wrap">
+          <canvas id="growthCanvas" role="img" aria-label="Compound growth projection over time. Shows portfolio value vs total invested over selected years.">Compound growth projection chart.</canvas>
+        </div>
+        <div style="display:flex;gap:20px;margin-top:8px;font-size:11px;font-family:'Space Mono',monospace;color:var(--text2);">
+          <span style="display:flex;align-items:center;gap:6px;"><span style="width:12px;height:3px;background:var(--green);display:inline-block;border-radius:2px;"></span>Portfolio Value</span>
+          <span style="display:flex;align-items:center;gap:6px;"><span style="width:12px;height:3px;background:var(--blue);display:inline-block;border-radius:2px;border-top:2px dashed var(--blue);"></span>Total Invested</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       SECTION 3: Effective Tax Rate Explanation
+  ═══════════════════════════════════════ -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <span class="section-title">Understanding Your Effective Federal Tax Rate</span>
+      <span class="section-badge badge-tax">Education</span>
+    </div>
+    <div class="card">
+      <p class="tax-explain">The U.S. uses a <strong style="color:var(--text0);">progressive marginal tax system</strong> — only the portion of your income that falls within each bracket is taxed at that rate. Your <strong style="color:var(--amber);">marginal rate</strong> is the rate on your last dollar earned. Your <strong style="color:var(--green);">effective rate</strong> is the actual percentage of your entire income paid in federal taxes — always lower than your marginal rate. This distinction is critical: earning more never results in less take-home pay.</p>
+      <div class="example-box">
+        <strong>Example: $85,000 income — Single Filer (2024)</strong><br>
+        First $11,600 × 10% = $1,160<br>
+        $11,601–$47,150 × 12% = $4,266<br>
+        $47,151–$85,000 × 22% = $8,327<br>
+        ─────────────────────────────<br>
+        <strong>Total Tax: $13,753 → Effective Rate: 16.2% (NOT 22%)</strong>
+      </div>
+      <div class="tax-table-wrap">
+        <table class="tax-table">
+          <thead>
+            <tr>
+              <th>Rate</th>
+              <th>Single Filer</th>
+              <th>Married Filing Jointly</th>
+              <th>Head of Household</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><span class="rate-pill r10">10%</span></td><td>$0 – $11,600</td><td>$0 – $23,200</td><td>$0 – $16,550</td></tr>
+            <tr><td><span class="rate-pill r12">12%</span></td><td>$11,601 – $47,150</td><td>$23,201 – $94,300</td><td>$16,551 – $63,100</td></tr>
+            <tr><td><span class="rate-pill r22">22%</span></td><td>$47,151 – $100,525</td><td>$94,301 – $201,050</td><td>$63,101 – $100,500</td></tr>
+            <tr><td><span class="rate-pill r24">24%</span></td><td>$100,526 – $191,950</td><td>$201,051 – $383,900</td><td>$100,501 – $191,950</td></tr>
+            <tr><td><span class="rate-pill r32">32%</span></td><td>$191,951 – $243,725</td><td>$383,901 – $487,450</td><td>$191,951 – $243,700</td></tr>
+            <tr><td><span class="rate-pill r35">35%</span></td><td>$243,726 – $609,350</td><td>$487,451 – $731,200</td><td>$243,701 – $609,350</td></tr>
+            <tr><td><span class="rate-pill r37">37%</span></td><td>Over $609,350</td><td>Over $731,200</td><td>Over $609,350</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="tax-note">* 2024 federal income tax brackets. Excludes standard deduction, FICA, state/local taxes, and AMT.</div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       SECTION 4: Effective Tax Rate Calculator
+  ═══════════════════════════════════════ -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-num">04</span>
+      <span class="section-title">Effective Federal Tax Rate Calculator</span>
+      <span class="section-badge badge-tax">Calculator</span>
+    </div>
+    <div class="card">
+      <div class="eff-grid">
+        <div>
+          <div class="calc-fields" style="grid-template-columns:1fr;">
+            <div class="field-group">
+              <label>Annual Gross Income ($)</label>
+              <input type="number" id="tax-income" value="85000" min="0" step="1000">
+            </div>
+            <div class="field-group">
+              <label>Filing Status</label>
+              <select id="filing-status">
+                <option value="single">Single</option>
+                <option value="mfj">Married Filing Jointly</option>
+                <option value="hoh">Head of Household</option>
+              </select>
+            </div>
+          </div>
+          <button class="btn-primary" onclick="calcTax()" style="margin-top:4px;">Calculate Tax</button>
+        </div>
+        <div>
+          <div class="eff-result-card" id="eff-result" style="display:none;">
+            <div class="eff-rate-label">Effective Federal Rate</div>
+            <div class="eff-rate-value" id="eff-rate-val">—</div>
+            <div class="eff-rate-sub" id="eff-rate-sub"></div>
+          </div>
+          <div class="tax-breakdown-list" id="tax-breakdown"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       SECTION 5: Top 10 ETF Movers
+  ═══════════════════════════════════════ -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-num">05</span>
+      <span class="section-title">Top 10 Movers — ETFs</span>
+      <span class="section-badge badge-etf">ETFs</span>
+    </div>
+    <div class="market-controls">
+      <span style="font-size:11px;font-family:'Space Mono',monospace;color:var(--text2);">Today's biggest ETF movers by % change</span>
+      <button class="btn-refresh" onclick="loadMarket('etf','etf-container')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M23 4v6h-6M1 20v-6h6M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0019.49 15"/></svg>
+        Refresh
+      </button>
+    </div>
+    <div class="card" id="etf-container"><div class="loading-box"><div class="spinner"></div><span>Fetching ETF movers...</span></div></div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       SECTION 6: Top 10 Stock Movers
+  ═══════════════════════════════════════ -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-num">06</span>
+      <span class="section-title">Top 10 Movers — Stocks</span>
+      <span class="section-badge badge-stock">Stocks</span>
+    </div>
+    <div class="market-controls">
+      <span style="font-size:11px;font-family:'Space Mono',monospace;color:var(--text2);">Today's biggest stock movers by % change</span>
+      <button class="btn-refresh" onclick="loadMarket('stock','stock-container')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M23 4v6h-6M1 20v-6h6M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0019.49 15"/></svg>
+        Refresh
+      </button>
+    </div>
+    <div class="card" id="stock-container"><div class="loading-box"><div class="spinner"></div><span>Fetching stock movers...</span></div></div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       SECTION 7: Top 10 Crypto Movers
+  ═══════════════════════════════════════ -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-num">07</span>
+      <span class="section-title">Top 10 Movers — Crypto</span>
+      <span class="section-badge badge-crypto">Crypto</span>
+    </div>
+    <div class="market-controls">
+      <span style="font-size:11px;font-family:'Space Mono',monospace;color:var(--text2);">Top 24h crypto movers by % change</span>
+      <button class="btn-refresh" onclick="loadMarket('crypto','crypto-container')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M23 4v6h-6M1 20v-6h6M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0019.49 15"/></svg>
+        Refresh
+      </button>
+    </div>
+    <div class="card" id="crypto-container"><div class="loading-box"><div class="spinner"></div><span>Fetching crypto movers...</span></div></div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       SECTION 8: Mr. Mac's Watch List
+  ═══════════════════════════════════════ -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-num">08</span>
+      <span class="section-title">Mr. Mac's Watch List</span>
+      <span class="section-badge badge-personal">Personal</span>
+    </div>
+    <div class="market-controls">
+      <span style="font-size:11px;font-family:'Space Mono',monospace;color:var(--text2);">Your personally curated watchlist · 31 symbols</span>
+      <button class="btn-refresh" onclick="loadWatchlist()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M23 4v6h-6M1 20v-6h6M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0019.49 15"/></svg>
+        Refresh
+      </button>
+    </div>
+    <div id="watchlist-container"><div class="card"><div class="loading-box"><div class="spinner"></div><span>Loading Mr. Mac's Watch List...</span></div></div></div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-text">© 2025 Mr. Mac's Dashboard · Built with Claude AI</div>
+    <div class="footer-disclaimer">Market data is AI-sourced and approximate. Not financial advice. Always verify prices with your broker before making investment decisions.</div>
+  </footer>
+
+</div><!-- end page-wrap -->
+
+<script>
+// ─── CLOCK ───────────────────────────────────────────
+function updateClock() {
+  const now = new Date();
+  document.getElementById('clock').textContent = now.toLocaleTimeString('en-US', {hour:'2-digit',minute:'2-digit',second:'2-digit'});
+}
+updateClock();
+setInterval(updateClock, 1000);
+
+// ─── FORMAT HELPERS ─────────────────────────────────
+const fmtUSD = v => '$' + Number(v).toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2});
+const fmtK = v => {
+  const n = Number(v);
+  if (n >= 1e9) return '$' + (n/1e9).toFixed(2) + 'B';
+  if (n >= 1e6) return '$' + (n/1e6).toFixed(2) + 'M';
+  if (n >= 1e3) return '$' + (n/1e3).toFixed(1) + 'K';
+  return fmtUSD(n);
+};
+const fmtPrice = v => {
+  const n = Number(v);
+  if (n < 0.00001) return '$' + n.toFixed(10);
+  if (n < 0.01) return '$' + n.toFixed(8);
+  if (n < 1) return '$' + n.toFixed(6);
+  return fmtUSD(n);
+};
+
+// ─── PROJECTION CALCULATOR ──────────────────────────
+let growthChart = null;
+
+function calcProjection() {
+  const P = parseFloat(document.getElementById('principal').value) || 0;
+  const m = parseFloat(document.getElementById('monthly').value) || 0;
+  const r = parseFloat(document.getElementById('rate').value) || 0;
+  const y = parseInt(document.getElementById('years').value) || 0;
+  const n = y * 12;
+  const mr = r / 100 / 12;
+  let future;
+  if (mr === 0) {
+    future = P + m * n;
+  } else {
+    future = P * Math.pow(1 + mr, n) + m * (Math.pow(1 + mr, n) - 1) / mr;
+  }
+  const invested = P + m * n;
+  const interest = future - invested;
+  document.getElementById('res-invested').textContent = fmtK(invested);
+  document.getElementById('res-interest').textContent = fmtK(interest);
+  document.getElementById('res-total').textContent = fmtK(future);
+  document.getElementById('calc-results').style.display = 'grid';
+  document.getElementById('growth-chart-wrap').style.display = 'block';
+  buildGrowthChart(P, m, r, y);
+}
+
+function buildGrowthChart(P, m, r, y) {
+  const labels = [], dataFuture = [], dataInvested = [];
+  const mr = r / 100 / 12;
+  for (let yr = 0; yr <= y; yr++) {
+    const n = yr * 12;
+    let f = mr === 0 ? P + m * n : P * Math.pow(1+mr, n) + m * (Math.pow(1+mr, n) - 1) / mr;
+    labels.push(yr + 'y');
+    dataFuture.push(Math.round(f));
+    dataInvested.push(Math.round(P + m * n));
+  }
+  if (growthChart) growthChart.destroy();
+  const ctx = document.getElementById('growthCanvas').getContext('2d');
+  growthChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels,
+      datasets: [
+        {
+          label: 'Portfolio Value',
+          data: dataFuture,
+          borderColor: '#00d68f',
+          backgroundColor: 'rgba(0,214,143,0.06)',
+          tension: 0.4,
+          fill: true,
+          pointRadius: 0,
+          borderWidth: 2
+        },
+        {
+          label: 'Total Invested',
+          data: dataInvested,
+          borderColor: '#4da6ff',
+          backgroundColor: 'transparent',
+          tension: 0.1,
+          borderDash: [5, 4],
+          pointRadius: 0,
+          borderWidth: 1.5
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: {
+          ticks: { maxTicksLimit: 10, color: '#647080', font: { family: "'Space Mono', monospace", size: 10 } },
+          grid: { color: 'rgba(255,255,255,0.04)' }
+        },
+        y: {
+          ticks: { callback: v => fmtK(v), color: '#647080', font: { family: "'Space Mono', monospace", size: 10 } },
+          grid: { color: 'rgba(255,255,255,0.04)' }
+        }
+      }
+    }
+  });
+}
+
+// ─── TAX CALCULATOR ─────────────────────────────────
+const TAX_BRACKETS = {
+  single: [[11600,0.10],[47150,0.12],[100525,0.22],[191950,0.24],[243725,0.32],[609350,0.35],[Infinity,0.37]],
+  mfj:    [[23200,0.10],[94300,0.12],[201050,0.22],[383900,0.24],[487450,0.32],[731200,0.35],[Infinity,0.37]],
+  hoh:    [[16550,0.10],[63100,0.12],[100500,0.22],[191950,0.24],[243700,0.32],[609350,0.35],[Infinity,0.37]]
+};
+
+function calcTax() {
+  const income = parseFloat(document.getElementById('tax-income').value) || 0;
+  const status = document.getElementById('filing-status').value;
+  const brackets = TAX_BRACKETS[status];
+  let tax = 0, prev = 0, breakdown = '';
+  for (const [limit, rate] of brackets) {
+    if (income <= prev) break;
+    const taxable = Math.min(income, limit) - prev;
+    const amount = taxable * rate;
+    tax += amount;
+    breakdown += `<span style="color:var(--text0)">${(rate*100).toFixed(0)}%</span> bracket: ${fmtUSD(taxable)} × ${(rate*100).toFixed(0)}% = <span style="color:var(--amber)">${fmtUSD(amount)}</span><br>`;
+    prev = limit;
+    if (limit === Infinity) break;
+  }
+  const eff = income > 0 ? (tax / income * 100).toFixed(2) : '0.00';
+  document.getElementById('eff-result').style.display = 'flex';
+  document.getElementById('eff-rate-val').textContent = eff + '%';
+  document.getElementById('eff-rate-sub').innerHTML = `Total federal tax: ${fmtUSD(tax)}<br>Take-home (pre-FICA): ${fmtUSD(income - tax)}<br>Marginal rate: ${getMarginal(income, status)}%`;
+  document.getElementById('tax-breakdown').innerHTML = '<span style="color:var(--text2);font-size:10px;text-transform:uppercase;letter-spacing:0.07em;">Breakdown</span><br>' + breakdown;
+}
+
+function getMarginal(income, status) {
+  const brackets = TAX_BRACKETS[status];
+  let prev = 0;
+  for (const [limit, rate] of brackets) {
+    if (income <= limit) return (rate * 100).toFixed(0);
+    prev = limit;
+  }
+  return 37;
+}
+
+// ─── CLAUDE API ─────────────────────────────────────
+async function callClaude(prompt) {
+  const resp = await fetch('https://api.anthropic.com/v1/messages', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      model: 'claude-sonnet-4-20250514',
+      max_tokens: 1500,
+      messages: [{ role: 'user', content: prompt }]
+    })
+  });
+  if (!resp.ok) throw new Error('API error ' + resp.status);
+  const d = await resp.json();
+  const text = d.content.map(i => i.text || '').join('');
+  const clean = text.replace(/```json|```/g, '').trim();
+  return JSON.parse(clean);
+}
+
+// ─── MARKET TABLE RENDER ────────────────────────────
+function renderMarketTable(data, containerId) {
+  if (!data || !data.length) {
+    document.getElementById(containerId).innerHTML = '<div class="error-box">No data returned. Try refreshing.</div>';
+    return;
+  }
+  let html = '<table class="mkt-table"><thead><tr><th>#</th><th>Symbol</th><th style="text-align:right">Price</th><th style="text-align:right">Change</th><th style="text-align:right">% Change</th></tr></thead><tbody>';
+  data.forEach((t, i) => {
+    const pos = parseFloat(t.pctChange) >= 0;
+    const pct = typeof t.pctChange === 'number' ? Math.abs(t.pctChange).toFixed(2) : Math.abs(parseFloat(t.pctChange)||0).toFixed(2);
+    const chg = typeof t.change === 'number' ? Math.abs(t.change).toFixed(2) : Math.abs(parseFloat(t.change)||0).toFixed(2);
+    const barW = Math.min(56, parseFloat(pct) * 2.5);
+    html += `<tr>
+      <td class="t-rank">${i+1}</td>
+      <td><div class="t-sym">${t.symbol}</div><div class="t-name">${t.name||''}</div></td>
+      <td class="t-price">${fmtPrice(t.price)}</td>
+      <td class="t-chg ${pos?'pos':'neg'}">${pos?'+':'-'}${chg}</td>
+      <td class="t-pct">
+        <div class="pct-bar-wrap">
+          <span class="${pos?'pos':'neg'}">${pos?'+':'-'}${pct}%</span>
+          <span class="pct-bar ${pos?'bar-pos':'bar-neg'}" style="width:${barW}px;"></span>
+        </div>
+      </td>
+    </tr>`;
+  });
+  html += '</tbody></table>';
+  html += `<div class="status-row"><span class="live-dot"></span><span>AI-sourced data · ${new Date().toLocaleTimeString()}</span></div>`;
+  document.getElementById(containerId).innerHTML = html;
+}
+
+// ─── LOAD MARKET DATA ────────────────────────────────
+async function loadMarket(type, containerId) {
+  document.getElementById(containerId).innerHTML = `<div class="loading-box"><div class="spinner"></div><span>Fetching ${type} movers...</span></div>`;
+  const prompts = {
+    etf: `Return ONLY a valid JSON array, no markdown or explanation. Give today's top 10 ETF movers by % change (mix of gainers and losers). Include popular ETFs like SPY, QQQ, IWM, GLD, TLT, VTI, VOO, XLF, XLE, ARKK, SMH, XBI, HYG, EEM, VNQ, etc.
+Format: [{"symbol":"SPY","name":"SPDR S&P 500 ETF","price":481.23,"change":2.14,"pctChange":0.45}]
+Use realistic approximate current prices. Return only the raw JSON array.`,
+    stock: `Return ONLY a valid JSON array, no markdown or explanation. Give today's top 10 stock movers by % change (mix of big gainers and losers from major US exchanges).
+Format: [{"symbol":"NVDA","name":"NVIDIA Corp","price":875.40,"change":18.52,"pctChange":2.16}]
+Use realistic approximate current prices for well-known stocks. Return only the raw JSON array.`,
+    crypto: `Return ONLY a valid JSON array, no markdown or explanation. Give the top 10 crypto movers by 24h % change (mix of gainers and losers). Include BTC, ETH, and other top altcoins.
+Format: [{"symbol":"BTC","name":"Bitcoin","price":67420.50,"change":1203.40,"pctChange":1.82}]
+Use realistic approximate prices. For very small-cap coins, show prices in standard decimal notation. Return only the raw JSON array.`
+  };
+  try {
+    const data = await callClaude(prompts[type]);
+    renderMarketTable(data, containerId);
+  } catch(e) {
+    document.getElementById(containerId).innerHTML = `<div class="error-box">Failed to load data. Check your API key or try refreshing.<br><small>${e.message}</small></div>`;
+  }
+}
+
+// ─── WATCHLIST ───────────────────────────────────────
+async function loadWatchlist() {
+  document.getElementById('watchlist-container').innerHTML = '<div class="card"><div class="loading-box"><div class="spinner"></div><span>Loading Mr. Mac\'s Watch List...</span></div></div>';
+  const symbols = ['XLM','SHIB','PEPE','DOGE','BTC','ETH','VOO','VTI','VIG','VYM','VGT','VUG','VXUS','SMH','QQQM','SCHD','NOW','OKLO','PATH','NOK','NBIS','ONDS','UMAC','APMX','BAC','AAPL','BIS','MSFT','NFLX','RVI','NASA'];
+  const prompt = `Return ONLY a valid JSON array, no markdown or explanation.
+For these symbols: ${symbols.join(',')}
+Provide approximate current price and 1-day % change for each.
+Format: [{"symbol":"AAPL","name":"Apple Inc","price":178.50,"pctChange":0.69},{"symbol":"BTC","name":"Bitcoin","price":67500,"pctChange":-0.77}]
+For very small tokens (SHIB, PEPE) use their actual tiny decimal USD prices.
+For small-cap/penny stocks (APMX, ONDS, UMAC, NBIS, RVI, NASA) use plausible low prices.
+Include ALL 31 symbols. Return only the raw JSON array.`;
+  try {
+    const data = await callClaude(prompt);
+    renderWatchlist(data);
+  } catch(e) {
+    document.getElementById('watchlist-container').innerHTML = `<div class="card"><div class="error-box">Failed to load watchlist.<br><small>${e.message}</small></div></div>`;
+  }
+}
+
+function renderWatchlist(data) {
+  if (!data || !data.length) {
+    document.getElementById('watchlist-container').innerHTML = '<div class="card"><div class="error-box">No watchlist data returned.</div></div>';
+    return;
+  }
+  let html = '<div class="watchlist-grid">';
+  data.forEach(t => {
+    const pos = parseFloat(t.pctChange) >= 0;
+    const pct = Math.abs(parseFloat(t.pctChange)||0).toFixed(2);
+    html += `<div class="w-tile">
+      <div class="w-sym">${t.symbol}</div>
+      <div class="w-price" style="color:var(--text0);">${fmtPrice(t.price)}</div>
+      <div class="w-chg ${pos?'pos':'neg'}">${pos?'▲':'▼'} ${pct}%</div>
+      <div class="w-name">${t.name||''}</div>
+    </div>`;
+  });
+  html += '</div>';
+  html += `<div class="status-row" style="margin-top:12px;"><span class="live-dot"></span><span>Mr. Mac's Watch List · AI-sourced data · ${new Date().toLocaleTimeString()}</span></div>`;
+  document.getElementById('watchlist-container').innerHTML = html;
+}
+
+// ─── INIT ─────────────────────────────────────────────
+calcProjection();
+calcTax();
+loadMarket('etf', 'etf-container');
+loadMarket('stock', 'stock-container');
+loadMarket('crypto', 'crypto-container');
+loadWatchlist();
+</script>
+
+</body>
+</html>

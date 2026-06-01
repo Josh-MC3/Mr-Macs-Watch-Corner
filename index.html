@@ -193,7 +193,7 @@ body::before {
   padding: 14px 16px;
 }
 
-/* IRA SECTION */
+/* INDIVIDUAL RETIREMENT ACCOUNT SECTION */
 .ira-intro {
   font-size: 13px;
   color: var(--text1);
@@ -224,7 +224,7 @@ body::before {
 .ira-card.roth .ira-type { color: var(--teal); }
 .ira-name { font-size: 15px; font-weight: 700; color: var(--text0); margin-bottom: 8px; }
 .ira-desc { font-size: 12px; color: var(--text1); line-height: 1.65; margin-bottom: 14px; }
-.pc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.pc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 .pc-col-title {
   font-size: 10px;
   font-family: 'Space Mono', monospace;
@@ -244,6 +244,7 @@ body::before {
   padding: 2px 0 2px 14px;
   position: relative;
   line-height: 1.5;
+  margin-bottom: 4px;
 }
 .pc-list.pro li::before { content: '+'; position: absolute; left: 0; color: var(--green); font-weight: 700; }
 .pc-list.con li::before { content: '−'; position: absolute; left: 0; color: var(--red); font-weight: 700; }
@@ -360,30 +361,68 @@ body::before {
 .example-box strong { color: var(--amber); }
 
 .tax-table-wrap { overflow-x: auto; }
-.tax-table {
+
+/* HISTORICAL AND LIVE MARKET TABLES (UPDATED FOR SPACIOUS AESTHETIC) */
+.m-table {
   width: 100%;
-  border-collapse: collapse;
-  font-size: 12px;
+  border-collapse: separate;
+  border-spacing: 0;
 }
-.tax-table th {
+.m-table th {
   text-align: left;
-  padding: 8px 12px;
+  padding: 14px 24px;
   font-size: 10px;
   font-family: 'Space Mono', monospace;
   color: var(--text2);
   text-transform: uppercase;
-  letter-spacing: 0.07em;
+  letter-spacing: 0.08em;
   border-bottom: 1px solid var(--border2);
-  white-space: nowrap;
 }
-.tax-table td {
-  padding: 9px 12px;
+.m-table td {
+  padding: 14px 24px;
   border-bottom: 1px solid var(--border);
-  color: var(--text1);
-  white-space: nowrap;
+  vertical-align: middle;
 }
-.tax-table tr:last-child td { border-bottom: none; }
-.tax-table tr:hover td { background: var(--bg2); }
+.m-table tr:last-child td { border-bottom: none; }
+.m-table tr:hover td { background: var(--bg2); }
+
+/* Column alignment rules matching Section 5 styling */
+.m-table th:nth-child(3), .m-table td.t-price {
+  text-align: right;
+  padding-right: 40px;
+}
+.m-table th:nth-child(4), .m-table td.t-chg {
+  text-align: right;
+  padding-right: 40px;
+}
+.m-table th:nth-child(5), .m-table th:last-child, .m-table td.t-pct {
+  text-align: right;
+}
+
+.t-sym { font-family: 'Space Mono', monospace; font-weight: 700; color: var(--blue); font-size: 13px; }
+.t-name { font-size: 12px; color: var(--text1); max-width: 280px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.t-price { font-family: 'Space Mono', monospace; font-size: 12px; font-weight: 700; }
+.t-chg { font-family: 'Space Mono', monospace; font-size: 12px; }
+.t-pct { font-family: 'Space Mono', monospace; font-size: 12px; font-weight: 700; }
+.pos { color: var(--green); }
+.neg { color: var(--red); }
+.neutral { color: var(--text2); }
+
+.pct-bar-wrap { display: flex; align-items: center; justify-content: flex-end; gap: 8px; }
+.pct-bar { height: 4px; border-radius: 2px; min-width: 2px; max-width: 60px; display: inline-block; }
+.bar-pos { background: var(--green); }
+.bar-neg { background: var(--red); }
+
+.status-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-family: 'Space Mono', monospace;
+  color: var(--text2);
+  margin-top: 10px;
+}
+
 .rate-pill {
   display: inline-block;
   padding: 2px 9px;
@@ -435,107 +474,6 @@ body::before {
   line-height: 1.6;
 }
 
-/* MARKET DATA TABLES */
-.market-controls {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 12px;
-}
-.btn-refresh {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: transparent;
-  border: 1px solid var(--border2);
-  padding: 4px 10px;
-  border-radius: 4px;
-  color: var(--text1);
-  font-size: 11px;
-  font-family: 'Space Mono', monospace;
-  cursor: pointer;
-  transition: background 0.2s, color 0.2s;
-}
-.btn-refresh:hover { background: var(--bg3); color: var(--text0); }
-.btn-refresh svg { width: 12px; height: 12px; stroke: currentColor; }
-
-.m-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-.m-table th {
-  text-align: left;
-  padding: 10px 12px;
-  font-size: 10px;
-  font-family: 'Space Mono', monospace;
-  color: var(--text2);
-  text-transform: uppercase;
-  letter-spacing: 0.07em;
-  border-bottom: 1px solid var(--border2);
-}
-.m-table td {
-  padding: 11px 12px;
-  border-bottom: 1px solid var(--border);
-  vertical-align: middle;
-}
-.m-table tr:last-child td { border-bottom: none; }
-.m-table tr:hover td { background: var(--bg2); }
-
-.t-sym { font-family: 'Space Mono', monospace; font-weight: 700; color: var(--blue); font-size: 13px; }
-.t-name { font-size: 12px; color: var(--text1); max-width: 180px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.t-price { font-family: 'Space Mono', monospace; font-size: 12px; font-weight: 700; text-align: right; }
-.t-chg { font-family: 'Space Mono', monospace; font-size: 12px; text-align: right; }
-.t-pct { font-family: 'Space Mono', monospace; font-size: 12px; font-weight: 700; text-align: right; }
-.pos { color: var(--green); }
-.neg { color: var(--red); }
-.neutral { color: var(--text2); }
-
-.pct-bar-wrap { display: flex; align-items: center; justify-content: flex-end; gap: 8px; }
-.pct-bar { height: 3px; border-radius: 2px; min-width: 2px; max-width: 60px; display: inline-block; }
-.bar-pos { background: var(--green); }
-.bar-neg { background: var(--red); }
-
-.status-row {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 11px;
-  font-family: 'Space Mono', monospace;
-  color: var(--text2);
-  margin-top: 10px;
-}
-
-.loading-box {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 36px;
-  color: var(--text2);
-  font-family: 'Space Mono', monospace;
-  font-size: 12px;
-  gap: 10px;
-}
-.spinner {
-  width: 24px;
-  height: 24px;
-  border: 2px solid var(--border2);
-  border-top-color: var(--blue);
-  border-radius: 50%;
-  animation: spin 0.8s linear infinite;
-}
-@keyframes spin { to { transform: rotate(360deg); } }
-
-.error-box {
-  padding: 16px;
-  background: rgba(255,77,106,0.05);
-  border: 1px dashed rgba(255,77,106,0.2);
-  color: var(--red);
-  border-radius: var(--radius-sm);
-  font-size: 12px;
-  text-align: center;
-}
-
 /* WATCHLIST GRID */
 .watchlist-grid {
   display: grid;
@@ -584,6 +522,44 @@ body::before {
   padding-bottom: 4px;
 }
 
+/* REFRESH/RESET BUTTON STYLING */
+.market-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.btn-refresh {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--bg2);
+  border: 1px solid var(--border2);
+  color: var(--text1);
+  padding: 6px 14px;
+  border-radius: var(--radius-sm);
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+.btn-refresh:hover {
+  background: var(--bg3);
+  border-color: var(--blue);
+  color: var(--text0);
+}
+.btn-refresh svg {
+  width: 12px;
+  height: 12px;
+  transition: transform 0.3s ease;
+}
+.btn-refresh:hover svg {
+  transform: rotate(180deg);
+}
+
 @media(max-width: 768px) {
   .ira-grid { grid-template-columns: 1fr; }
   .eff-grid { grid-template-columns: 1fr; }
@@ -629,15 +605,19 @@ body::before {
           <div>
             <div class="pc-col-title pro">▲ Pros</div>
             <ul class="pc-list pro">
-              <li>Immediate tax break</li>
-              <li>Lowers current Adjusted Gross Income</li>
+              <li>Immediate tax break (lowers current tax bill)</li>
+              <li>Lowers current Modified Adjusted Gross Income</li>
+              <li>Ideal if you expect a lower tax bracket in retirement</li>
+              <li>Higher initial compounding power via pre-tax funding</li>
             </ul>
           </div>
           <div>
             <div class="pc-col-title con">▼ Cons</div>
             <ul class="pc-list con">
-              <li>Taxed at ordinary rates later</li>
-              <li>Mandatory Required Minimum Distribution penalties</li>
+              <li>Taxed at ordinary income rates during retirement</li>
+              <li>Mandatory Required Minimum Distributions force withdrawals</li>
+              <li>Early withdrawal penalties (10%) prior to age 59½</li>
+              <li>Deduction limits apply if covered by workplace plans</li>
             </ul>
           </div>
         </div>
@@ -651,16 +631,19 @@ body::before {
           <div>
             <div class="pc-col-title pro">▲ Pros</div>
             <ul class="pc-list pro">
-              <li>Tax-free withdrawals</li>
-              <li>No lifetime Required Minimum Distribution rules</li>
-              <li>Principal accessible anytime</li>
+              <li>100% tax-free growth and qualified withdrawals</li>
+              <li>No lifetime Required Minimum Distributions (leave it to compound)</li>
+              <li>Contributions (principal) can be withdrawn anytime penalty-free</li>
+              <li>Hedging tool against future statutory tax rate hikes</li>
             </ul>
           </div>
           <div>
             <div class="pc-col-title con">▼ Cons</div>
             <ul class="pc-list con">
-              <li>No immediate tax deduction</li>
-              <li>Strict income limits</li>
+              <li>No upfront, immediate tax reduction benefit today</li>
+              <li>Strict income phase-out limits prevent direct contributions</li>
+              <li>Requires paying taxes upfront at your current marginal rate</li>
+              <li>Five-year rules apply to tax-free earnings withdrawals</li>
             </ul>
           </div>
         </div>
@@ -737,22 +720,22 @@ body::before {
         <strong>Total Tax: $13,412 → Effective Rate: 15.78% (NOT 22%)</strong>
       </div>
       <div class="tax-table-wrap">
-        <table class="tax-table">
+        <table class="tax-table" style="width: 100%; border-collapse: collapse; font-size: 12px;">
           <thead>
             <tr>
-              <th>Rate</th>
-              <th>Single Filer</th>
-              <th>Married Filing Jointly</th>
+              <th style="text-align: left; padding: 8px 12px; font-size: 10px; font-family: 'Space Mono', monospace; color: var(--text2); text-transform: uppercase; border-bottom: 1px solid var(--border2);">Rate</th>
+              <th style="text-align: left; padding: 8px 12px; font-size: 10px; font-family: 'Space Mono', monospace; color: var(--text2); text-transform: uppercase; border-bottom: 1px solid var(--border2);">Single Filer</th>
+              <th style="text-align: left; padding: 8px 12px; font-size: 10px; font-family: 'Space Mono', monospace; color: var(--text2); text-transform: uppercase; border-bottom: 1px solid var(--border2);">Married Filing Jointly</th>
             </tr>
           </thead>
           <tbody>
-            <tr><td><span class="rate-pill r10">10%</span></td><td>$0 – $12,400</td><td>$0 – $24,800</td></tr>
-            <tr><td><span class="rate-pill r12">12%</span></td><td>$12,401 – $50,400</td><td>$24,801 – $100,800</td></tr>
-            <tr><td><span class="rate-pill r22">22%</span></td><td>$50,401 – $105,700</td><td>$100,801 – $211,400</td></tr>
-            <tr><td><span class="rate-pill r24">24%</span></td><td>$105,701 – $201,775</td><td>$211,401 – $403,550</td></tr>
-            <tr><td><span class="rate-pill r32">32%</span></td><td>$201,776 – $256,225</td><td>$403,551 – $512,450</td></tr>
-            <tr><td><span class="rate-pill r35">35%</span></td><td>$256,226 – $640,600</td><td>$512,451 – $768,700</td></tr>
-            <tr><td><span class="rate-pill r37">37%</span></td><td>$640,601 up to $5,000,000+</td><td>$768,701 up to $5,000,000+</td></tr>
+            <tr><td style="padding: 9px 12px; border-bottom: 1px solid var(--border);"><span class="rate-pill r10">10%</span></td><td style="padding: 9px 12px; border-bottom: 1px solid var(--border); color: var(--text1);">$0 – $12,400</td><td style="padding: 9px 12px; border-bottom: 1px solid var(--border); color: var(--text1);">$0 – $24,800</td></tr>
+            <tr><td style="padding: 9px 12px; border-bottom: 1px solid var(--border);"><span class="rate-pill r12">12%</span></td><td style="padding: 9px 12px; border-bottom: 1px solid var(--border); color: var(--text1);">$12,401 – $50,400</td><td style="padding: 9px 12px; border-bottom: 1px solid var(--border); color: var(--text1);">$24,801 – $100,800</td></tr>
+            <tr><td style="padding: 9px 12px; border-bottom: 1px solid var(--border);"><span class="rate-pill r22">22%</span></td><td style="padding: 9px 12px; border-bottom: 1px solid var(--border); color: var(--text1);">$50,401 – $105,700</td><td style="padding: 9px 12px; border-bottom: 1px solid var(--border); color: var(--text1);">$100,801 – $211,400</td></tr>
+            <tr><td style="padding: 9px 12px; border-bottom: 1px solid var(--border);"><span class="rate-pill r24">24%</span></td><td style="padding: 9px 12px; border-bottom: 1px solid var(--border); color: var(--text1);">$105,701 – $201,775</td><td style="padding: 9px 12px; border-bottom: 1px solid var(--border); color: var(--text1);">$211,401 – $403,550</td></tr>
+            <tr><td style="padding: 9px 12px; border-bottom: 1px solid var(--border);"><span class="rate-pill r32">32%</span></td><td style="padding: 9px 12px; border-bottom: 1px solid var(--border); color: var(--text1);">$201,776 – $256,225</td><td style="padding: 9px 12px; border-bottom: 1px solid var(--border); color: var(--text1);">$403,551 – $512,450</td></tr>
+            <tr><td style="padding: 9px 12px; border-bottom: 1px solid var(--border);"><span class="rate-pill r35">35%</span></td><td style="padding: 9px 12px; border-bottom: 1px solid var(--border); color: var(--text1);">$256,226 – $640,600</td><td style="padding: 9px 12px; border-bottom: 1px solid var(--border); color: var(--text1);">$512,451 – $768,700</td></tr>
+            <tr><td style="padding: 9px 12px; border-bottom: none;"><span class="rate-pill r37">37%</span></td><td style="padding: 9px 12px; border-bottom: none; color: var(--text1);">$640,601 up to $5,000,000+</td><td style="padding: 9px 12px; border-bottom: none; color: var(--text1);">$768,701 up to $5,000,000+</td></tr>
           </tbody>
         </table>
       </div>
@@ -811,22 +794,22 @@ body::before {
               <tr>
                 <th>Ticker</th>
                 <th>Fund Name</th>
-                <th style="text-align:right;">20-Yr Compound Annual Growth Rate (Est)</th>
-                <th style="text-align:right;">Expense Ratio</th>
+                <th style="text-align:right; padding-right:40px;">20-Yr Compound Annual Growth Rate (Est)</th>
+                <th style="text-align:right; padding-right:40px;">Expense Ratio</th>
                 <th style="text-align:right;">Inception Date</th>
               </tr>
             </thead>
             <tbody>
-              <tr><td><span class="t-sym">VGT</span></td><td class="t-name">Vanguard Information Technology</td><td class="t-price pos">14.15%</td><td class="t-price" style="color:var(--text1);">0.09%</td><td class="t-price" style="color:var(--text2);">01/26/2004</td></tr>
-              <tr><td><span class="t-sym">QQQ</span></td><td class="t-name">Invesco QQQ Trust (Nasdaq 100)</td><td class="t-price pos">13.62%</td><td class="t-price" style="color:var(--text1);">0.20%</td><td class="t-price" style="color:var(--text2);">03/10/1999</td></tr>
-              <tr><td><span class="t-sym">VUG</span></td><td class="t-name">Vanguard Growth ETF</td><td class="t-price pos">11.85%</td><td class="t-price" style="color:var(--text1);">0.04%</td><td class="t-price" style="color:var(--text2);">01/26/2004</td></tr>
-              <tr><td><span class="t-sym">XLK</span></td><td class="t-name">Technology Select Sector SPDR</td><td class="t-price pos">11.78%</td><td class="t-price" style="color:var(--text1);">0.09%</td><td class="t-price" style="color:var(--text2);">12/16/1998</td></tr>
-              <tr><td><span class="t-sym">SMH</span></td><td class="t-name">VanEck Semiconductor ETF</td><td class="t-price pos">11.60%</td><td class="t-price" style="color:var(--text1);">0.35%</td><td class="t-price" style="color:var(--text2);">12/20/2011</td></tr>
-              <tr><td><span class="t-sym">VOO</span></td><td class="t-name">Vanguard S&P 500 ETF</td><td class="t-price pos">10.15%</td><td class="t-price" style="color:var(--text1);">0.03%</td><td class="t-price" style="color:var(--text2);">09/07/2010</td></tr>
-              <tr><td><span class="t-sym">SPY</span></td><td class="t-name">SPDR S&P 500 ETF Trust</td><td class="t-price pos">10.12%</td><td class="t-price" style="color:var(--text1);">0.09%</td><td class="t-price" style="color:var(--text2);">01/22/1993</td></tr>
-              <tr><td><span class="t-sym">VTI</span></td><td class="t-name">Vanguard Total Stock Market</td><td class="t-price pos">9.94%</td><td class="t-price" style="color:var(--text1);">0.03%</td><td class="t-price" style="color:var(--text2);">05/24/2001</td></tr>
-              <tr><td><span class="t-sym">IWM</span></td><td class="t-name">iShares Russell 2000 ETF</td><td class="t-price pos">8.12%</td><td class="t-price" style="color:var(--text1);">0.19%</td><td class="t-price" style="color:var(--text2);">05/22/2000</td></tr>
-              <tr><td><span class="t-sym">VNQ</span></td><td class="t-name">Vanguard Real Estate ETF</td><td class="t-price pos">7.45%</td><td class="t-price" style="color:var(--text1);">0.13%</td><td class="t-price" style="color:var(--text2);">09/23/2004</td></tr>
+              <tr><td><span class="t-sym">VGT</span></td><td class="t-name">Vanguard Information Technology</td><td class="t-price pos">14.15%</td><td class="t-price" style="color:var(--text1); text-align:right; padding-right:40px;">0.09%</td><td class="t-price" style="color:var(--text2); text-align:right;">01/26/2004</td></tr>
+              <tr><td><span class="t-sym">QQQ</span></td><td class="t-name">Invesco QQQ Trust (Nasdaq 100)</td><td class="t-price pos">13.62%</td><td class="t-price" style="color:var(--text1); text-align:right; padding-right:40px;">0.20%</td><td class="t-price" style="color:var(--text2); text-align:right;">03/10/1999</td></tr>
+              <tr><td><span class="t-sym">VUG</span></td><td class="t-name">Vanguard Growth Exchange-Traded Fund</td><td class="t-price pos">11.85%</td><td class="t-price" style="color:var(--text1); text-align:right; padding-right:40px;">0.04%</td><td class="t-price" style="color:var(--text2); text-align:right;">01/26/2004</td></tr>
+              <tr><td><span class="t-sym">XLK</span></td><td class="t-name">Technology Select Sector SPDR</td><td class="t-price pos">11.78%</td><td class="t-price" style="color:var(--text1); text-align:right; padding-right:40px;">0.09%</td><td class="t-price" style="color:var(--text2); text-align:right;">12/16/1998</td></tr>
+              <tr><td><span class="t-sym">SMH</span></td><td class="t-name">VanEck Semiconductor Exchange-Traded Fund</td><td class="t-price pos">11.60%</td><td class="t-price" style="color:var(--text1); text-align:right; padding-right:40px;">0.35%</td><td class="t-price" style="color:var(--text2); text-align:right;">12/20/2011</td></tr>
+              <tr><td><span class="t-sym">VOO</span></td><td class="t-name">Vanguard S&P 500 Exchange-Traded Fund</td><td class="t-price pos">10.15%</td><td class="t-price" style="color:var(--text1); text-align:right; padding-right:40px;">0.03%</td><td class="t-price" style="color:var(--text2); text-align:right;">09/07/2010</td></tr>
+              <tr><td><span class="t-sym">SPY</span></td><td class="t-name">SPDR S&P 500 Exchange-Traded Fund Trust</td><td class="t-price pos">10.12%</td><td class="t-price" style="color:var(--text1); text-align:right; padding-right:40px;">0.09%</td><td class="t-price" style="color:var(--text2); text-align:right;">01/22/1993</td></tr>
+              <tr><td><span class="t-sym">VTI</span></td><td class="t-name">Vanguard Total Stock Market</td><td class="t-price pos">9.94%</td><td class="t-price" style="color:var(--text1); text-align:right; padding-right:40px;">0.03%</td><td class="t-price" style="color:var(--text2); text-align:right;">05/24/2001</td></tr>
+              <tr><td><span class="t-sym">IWM</span></td><td class="t-name">iShares Russell 2000 Exchange-Traded Fund</td><td class="t-price pos">8.12%</td><td class="t-price" style="color:var(--text1); text-align:right; padding-right:40px;">0.19%</td><td class="t-price" style="color:var(--text2); text-align:right;">05/22/2000</td></tr>
+              <tr><td><span class="t-sym">VNQ</span></td><td class="t-name">Vanguard Real Estate Exchange-Traded Fund</td><td class="t-price pos">7.45%</td><td class="t-price" style="color:var(--text1); text-align:right; padding-right:40px;">0.13%</td><td class="t-price" style="color:var(--text2); text-align:right;">09/23/2004</td></tr>
             </tbody>
           </table>
         </div>
@@ -840,17 +823,17 @@ body::before {
               <tr>
                 <th>Ticker</th>
                 <th>Fund Name</th>
-                <th style="text-align:right;">Historical Compound Annual Growth Rate</th>
-                <th style="text-align:right;">Current Dividend Yield</th>
+                <th style="text-align:right; padding-right:40px;">Historical Compound Annual Growth Rate</th>
+                <th style="text-align:right; padding-right:40px;">Current Dividend Yield</th>
                 <th style="text-align:right;">Expense Ratio</th>
               </tr>
             </thead>
             <tbody>
-              <tr><td><span class="t-sym">SCHD</span></td><td class="t-name">Schwab U.S. Dividend Equity ETF</td><td class="t-price pos">11.10%</td><td class="t-price pos">3.42%</td><td class="t-price" style="color:var(--text1);">0.06%</td></tr>
-              <tr><td><span class="t-sym">VIG</span></td><td class="t-name">Vanguard Dividend Appreciation</td><td class="t-price pos">10.04%</td><td class="t-price pos">1.78%</td><td class="t-price" style="color:var(--text1);">0.05%</td></tr>
-              <tr><td><span class="t-sym">VYM</span></td><td class="t-name">Vanguard High Dividend Yield Index</td><td class="t-price pos">8.92%</td><td class="t-price pos">2.98%</td><td class="t-price" style="color:var(--text1);">0.06%</td></tr>
-              <tr><td><span class="t-sym">SDY</span></td><td class="t-name">SPDR S&P Dividend ETF</td><td class="t-price pos">8.75%</td><td class="t-price" style="color:var(--text1);">2.54%</td><td class="t-price" style="color:var(--text1);">0.35%</td></tr>
-              <tr><td><span class="t-sym">DVY</span></td><td class="t-name">iShares Select Dividend ETF</td><td class="t-price pos">7.98%</td><td class="t-price pos">3.65%</td><td class="t-price" style="color:var(--text1);">0.38%</td></tr>
+              <tr><td><span class="t-sym">SCHD</span></td><td class="t-name">Schwab U.S. Dividend Equity Exchange-Traded Fund</td><td class="t-price pos">11.10%</td><td class="t-price pos" style="text-align:right; padding-right:40px;">3.42%</td><td class="t-price" style="color:var(--text1); text-align:right;">0.06%</td></tr>
+              <tr><td><span class="t-sym">VIG</span></td><td class="t-name">Vanguard Dividend Appreciation</td><td class="t-price pos">10.04%</td><td class="t-price pos" style="text-align:right; padding-right:40px;">1.78%</td><td class="t-price" style="color:var(--text1); text-align:right;">0.05%</td></tr>
+              <tr><td><span class="t-sym">VYM</span></td><td class="t-name">Vanguard High Dividend Yield Index</td><td class="t-price pos">8.92%</td><td class="t-price pos" style="text-align:right; padding-right:40px;">2.98%</td><td class="t-price" style="color:var(--text1); text-align:right;">0.06%</td></tr>
+              <tr><td><span class="t-sym">SDY</span></td><td class="t-name">SPDR S&P Dividend Exchange-Traded Fund</td><td class="t-price pos">8.75%</td><td class="t-price" style="color:var(--text1); text-align:right; padding-right:40px;">2.54%</td><td class="t-price" style="color:var(--text1); text-align:right;">0.35%</td></tr>
+              <tr><td><span class="t-sym">DVY</span></td><td class="t-name">iShares Select Dividend Exchange-Traded Fund</td><td class="t-price pos">7.98%</td><td class="t-price pos" style="text-align:right; padding-right:40px;">3.65%</td><td class="t-price" style="color:var(--text1); text-align:right;">0.38%</td></tr>
             </tbody>
           </table>
         </div>
@@ -866,12 +849,12 @@ body::before {
     </div>
     <div class="market-controls">
       <span style="font-size:11px;font-family:'Space Mono',monospace;color:var(--text2);">Today's biggest Exchange-Traded Fund movers by % change</span>
-      <button class="btn-refresh" onclick="loadMarket('etf','etf-container')">
+      <button class="btn-refresh" onclick="loadMarket('etf','etf-container', 5)">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M23 4v6h-6M1 20v-6h6M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0019.49 15"/></svg>
         Refresh
       </button>
     </div>
-    <div class="card" id="etf-container"></div>
+    <div class="card" id="etf-container" style="padding:0;"></div>
   </section>
 
   <section class="section">
@@ -882,12 +865,12 @@ body::before {
     </div>
     <div class="market-controls">
       <span style="font-size:11px;font-family:'Space Mono',monospace;color:var(--text2);">Today's biggest stock movers by % change</span>
-      <button class="btn-refresh" onclick="loadMarket('stock','stock-container')">
+      <button class="btn-refresh" onclick="loadMarket('stock','stock-container', 5)">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M23 4v6h-6M1 20v-6h6M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0019.49 15"/></svg>
         Refresh
       </button>
     </div>
-    <div class="card" id="stock-container"></div>
+    <div class="card" id="stock-container" style="padding:0;"></div>
   </section>
 
   <section class="section">
@@ -898,12 +881,12 @@ body::before {
     </div>
     <div class="market-controls">
       <span style="font-size:11px;font-family:'Space Mono',monospace;color:var(--text2);">Top 24h crypto movers by % change</span>
-      <button class="btn-refresh" onclick="loadMarket('crypto','crypto-container')">
+      <button class="btn-refresh" onclick="loadMarket('crypto','crypto-container', 5)">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M23 4v6h-6M1 20v-6h6M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0019.49 15"/></svg>
         Refresh
       </button>
     </div>
-    <div class="card" id="crypto-container"></div>
+    <div class="card" id="crypto-container" style="padding:0;"></div>
   </section>
 
   <section class="section">
@@ -935,12 +918,12 @@ body::before {
         Refresh
       </button>
     </div>
-    <div class="card" id="holdings-container"></div>
+    <div class="card" id="holdings-container" style="padding:0;"></div>
   </section>
 
-  <footer class="site-footer">
-    <div class="footer-text">© 2026 Mr. Mac's Dashboard · Dynamic Real-Time Terminal Feed</div>
-    <div class="footer-disclaimer">Market data is dynamically simulated to approximate real-world behavior. Not formal investment advice.</div>
+  <footer class="site-footer" style="margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border); text-align: center;">
+    <div class="footer-text" style="font-size: 12px; color: var(--text2);">© 2026 Mr. Mac's Dashboard · Dynamic Real-Time Terminal Feed</div>
+    <div class="footer-disclaimer" style="font-size: 11px; color: var(--text3); margin-top: 4px;">Market data is dynamically simulated to approximate real-world behavior. Not formal investment advice.</div>
   </footer>
 
 </div>
@@ -1094,13 +1077,13 @@ function getMarginal(income, status) {
 const SIMULATED_DATA = {
   etf: [
     { symbol: "CTAP", name: "Simplify US Equity PLUS Managed Futures", price: 28.40, basePct: 18.65 },
-    { symbol: "VOLT", name: "Tema Electrification ETF", price: 19.12, basePct: 18.29 },
-    { symbol: "BUZZ", name: "VanEck Social Sentiment ETF", price: 62.50, basePct: 17.60 },
-    { symbol: "FBCG", name: "Fidelity Blue Chip Growth ETF", price: 42.18, basePct: 17.55 },
-    { symbol: "CNEQ", name: "Alger Concentrated Equity ETF", price: 31.45, basePct: 17.54 },
-    { symbol: "NASA", name: "Tema Space Innovators ETF", price: 14.80, basePct: 17.20 },
+    { symbol: "VOLT", name: "Tema Electrification Exchange-Traded Fund", price: 19.12, basePct: 18.29 },
+    { symbol: "BUZZ", name: "VanEck Social Sentiment Exchange-Traded Fund", price: 62.50, basePct: 17.60 },
+    { symbol: "FBCG", name: "Fidelity Blue Chip Growth Exchange-Traded Fund", price: 42.18, basePct: 17.55 },
+    { symbol: "CNEQ", name: "Alger Concentrated Equity Exchange-Traded Fund", price: 31.45, basePct: 17.54 },
+    { symbol: "NASA", name: "Tema Space Innovators Exchange-Traded Fund", price: 14.80, basePct: 17.20 },
     { symbol: "GRNJ", name: "Fundstrat Granny Shots US Small/Mid", price: 26.33, basePct: 17.12 },
-    { symbol: "VEGN", name: "US Vegan Climate ETF", price: 48.90, basePct: -15.40 },
+    { symbol: "VEGN", name: "US Vegan Climate Exchange-Traded Fund", price: 48.90, basePct: -15.40 },
     { symbol: "IBIT", name: "iShares Bitcoin Trust", price: 44.20, basePct: 3.10 },
     { symbol: "ETHB", name: "iShares Ethereum Trust", price: 16.75, basePct: -2.85 }
   ],
@@ -1135,16 +1118,16 @@ const SIMULATED_DATA = {
     { symbol: "DOGE", name: "Dogecoin", price: 0.1645, basePct: 1.05 },
     { symbol: "BIT", name: "BitDAO", price: 0.8240, basePct: -0.45 },
     { symbol: "ETH", name: "Ethereum", price: 3745.20, basePct: 2.15 },
-    { symbol: "VOO", name: "Vanguard S&P 500 ETF", price: 492.10, basePct: 0.32 },
+    { symbol: "VOO", name: "Vanguard S&P 500 Exchange-Traded Fund", price: 492.10, basePct: 0.32 },
     { symbol: "VTI", name: "Vanguard Total Stock Market", price: 254.30, basePct: 0.28 },
     { symbol: "VIG", name: "Vanguard Dividend Appreciation", price: 182.40, basePct: 0.11 },
     { symbol: "VYM", name: "Vanguard High Dividend Yield", price: 118.60, basePct: -0.05 },
     { symbol: "VGT", name: "Vanguard Information Tech", price: 524.80, basePct: 0.85 },
-    { symbol: "VUG", name: "Vanguard Growth ETF", price: 342.15, basePct: 0.64 },
+    { symbol: "VUG", name: "Vanguard Growth Exchange-Traded Fund", price: 342.15, basePct: 0.64 },
     { symbol: "VXUS", name: "Vanguard Total International", price: 58.90, basePct: -0.18 },
-    { symbol: "SMH", name: "VanEck Semiconductor ETF", price: 234.10, basePct: 1.72 },
+    { symbol: "SMH", name: "VanEck Semiconductor Exchange-Traded Fund", price: 234.10, basePct: 1.72 },
     { symbol: "QQQM", name: "Invesco NASDAQ 100 Absolute", price: 184.20, basePct: 0.58 },
-    { symbol: "NASA", name: "Tema Space Innovators ETF", price: 14.80, basePct: 4.12 },
+    { symbol: "NASA", name: "Tema Space Innovators Exchange-Traded Fund", price: 14.80, basePct: 4.12 },
     { symbol: "SCHD", name: "Schwab US Dividend Equity", price: 78.45, basePct: -0.10 },
     { symbol: "NOW", name: "ServiceNow Inc.", price: 765.30, basePct: 1.15 },
     { symbol: "RVI", name: "Retail Value Inc.", price: 0.24, basePct: 0.00 },
@@ -1163,7 +1146,7 @@ const SIMULATED_DATA = {
   ],
   holdings: [
     { symbol: "VGT", name: "Vanguard Information Tech", type: "Exchange-Traded Funds", price: 524.80, basePct: 1.45 },
-    { symbol: "VUG", name: "Vanguard Growth ETF", type: "Exchange-Traded Funds", price: 342.15, basePct: 0.98 },
+    { symbol: "VUG", name: "Vanguard Growth Exchange-Traded Fund", type: "Exchange-Traded Funds", price: 342.15, basePct: 0.98 },
     { symbol: "VDADX", name: "Vanguard Dividend Appreciation Index", type: "Mutual Funds", price: 44.12, basePct: 0.35 },
     { symbol: "VIGAX", name: "Vanguard Growth Index Fund", type: "Mutual Funds", price: 168.90, basePct: 1.10 },
     { symbol: "BAC", name: "Bank of America Corp.", type: "Stocks", price: 39.45, basePct: -0.62 },
@@ -1195,32 +1178,39 @@ function generateLiveVolatility(baseArray, limitCount) {
   return processed;
 }
 
-// ─── TABLE VIEW GENERATION ───────────────────────────
+// ─── SPACED COLUMN MARKET VIEW GENERATION ────────────
 function renderMarketTable(data, containerId) {
-  let html = '<table class="mkt-table"><thead><tr><th>#</th><th>Symbol</th><th style="text-align:right">Price</th><th style="text-align:right">Change</th><th style="text-align:right">% Change</th></tr></thead><tbody>';
+  let html = '<table class="m-table"><thead><tr><th>#</th><th>Asset Identifier / Name</th><th style="text-align:right; padding-right:40px;">Current Price</th><th style="text-align:right; padding-right:40px;">Nominal Delta</th><th style="text-align:right;">Percentage Delta</th></tr></thead><tbody>';
+  
   data.forEach((t, i) => {
     const pos = t.pctChange >= 0;
     const pct = Math.abs(t.pctChange).toFixed(2);
     const chg = Math.abs(t.change).toFixed(2);
-    const barW = Math.min(56, parseFloat(pct) * 2.5);
+    const barW = Math.min(60, parseFloat(pct) * 2.5);
     
     const subLabel = t.type ? `<span class="holdings-asset-type">${t.type}</span>` : `<span class="t-name">${t.name||''}</span>`;
 
     html += `<tr>
-      <td class="t-rank">${i+1}</td>
-      <td><div class="t-sym" style="display:flex; align-items:center; gap:8px;">${t.symbol} ${t.type ? subLabel : ''}</div>${t.type ? `<div class="t-name">${t.name}</div>` : ''} ${!t.type ? subLabel : ''}</td>
+      <td style="color:var(--text3); font-family:'Space Mono',monospace; width:40px;">${String(i+1).padStart(2, '0')}</td>
+      <td>
+        <div style="display:flex; flex-direction:column; gap:2px;">
+          <div class="t-sym" style="display:flex; align-items:center; gap:12px;">${t.symbol} ${t.type ? subLabel : ''}</div>
+          ${!t.type ? subLabel : `<div class="t-name">${t.name}</div>`}
+        </div>
+      </td>
       <td class="t-price">${fmtPrice(t.price)}</td>
       <td class="t-chg ${pos?'pos':'neg'}">${pos?'+':'-'}${chg}</td>
       <td class="t-pct">
         <div class="pct-bar-wrap">
-          <span class="${pos?'pos':'neg'}">${pos?'+':'-'}${pct}%</span>
-          <span class="pct-bar ${pos?'bar-pos':'bar-neg'}" style="width:${barW}px;"></span>
+          <span class="${pos?'pos':'neg'}" style="margin-right:4px;">${pos?'+':'-'}${pct}%</span>
+          <span class="pct-bar ${pos?'bar-pos':'bar-neg'}" style="width:${barW}px; height:4px;"></span>
         </div>
       </td>
     </tr>`;
   });
+  
   html += '</tbody></table>';
-  html += `<div class="status-row"><span class="live-dot"></span><span>Simulated Real-Time Terminal Feed · Live Updated</span></div>`;
+  html += `<div class="status-row" style="padding:14px 24px 0;"><span class="live-dot"></span><span>Simulated Real-Time Terminal Feed · Live Updated</span></div>`;
   document.getElementById(containerId).innerHTML = html;
 }
 

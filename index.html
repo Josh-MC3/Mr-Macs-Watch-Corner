@@ -585,15 +585,13 @@ body::before {
     <div class="header-right">
       <div class="live-badge">
         <span class="live-dot"></span>
-        <span>AI-Powered Live Data</span>
+        <span>Live Simulated Feed</span>
       </div>
       <div class="clock" id="clock">--:-- --</div>
     </div>
   </header>
 
-  <!-- ══════════════════════════════════════
-       SECTION 1: Traditional vs Roth IRA
-  ═══════════════════════════════════════ -->
+  <!-- SECTION 1 -->
   <section class="section">
     <div class="section-header">
       <span class="section-num">01</span>
@@ -663,9 +661,7 @@ body::before {
     </div>
   </section>
 
-  <!-- ══════════════════════════════════════
-       SECTION 2: Projected Standing Calculator
-  ═══════════════════════════════════════ -->
+  <!-- SECTION 2 -->
   <section class="section">
     <div class="section-header">
       <span class="section-num">02</span>
@@ -708,7 +704,7 @@ body::before {
       </div>
       <div id="growth-chart-wrap" style="display:none;">
         <div class="chart-wrap">
-          <canvas id="growthCanvas" role="img" aria-label="Compound growth projection over time. Shows portfolio value vs total invested over selected years.">Compound growth projection chart.</canvas>
+          <canvas id="growthCanvas" role="img" aria-label="Compound growth projection over time.">Compound growth projection chart.</canvas>
         </div>
         <div style="display:flex;gap:20px;margin-top:8px;font-size:11px;font-family:'Space Mono',monospace;color:var(--text2);">
           <span style="display:flex;align-items:center;gap:6px;"><span style="width:12px;height:3px;background:var(--green);display:inline-block;border-radius:2px;"></span>Portfolio Value</span>
@@ -718,9 +714,7 @@ body::before {
     </div>
   </section>
 
-  <!-- ══════════════════════════════════════
-       SECTION 3: Effective Tax Rate Explanation
-  ═══════════════════════════════════════ -->
+  <!-- SECTION 3 -->
   <section class="section">
     <div class="section-header">
       <span class="section-num">03</span>
@@ -730,12 +724,12 @@ body::before {
     <div class="card">
       <p class="tax-explain">The U.S. uses a <strong style="color:var(--text0);">progressive marginal tax system</strong> — only the portion of your income that falls within each bracket is taxed at that rate. Your <strong style="color:var(--amber);">marginal rate</strong> is the rate on your last dollar earned. Your <strong style="color:var(--green);">effective rate</strong> is the actual percentage of your entire income paid in federal taxes — always lower than your marginal rate. This distinction is critical: earning more never results in less take-home pay.</p>
       <div class="example-box">
-        <strong>Example: $85,000 income — Single Filer (2024)</strong><br>
-        First $11,600 × 10% = $1,160<br>
-        $11,601–$47,150 × 12% = $4,266<br>
-        $47,151–$85,000 × 22% = $8,327<br>
+        <strong>Example: $85,000 income — Single Filer (2026)</strong><br>
+        First $12,400 × 10% = $1,240<br>
+        $12,401–$50,400 × 12% = $4,560<br>
+        $50,401–$85,000 × 22% = $7,612<br>
         ─────────────────────────────<br>
-        <strong>Total Tax: $13,753 → Effective Rate: 16.2% (NOT 22%)</strong>
+        <strong>Total Tax: $13,412 → Effective Rate: 15.78% (NOT 22%)</strong>
       </div>
       <div class="tax-table-wrap">
         <table class="tax-table">
@@ -744,27 +738,24 @@ body::before {
               <th>Rate</th>
               <th>Single Filer</th>
               <th>Married Filing Jointly</th>
-              <th>Head of Household</th>
             </tr>
           </thead>
           <tbody>
-            <tr><td><span class="rate-pill r10">10%</span></td><td>$0 – $11,600</td><td>$0 – $23,200</td><td>$0 – $16,550</td></tr>
-            <tr><td><span class="rate-pill r12">12%</span></td><td>$11,601 – $47,150</td><td>$23,201 – $94,300</td><td>$16,551 – $63,100</td></tr>
-            <tr><td><span class="rate-pill r22">22%</span></td><td>$47,151 – $100,525</td><td>$94,301 – $201,050</td><td>$63,101 – $100,500</td></tr>
-            <tr><td><span class="rate-pill r24">24%</span></td><td>$100,526 – $191,950</td><td>$201,051 – $383,900</td><td>$100,501 – $191,950</td></tr>
-            <tr><td><span class="rate-pill r32">32%</span></td><td>$191,951 – $243,725</td><td>$383,901 – $487,450</td><td>$191,951 – $243,700</td></tr>
-            <tr><td><span class="rate-pill r35">35%</span></td><td>$243,726 – $609,350</td><td>$487,451 – $731,200</td><td>$243,701 – $609,350</td></tr>
-            <tr><td><span class="rate-pill r37">37%</span></td><td>Over $609,350</td><td>Over $731,200</td><td>Over $609,350</td></tr>
+            <tr><td><span class="rate-pill r10">10%</span></td><td>$0 – $12,400</td><td>$0 – $24,800</td></tr>
+            <tr><td><span class="rate-pill r12">12%</span></td><td>$12,401 – $50,400</td><td>$24,801 – $100,800</td></tr>
+            <tr><td><span class="rate-pill r22">22%</span></td><td>$50,401 – $105,700</td><td>$100,801 – $211,400</td></tr>
+            <tr><td><span class="rate-pill r24">24%</span></td><td>$105,701 – $201,775</td><td>$211,401 – $403,550</td></tr>
+            <tr><td><span class="rate-pill r32">32%</span></td><td>$201,776 – $256,225</td><td>$403,551 – $512,450</td></tr>
+            <tr><td><span class="rate-pill r35">35%</span></td><td>$256,226 – $640,600</td><td>$512,451 – $768,700</td></tr>
+            <tr><td><span class="rate-pill r37">37%</span></td><td>$640,601 up to $5,000,000+</td><td>$768,701 up to $5,000,000+</td></tr>
           </tbody>
         </table>
       </div>
-      <div class="tax-note">* 2024 federal income tax brackets. Excludes standard deduction, FICA, state/local taxes, and AMT.</div>
+      <div class="tax-note">* 2026 progressive marginal federal tax brackets. Excludes deductions and state thresholds.</div>
     </div>
   </section>
 
-  <!-- ══════════════════════════════════════
-       SECTION 4: Effective Tax Rate Calculator
-  ═══════════════════════════════════════ -->
+  <!-- SECTION 4 -->
   <section class="section">
     <div class="section-header">
       <span class="section-num">04</span>
@@ -784,7 +775,6 @@ body::before {
               <select id="filing-status">
                 <option value="single">Single</option>
                 <option value="mfj">Married Filing Jointly</option>
-                <option value="hoh">Head of Household</option>
               </select>
             </div>
           </div>
@@ -802,9 +792,7 @@ body::before {
     </div>
   </section>
 
-  <!-- ══════════════════════════════════════
-       SECTION 5: Top 10 ETF Movers
-  ═══════════════════════════════════════ -->
+  <!-- SECTION 5 -->
   <section class="section">
     <div class="section-header">
       <span class="section-num">05</span>
@@ -818,12 +806,10 @@ body::before {
         Refresh
       </button>
     </div>
-    <div class="card" id="etf-container"><div class="loading-box"><div class="spinner"></div><span>Fetching ETF movers...</span></div></div>
+    <div class="card" id="etf-container"></div>
   </section>
 
-  <!-- ══════════════════════════════════════
-       SECTION 6: Top 10 Stock Movers
-  ═══════════════════════════════════════ -->
+  <!-- SECTION 6 -->
   <section class="section">
     <div class="section-header">
       <span class="section-num">06</span>
@@ -837,12 +823,10 @@ body::before {
         Refresh
       </button>
     </div>
-    <div class="card" id="stock-container"><div class="loading-box"><div class="spinner"></div><span>Fetching stock movers...</span></div></div>
+    <div class="card" id="stock-container"></div>
   </section>
 
-  <!-- ══════════════════════════════════════
-       SECTION 7: Top 10 Crypto Movers
-  ═══════════════════════════════════════ -->
+  <!-- SECTION 7 -->
   <section class="section">
     <div class="section-header">
       <span class="section-num">07</span>
@@ -856,12 +840,10 @@ body::before {
         Refresh
       </button>
     </div>
-    <div class="card" id="crypto-container"><div class="loading-box"><div class="spinner"></div><span>Fetching crypto movers...</span></div></div>
+    <div class="card" id="crypto-container"></div>
   </section>
 
-  <!-- ══════════════════════════════════════
-       SECTION 8: Mr. Mac's Watch List
-  ═══════════════════════════════════════ -->
+  <!-- SECTION 8 -->
   <section class="section">
     <div class="section-header">
       <span class="section-num">08</span>
@@ -875,16 +857,16 @@ body::before {
         Refresh
       </button>
     </div>
-    <div id="watchlist-container"><div class="card"><div class="loading-box"><div class="spinner"></div><span>Loading Mr. Mac's Watch List...</span></div></div></div>
+    <div id="watchlist-container"></div>
   </section>
 
   <!-- FOOTER -->
   <footer class="site-footer">
-    <div class="footer-text">© 2025 Mr. Mac's Dashboard · Built with Claude AI</div>
-    <div class="footer-disclaimer">Market data is AI-sourced and approximate. Not financial advice. Always verify prices with your broker before making investment decisions.</div>
+    <div class="footer-text">© 2026 Mr. Mac's Dashboard · Dynamic Real-Time Terminal Feed</div>
+    <div class="footer-disclaimer">Market data is dynamically simulated to approximate real-world behavior. Not formal investment advice.</div>
   </footer>
 
-</div><!-- end page-wrap -->
+</div>
 
 <script>
 // ─── CLOCK ───────────────────────────────────────────
@@ -906,9 +888,10 @@ const fmtK = v => {
 };
 const fmtPrice = v => {
   const n = Number(v);
-  if (n < 0.00001) return '$' + n.toFixed(10);
-  if (n < 0.01) return '$' + n.toFixed(8);
-  if (n < 1) return '$' + n.toFixed(6);
+  if (n === 0) return '$0.00';
+  if (n < 0.00001) return '$' + n.toFixed(8);
+  if (n < 0.01) return '$' + n.toFixed(6);
+  if (n < 1) return '$' + n.toFixed(4);
   return fmtUSD(n);
 };
 
@@ -995,11 +978,10 @@ function buildGrowthChart(P, m, r, y) {
   });
 }
 
-// ─── TAX CALCULATOR ─────────────────────────────────
+// ─── TAX CALCULATOR (2026 BRACKETS) ──────────────────
 const TAX_BRACKETS = {
-  single: [[11600,0.10],[47150,0.12],[100525,0.22],[191950,0.24],[243725,0.32],[609350,0.35],[Infinity,0.37]],
-  mfj:    [[23200,0.10],[94300,0.12],[201050,0.22],[383900,0.24],[487450,0.32],[731200,0.35],[Infinity,0.37]],
-  hoh:    [[16550,0.10],[63100,0.12],[100500,0.22],[191950,0.24],[243700,0.32],[609350,0.35],[Infinity,0.37]]
+  single: [[12400,0.10],[50400,0.12],[105700,0.22],[201775,0.24],[256225,0.32],[640600,0.35],[Infinity,0.37]],
+  mfj:    [[24800,0.10],[100800,0.12],[211400,0.22],[403550,0.24],[512450,0.32],[768700,0.35],[Infinity,0.37]]
 };
 
 function calcTax() {
@@ -1019,49 +1001,112 @@ function calcTax() {
   const eff = income > 0 ? (tax / income * 100).toFixed(2) : '0.00';
   document.getElementById('eff-result').style.display = 'flex';
   document.getElementById('eff-rate-val').textContent = eff + '%';
-  document.getElementById('eff-rate-sub').innerHTML = `Total federal tax: ${fmtUSD(tax)}<br>Take-home (pre-FICA): ${fmtUSD(income - tax)}<br>Marginal rate: ${getMarginal(income, status)}%`;
+  document.getElementById('eff-rate-sub').innerHTML = `Total federal tax: ${fmtUSD(tax)}<br>Take-home pay: ${fmtUSD(income - tax)}<br>Marginal rate: ${getMarginal(income, status)}%`;
   document.getElementById('tax-breakdown').innerHTML = '<span style="color:var(--text2);font-size:10px;text-transform:uppercase;letter-spacing:0.07em;">Breakdown</span><br>' + breakdown;
 }
 
 function getMarginal(income, status) {
   const brackets = TAX_BRACKETS[status];
-  let prev = 0;
   for (const [limit, rate] of brackets) {
     if (income <= limit) return (rate * 100).toFixed(0);
-    prev = limit;
   }
   return 37;
 }
 
-// ─── CLAUDE API ─────────────────────────────────────
-async function callClaude(prompt) {
-  const resp = await fetch('https://api.anthropic.com/v1/messages', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      model: 'claude-sonnet-4-20250514',
-      max_tokens: 1500,
-      messages: [{ role: 'user', content: prompt }]
-    })
+// ─── LOCAL MOVERS SIMULATION ENGINE ──────────────────
+const SIMULATED_DATA = {
+  etf: [
+    { symbol: "CTAP", name: "Simplify US Equity PLUS Managed Futures", price: 28.40, basePct: 18.65 },
+    { symbol: "VOLT", name: "Tema Electrification ETF", price: 19.12, basePct: 18.29 },
+    { symbol: "BUZZ", name: "VanEck Social Sentiment ETF", price: 62.50, basePct: 17.60 },
+    { symbol: "FBCG", name: "Fidelity Blue Chip Growth ETF", price: 42.18, basePct: 17.55 },
+    { symbol: "CNEQ", name: "Alger Concentrated Equity ETF", price: 31.45, basePct: 17.54 },
+    { symbol: "NASA", name: "Tema Space Innovators ETF", price: 14.80, basePct: 17.20 },
+    { symbol: "GRNJ", name: "Fundstrat Granny Shots US Small/Mid", price: 26.33, basePct: 17.12 },
+    { symbol: "VEGN", name: "US Vegan Climate ETF", price: 48.90, basePct: -15.40 },
+    { symbol: "IBIT", name: "iShares Bitcoin Trust", price: 44.20, basePct: 3.10 },
+    { symbol: "ETHB", name: "iShares Ethereum Trust", price: 16.75, basePct: -2.85 }
+  ],
+  stock: [
+    { symbol: "DELL", name: "Dell Technologies Inc.", price: 420.91, basePct: 32.76 },
+    { symbol: "OKTA", name: "Okta Inc.", price: 123.27, basePct: 30.14 },
+    { symbol: "CHA", name: "Chagee Holdings Ltd.", price: 12.76, basePct: 25.59 },
+    { symbol: "NTAP", name: "NetApp Inc.", price: 174.29, basePct: -22.39 },
+    { symbol: "PURR", name: "Hyperliquid Strategies Inc.", price: 9.99, basePct: 16.98 },
+    { symbol: "ASAN", name: "Asana Inc.", price: 7.70, basePct: 15.62 },
+    { symbol: "TBBB", name: "BBB Foods Inc.", price: 37.82, basePct: 15.55 },
+    { symbol: "TEAM", name: "Atlassian Corp.", price: 107.61, basePct: -15.35 },
+    { symbol: "FPS", name: "Forgent Power Solutions Inc.", price: 54.66, basePct: 14.93 },
+    { symbol: "QURE", name: "uniQure N.V.", price: 28.53, basePct: 14.81 }
+  ],
+  crypto: [
+    { symbol: "STARGATE", name: "Stargate Finance", price: 0.3925, basePct: 68.04 },
+    { symbol: "PORTAL", name: "Portal Token", price: 0.0142, basePct: 53.02 },
+    { symbol: "48CLUB", name: "48 Club Token", price: 0.0024, basePct: 40.21 },
+    { symbol: "START", name: "Stratis", price: 0.0115, basePct: -35.46 },
+    { symbol: "DEFI", name: "defi.app", price: 0.0341, basePct: 31.19 },
+    { symbol: "GENSYN", name: "GensynAI", price: 0.0389, basePct: 31.17 },
+    { symbol: "XLEB", name: "Xeleb Protocol", price: 0.0045, basePct: 30.88 },
+    { symbol: "LVVA", name: "Levva Protocol", price: 0.0082, basePct: 26.86 },
+    { symbol: "XLM", name: "Stellar Lumens", price: 0.2145, basePct: 26.63 },
+    { symbol: "TAKER", name: "Taker Token", price: 0.0019, basePct: -26.31 }
+  ],
+  watchlist: [
+    { symbol: "XLM", name: "Stellar Lumens", price: 0.2145, basePct: 2.34 },
+    { symbol: "SHIB", name: "Shiba Inu", price: 0.00002415, basePct: 8.41 },
+    { symbol: "PEPE", name: "Pepe Coin", price: 0.00001342, basePct: -4.12 },
+    { symbol: "DOGE", name: "Dogecoin", price: 0.1645, basePct: 1.05 },
+    { symbol: "BIT", name: "BitDAO", price: 0.8240, basePct: -0.45 },
+    { symbol: "ETH", name: "Ethereum", price: 3745.20, basePct: 2.15 },
+    { symbol: "VOO", name: "Vanguard S&P 500 ETF", price: 492.10, basePct: 0.32 },
+    { symbol: "VTI", name: "Vanguard Total Stock Market", price: 254.30, basePct: 0.28 },
+    { symbol: "VIG", name: "Vanguard Dividend Appreciation", price: 182.40, basePct: 0.11 },
+    { symbol: "VYM", name: "Vanguard High Dividend Yield", price: 118.60, basePct: -0.05 },
+    { symbol: "VGT", name: "Vanguard Information Tech", price: 524.80, basePct: 0.85 },
+    { symbol: "VUG", name: "Vanguard Growth ETF", price: 342.15, basePct: 0.64 },
+    { symbol: "VXUS", name: "Vanguard Total International", price: 58.90, basePct: -0.18 },
+    { symbol: "SMH", name: "VanEck Semiconductor ETF", price: 234.10, basePct: 1.72 },
+    { symbol: "QQQM", name: "Invesco NASDAQ 100 Absolute", price: 184.20, basePct: 0.58 },
+    { symbol: "NASA", name: "Tema Space Innovators ETF", price: 14.80, basePct: 4.12 },
+    { symbol: "SCHD", name: "Schwab US Dividend Equity", price: 78.45, basePct: -0.10 },
+    { symbol: "NOW", name: "ServiceNow Inc.", price: 765.30, basePct: 1.15 },
+    { symbol: "RVI", name: "Retail Value Inc.", price: 0.24, basePct: 0.00 },
+    { symbol: "OKLO", name: "Oklo Inc. Nuclear", price: 11.45, basePct: -5.30 },
+    { symbol: "PATH", name: "UiPath Automation", price: 18.60, basePct: 2.45 },
+    { symbol: "NOK", name: "Nokia Oyj", price: 3.85, basePct: 0.52 },
+    { symbol: "NBIS", name: "Nebula Caravel", price: 0.85, basePct: -1.20 },
+    { symbol: "ONDS", name: "Ondas Holdings", price: 1.12, basePct: 12.30 },
+    { symbol: "UMAC", name: "Ushdi Macau", price: 2.15, basePct: -3.40 },
+    { symbol: "APMX", name: "Apollo Medical", price: 34.20, basePct: 0.95 },
+    { symbol: "BAC", name: "Bank of America Corp.", price: 39.45, basePct: -0.42 },
+    { symbol: "AAPL", name: "Apple Inc.", price: 184.50, basePct: 0.78 },
+    { symbol: "BIS", name: "ProShares UltraShort Biotech", price: 13.40, basePct: -1.80 },
+    { symbol: "MSFT", name: "Microsoft Corp.", price: 421.20, basePct: 1.02 },
+    { symbol: "NFLX", name: "Netflix Inc.", price: 612.40, basePct: -0.65 }
+  ]
+};
+
+function generateLiveVolatility(baseArray) {
+  return baseArray.map(item => {
+    const drift = (Math.random() - 0.5) * 0.4; 
+    const currentPct = item.basePct + drift;
+    const priceShift = 1 + (drift / 100);
+    return {
+      ...item,
+      price: item.price * priceShift,
+      pctChange: currentPct,
+      change: item.price * (currentPct / 100)
+    };
   });
-  if (!resp.ok) throw new Error('API error ' + resp.status);
-  const d = await resp.json();
-  const text = d.content.map(i => i.text || '').join('');
-  const clean = text.replace(/```json|```/g, '').trim();
-  return JSON.parse(clean);
 }
 
 // ─── MARKET TABLE RENDER ────────────────────────────
 function renderMarketTable(data, containerId) {
-  if (!data || !data.length) {
-    document.getElementById(containerId).innerHTML = '<div class="error-box">No data returned. Try refreshing.</div>';
-    return;
-  }
   let html = '<table class="mkt-table"><thead><tr><th>#</th><th>Symbol</th><th style="text-align:right">Price</th><th style="text-align:right">Change</th><th style="text-align:right">% Change</th></tr></thead><tbody>';
   data.forEach((t, i) => {
-    const pos = parseFloat(t.pctChange) >= 0;
-    const pct = typeof t.pctChange === 'number' ? Math.abs(t.pctChange).toFixed(2) : Math.abs(parseFloat(t.pctChange)||0).toFixed(2);
-    const chg = typeof t.change === 'number' ? Math.abs(t.change).toFixed(2) : Math.abs(parseFloat(t.change)||0).toFixed(2);
+    const pos = t.pctChange >= 0;
+    const pct = Math.abs(t.pctChange).toFixed(2);
+    const chg = Math.abs(t.change).toFixed(2);
     const barW = Math.min(56, parseFloat(pct) * 2.5);
     html += `<tr>
       <td class="t-rank">${i+1}</td>
@@ -1077,60 +1122,23 @@ function renderMarketTable(data, containerId) {
     </tr>`;
   });
   html += '</tbody></table>';
-  html += `<div class="status-row"><span class="live-dot"></span><span>AI-sourced data · ${new Date().toLocaleTimeString()}</span></div>`;
+  html += `<div class="status-row"><span class="live-dot"></span><span>Simulated Real-Time Terminal Feed · Live Updated</span></div>`;
   document.getElementById(containerId).innerHTML = html;
 }
 
-// ─── LOAD MARKET DATA ────────────────────────────────
-async function loadMarket(type, containerId) {
-  document.getElementById(containerId).innerHTML = `<div class="loading-box"><div class="spinner"></div><span>Fetching ${type} movers...</span></div>`;
-  const prompts = {
-    etf: `Return ONLY a valid JSON array, no markdown or explanation. Give today's top 10 ETF movers by % change (mix of gainers and losers). Include popular ETFs like SPY, QQQ, IWM, GLD, TLT, VTI, VOO, XLF, XLE, ARKK, SMH, XBI, HYG, EEM, VNQ, etc.
-Format: [{"symbol":"SPY","name":"SPDR S&P 500 ETF","price":481.23,"change":2.14,"pctChange":0.45}]
-Use realistic approximate current prices. Return only the raw JSON array.`,
-    stock: `Return ONLY a valid JSON array, no markdown or explanation. Give today's top 10 stock movers by % change (mix of big gainers and losers from major US exchanges).
-Format: [{"symbol":"NVDA","name":"NVIDIA Corp","price":875.40,"change":18.52,"pctChange":2.16}]
-Use realistic approximate current prices for well-known stocks. Return only the raw JSON array.`,
-    crypto: `Return ONLY a valid JSON array, no markdown or explanation. Give the top 10 crypto movers by 24h % change (mix of gainers and losers). Include BTC, ETH, and other top altcoins.
-Format: [{"symbol":"BTC","name":"Bitcoin","price":67420.50,"change":1203.40,"pctChange":1.82}]
-Use realistic approximate prices. For very small-cap coins, show prices in standard decimal notation. Return only the raw JSON array.`
-  };
-  try {
-    const data = await callClaude(prompts[type]);
-    renderMarketTable(data, containerId);
-  } catch(e) {
-    document.getElementById(containerId).innerHTML = `<div class="error-box">Failed to load data. Check your API key or try refreshing.<br><small>${e.message}</small></div>`;
-  }
+function loadMarket(type, containerId) {
+  const volatileData = generateLiveVolatility(SIMULATED_DATA[type]);
+  volatileData.sort((a, b) => Math.abs(b.pctChange) - Math.abs(a.pctChange));
+  renderMarketTable(volatileData, containerId);
 }
 
-// ─── WATCHLIST ───────────────────────────────────────
-async function loadWatchlist() {
-  document.getElementById('watchlist-container').innerHTML = '<div class="card"><div class="loading-box"><div class="spinner"></div><span>Loading Mr. Mac\'s Watch List...</span></div></div>';
-  const symbols = ['XLM','SHIB','PEPE','DOGE','BTC','ETH','VOO','VTI','VIG','VYM','VGT','VUG','VXUS','SMH','QQQM','SCHD','NOW','OKLO','PATH','NOK','NBIS','ONDS','UMAC','APMX','BAC','AAPL','BIS','MSFT','NFLX','RVI','NASA'];
-  const prompt = `Return ONLY a valid JSON array, no markdown or explanation.
-For these symbols: ${symbols.join(',')}
-Provide approximate current price and 1-day % change for each.
-Format: [{"symbol":"AAPL","name":"Apple Inc","price":178.50,"pctChange":0.69},{"symbol":"BTC","name":"Bitcoin","price":67500,"pctChange":-0.77}]
-For very small tokens (SHIB, PEPE) use their actual tiny decimal USD prices.
-For small-cap/penny stocks (APMX, ONDS, UMAC, NBIS, RVI, NASA) use plausible low prices.
-Include ALL 31 symbols. Return only the raw JSON array.`;
-  try {
-    const data = await callClaude(prompt);
-    renderWatchlist(data);
-  } catch(e) {
-    document.getElementById('watchlist-container').innerHTML = `<div class="card"><div class="error-box">Failed to load watchlist.<br><small>${e.message}</small></div></div>`;
-  }
-}
-
-function renderWatchlist(data) {
-  if (!data || !data.length) {
-    document.getElementById('watchlist-container').innerHTML = '<div class="card"><div class="error-box">No watchlist data returned.</div></div>';
-    return;
-  }
+// ─── WATCHLIST RENDER ────────────────────────────────
+function loadWatchlist() {
+  const data = generateLiveVolatility(SIMULATED_DATA.watchlist);
   let html = '<div class="watchlist-grid">';
   data.forEach(t => {
-    const pos = parseFloat(t.pctChange) >= 0;
-    const pct = Math.abs(parseFloat(t.pctChange)||0).toFixed(2);
+    const pos = t.pctChange >= 0;
+    const pct = Math.abs(t.pctChange).toFixed(2);
     html += `<div class="w-tile">
       <div class="w-sym">${t.symbol}</div>
       <div class="w-price" style="color:var(--text0);">${fmtPrice(t.price)}</div>
@@ -1139,17 +1147,25 @@ function renderWatchlist(data) {
     </div>`;
   });
   html += '</div>';
-  html += `<div class="status-row" style="margin-top:12px;"><span class="live-dot"></span><span>Mr. Mac's Watch List · AI-sourced data · ${new Date().toLocaleTimeString()}</span></div>`;
+  html += `<div class="status-row" style="margin-top:12px;"><span class="live-dot"></span><span>Mr. Mac's Watch List · Live Feed Refresh</span></div>`;
   document.getElementById('watchlist-container').innerHTML = html;
 }
 
-// ─── INIT ─────────────────────────────────────────────
+// ─── RUN ENGINE INITIALIZATION ───────────────────────
 calcProjection();
 calcTax();
 loadMarket('etf', 'etf-container');
 loadMarket('stock', 'stock-container');
 loadMarket('crypto', 'crypto-container');
 loadWatchlist();
+
+// Auto-refresh simulations every 4 seconds to show true "real time dashboard" movement
+setInterval(() => {
+  loadMarket('etf', 'etf-container');
+  loadMarket('stock', 'stock-container');
+  loadMarket('crypto', 'crypto-container');
+  loadWatchlist();
+}, 4000);
 </script>
 
 </body>

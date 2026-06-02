@@ -503,6 +503,8 @@ body::before {
   background: rgba(77,166,255,0.06);
   padding: 3px 8px;
   border-radius: 4px;
+  display: inline-block;
+  margin-left: 8px;
 }
 
 /* HISTORICAL FLEX GRID */
@@ -1180,22 +1182,22 @@ function generateLiveVolatility(baseArray, limitCount) {
 
 // ─── SPACED COLUMN MARKET VIEW GENERATION ────────────
 function renderMarketTable(data, containerId) {
-  let html = '<table class="m-table"><thead><tr><th>#</th><th>Asset Identifier / Name</th><th style="text-align:right; padding-right:40px;">Current Price</th><th style="text-align:right; padding-right:40px;">Nominal Delta</th><th style="text-align:right;">Percentage Delta</th></tr></thead><tbody>';
+  let html = '<table class="m-table"><thead><tr><th>Ticker</th><th>Name / Identifier</th><th style="text-align:right; padding-right:40px;">Current Price</th><th style="text-align:right; padding-right:40px;">Nominal Delta</th><th style="text-align:right;">Percentage Delta</th></tr></thead><tbody>';
   
-  data.forEach((t, i) => {
+  data.forEach((t) => {
     const pos = t.pctChange >= 0;
     const pct = Math.abs(t.pctChange).toFixed(2);
     const chg = Math.abs(t.change).toFixed(2);
     const barW = Math.min(60, parseFloat(pct) * 2.5);
     
-    const subLabel = t.type ? `<span class="holdings-asset-type">${t.type}</span>` : `<span class="t-name">${t.name||''}</span>`;
+    const subLabel = t.type ? `<span class="holdings-asset-type">${t.type}</span>` : '';
 
     html += `<tr>
-      <td style="color:var(--text3); font-family:'Space Mono',monospace; width:40px;">${String(i+1).padStart(2, '0')}</td>
+      <td><span class="t-sym">${t.symbol}</span></td>
       <td>
-        <div style="display:flex; flex-direction:column; gap:2px;">
-          <div class="t-sym" style="display:flex; align-items:center; gap:12px;">${t.symbol} ${t.type ? subLabel : ''}</div>
-          ${!t.type ? subLabel : `<div class="t-name">${t.name}</div>`}
+        <div style="display:flex; align-items:center;">
+          <span class="t-name">${t.name}</span>
+          ${subLabel}
         </div>
       </td>
       <td class="t-price">${fmtPrice(t.price)}</td>

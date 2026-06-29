@@ -284,6 +284,7 @@ body {
 .badge-stock { border-color: var(--blue); color: var(--blue); background: var(--blue-dim); }
 .badge-crypto { border-color: var(--amber); color: var(--amber); background: var(--amber-dim); }
 .badge-hysa { border-color: var(--teal); color: var(--teal); background: rgba(25,227,196,0.12); }
+.badge-bonds { border-color: var(--gold); color: var(--gold); background: rgba(240,192,64,0.12); }
 .badge-personal { border-color: var(--gold); color: var(--gold); }
 .badge-historical { border-color: var(--gold); color: var(--gold); }
 .badge-learn { border-color: var(--teal); color: var(--teal); background: rgba(25,227,196,0.07); }
@@ -546,7 +547,7 @@ body {
 }
 .hysa-search:focus { outline: none; border-color: var(--teal); }
 .hysa-table-wrap { overflow-x: auto; }
-.hysa-table { width: 100%; border-collapse: separate; border-spacing: 0; min-width: 920px; }
+.hysa-table { width: 100%; border-collapse: separate; border-spacing: 0; min-width: 1080px; }
 .hysa-table th {
   text-align: left; padding: 13px 18px; font-size: 10.5px; font-family: var(--font-mono);
   text-transform: uppercase; letter-spacing: 0.06em; color: var(--text2);
@@ -560,6 +561,7 @@ body {
 .hysa-bank { font-weight: 700; color: var(--text0); font-size: 13px; }
 .hysa-bank-sub { display: block; font-weight: 400; color: var(--text2); font-size: 10.5px; margin-top: 2px; }
 .hysa-apy { font-family: var(--font-mono); font-weight: 800; font-size: 14.5px; color: var(--teal); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.hysa-apy-base { color: var(--text1); font-size: 13px; }
 .hysa-apy-sub { display: block; font-family: var(--font-mono); font-weight: 500; font-size: 10.5px; color: var(--text2); margin-top: 2px; }
 .hysa-min { font-family: var(--font-mono); font-size: 12px; color: var(--text1); white-space: nowrap; }
 .hysa-req { font-size: 11.5px; color: var(--text1); line-height: 1.6; max-width: 260px; }
@@ -584,6 +586,56 @@ body {
 .hysa-disclaimer {
   font-size: 11px; color: var(--text2); line-height: 1.7; padding: 16px 18px; margin-top: 18px;
   background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--radius); border-left: 3px solid var(--teal);
+}
+
+/* CDs & TREASURIES */
+.cd-table { width: 100%; border-collapse: separate; border-spacing: 0; min-width: 880px; }
+.cd-table th {
+  text-align: left; padding: 13px 18px; font-size: 10.5px; font-family: var(--font-mono);
+  text-transform: uppercase; letter-spacing: 0.06em; color: var(--text2);
+  border-bottom: 1px solid var(--border-2); white-space: nowrap; position: sticky; top: 0; background: var(--surface);
+}
+.cd-table td { padding: 14px 18px; border-bottom: 1px solid var(--border); vertical-align: top; font-size: 12.5px; }
+.cd-table tr:last-child td { border-bottom: none; }
+.cd-table tbody tr { transition: background 0.18s var(--ease); }
+.cd-table tbody tr:hover td { background: var(--surface-2); }
+.cd-rank { font-family: var(--font-mono); color: var(--text3); font-weight: 700; font-size: 12px; }
+.cd-bank { font-weight: 700; color: var(--text0); font-size: 13px; }
+.cd-term { display: inline-block; padding: 3px 10px; border-radius: var(--radius-pill); font-size: 11px; font-weight: 700; font-family: var(--font-mono); background: var(--surface-3); color: var(--text1); white-space: nowrap; }
+.cd-apy { font-family: var(--font-mono); font-weight: 800; font-size: 14.5px; color: var(--gold); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.cd-min { font-family: var(--font-mono); font-size: 12px; color: var(--text1); white-space: nowrap; }
+.cd-notes { font-size: 11.5px; color: var(--text2); line-height: 1.6; max-width: 320px; }
+.cd-filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+.cd-filter-btn {
+  padding: 7px 15px; border-radius: var(--radius-pill); border: 1px solid var(--border-2);
+  background: var(--surface-2); color: var(--text1); font-size: 12px; font-family: var(--font-sans);
+  font-weight: 600; cursor: pointer; transition: all 0.2s var(--ease);
+}
+.cd-filter-btn:hover { color: var(--text0); border-color: var(--gold); }
+.cd-filter-btn.active { background: var(--gold); color: #2b2008; border-color: var(--gold); box-shadow: 0 4px 16px rgba(240,192,64,0.25); }
+
+.tnote-card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 22px; margin-bottom: 18px;
+}
+.curve-wrap { display: flex; align-items: flex-end; gap: 6px; height: 180px; padding: 10px 4px 0; overflow-x: auto; }
+.curve-bar-col { display: flex; flex-direction: column; align-items: center; justify-content: flex-end; min-width: 46px; flex: 1; height: 100%; }
+.curve-bar { width: 60%; max-width: 28px; border-radius: 4px 4px 0 0; background: linear-gradient(180deg, var(--gold), rgba(240,192,64,0.55)); transition: height 0.5s var(--ease); }
+.curve-yield { font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: var(--text0); margin-bottom: 6px; }
+.curve-label { font-family: var(--font-mono); font-size: 10px; color: var(--text2); margin-top: 8px; }
+.tnote-table { width: 100%; border-collapse: separate; border-spacing: 0; margin-top: 18px; }
+.tnote-table th {
+  text-align: left; padding: 10px 14px; font-size: 10px; font-family: var(--font-mono);
+  text-transform: uppercase; letter-spacing: 0.06em; color: var(--text2); border-bottom: 1px solid var(--border-2);
+}
+.tnote-table td { padding: 11px 14px; border-bottom: 1px solid var(--border); font-size: 12.5px; }
+.tnote-table tr:last-child td { border-bottom: none; }
+.tnote-maturity { font-weight: 700; color: var(--text0); font-family: var(--font-mono); font-size: 12.5px; }
+.tnote-yield { font-family: var(--font-mono); font-weight: 800; color: var(--gold); font-size: 13.5px; }
+.tnote-type { font-size: 10px; font-family: var(--font-mono); color: var(--text2); text-transform: uppercase; letter-spacing: 0.05em; }
+.bonds-disclaimer {
+  font-size: 11px; color: var(--text2); line-height: 1.7; padding: 16px 18px; margin-top: 18px;
+  background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--radius); border-left: 3px solid var(--gold);
 }
 
 .holdings-asset-type {
@@ -808,6 +860,7 @@ body {
       <button class="tab-btn" role="tab" aria-selected="false" data-tab="portfolio">Watch &amp; Holdings</button>
       <button class="tab-btn" role="tab" aria-selected="false" data-tab="learn">Investing 101</button>
       <button class="tab-btn" role="tab" aria-selected="false" data-tab="hysa">HYSA Tracker</button>
+      <button class="tab-btn" role="tab" aria-selected="false" data-tab="bonds">CDs &amp; Treasuries</button>
     </nav>
   </div>
 </div>
@@ -1380,13 +1433,13 @@ body {
       <div class="section-header">
         <span class="section-num">11</span>
         <span class="section-title">High-Yield Savings Account Tracker</span>
-        <span class="section-badge badge-hysa">25 Institutions</span>
+        <span class="section-badge badge-hysa">31 Institutions</span>
       </div>
-      <p class="learn-intro">A hand-verified comparison of 25 high-yield savings accounts — sourced directly from each bank's own disclosures plus independent trackers (Bankrate, NerdWallet, Fortune/Curinos), current as of late June 2026. Promotional rates, balance tiers, and access restrictions are called out explicitly so the headline APY isn't the whole story. <strong>Rates are variable and change without notice — always confirm directly with the institution before opening an account.</strong></p>
+      <p class="learn-intro">A hand-verified comparison of 31 high-yield savings accounts — sourced directly from each bank's own disclosures plus independent trackers (Bankrate, NerdWallet, Fortune/Curinos), current as of late June 2026. <strong>Top APY</strong> is the best rate advertised; <strong>Base APY</strong> is what you actually earn once a promo expires or a balance/deposit requirement isn't met — the two are often very different numbers. Rates are variable and change without notice — always confirm directly with the institution before opening an account.</p>
 
       <div class="hysa-controls">
         <div class="hysa-filters" id="hysaFilters">
-          <button class="hysa-filter-btn active" data-filter="all">All 25</button>
+          <button class="hysa-filter-btn active" data-filter="all">All 31</button>
           <button class="hysa-filter-btn" data-filter="none">No Requirements</button>
           <button class="hysa-filter-btn" data-filter="cond">Conditional Rate</button>
           <button class="hysa-filter-btn" data-filter="warn">⚠ Caution</button>
@@ -1401,7 +1454,8 @@ body {
               <tr>
                 <th>#</th>
                 <th>Institution</th>
-                <th>APY</th>
+                <th>Top APY</th>
+                <th>Base APY</th>
                 <th>Min. to Open</th>
                 <th>Requirements</th>
                 <th>Notes / Access</th>
@@ -1421,7 +1475,78 @@ body {
       </div>
 
       <div class="hysa-disclaimer">
-        <strong>How to read this table:</strong> "APY" shows the best rate currently advertised — the sub-line under it flags when that rate is promotional, tiered, or temporary rather than a permanent base rate. Institutions marked ⚠ Caution have a real practical catch (Newtek's waitlist, Pibank's wire-only transfers, Patriot Bank's unconfirmed post-promo rate) that's easy to miss in a quick rate comparison. None of this is financial advice — it's a research aid. Verify current terms directly with each institution before opening an account.
+        <strong>How to read this table:</strong> "Top APY" is the best rate currently advertised; "Base APY" is the standing rate you fall back to once a promo ends or you miss a balance/deposit requirement — the sub-line under each explains the condition. Institutions marked ⚠ Caution have a real practical catch (Newtek's waitlist, Pibank's wire-only transfers, Patriot Bank's unconfirmed post-promo rate) that's easy to miss in a quick rate comparison. None of this is financial advice — it's a research aid. Verify current terms directly with each institution before opening an account.
+      </div>
+    </section>
+  </div>
+
+  <!-- ============ TAB 6: CDs & TREASURIES ============ -->
+  <div class="tab-panel" id="tab-bonds" role="tabpanel">
+
+    <section class="section">
+      <div class="section-header">
+        <span class="section-num">12</span>
+        <span class="section-title">Top 30 Certificates of Deposit</span>
+        <span class="section-badge badge-bonds">CDs</span>
+      </div>
+      <p class="learn-intro">A hand-verified comparison of 30 competitive CDs across terms from 3 months to 5 years — sourced from each bank's own site plus independent trackers (Bankrate, NerdWallet), current as of late June 2026. Unlike a savings account, a CD's rate is locked for the full term — but withdrawing early triggers a penalty, typically a number of months' worth of interest. <strong>Regular (non-promotional, non-relationship) rates only.</strong></p>
+
+      <div class="cd-filters" id="cdFilters">
+        <button class="cd-filter-btn active" data-term="all">All Terms</button>
+        <button class="cd-filter-btn" data-term="short">3–6 Month</button>
+        <button class="cd-filter-btn" data-term="mid">9–18 Month</button>
+        <button class="cd-filter-btn" data-term="long">2–5 Year</button>
+      </div>
+
+      <div class="card market-card">
+        <div class="hysa-table-wrap">
+          <table class="cd-table" id="cdTable">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Institution</th>
+                <th>Term</th>
+                <th>APY</th>
+                <th>Min. Deposit</th>
+                <th>Notes</th>
+              </tr>
+            </thead>
+            <tbody id="cdTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="bonds-disclaimer">
+        <strong>How to read this table:</strong> CD rates are fixed for the term once funded — your rate won't drop if the Fed cuts, but it also won't rise if rates climb (a "bump-up" CD, where noted, is the exception). Early withdrawal penalties vary widely, from 30 days' simple interest (CIBC Agility CDs) to 180+ days at stricter institutions — always check the penalty before committing funds you might need early. A "no-penalty" CD trades a slightly lower rate for the ability to withdraw the full balance early at no cost.
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <span class="section-num">13</span>
+        <span class="section-title">U.S. Treasury Yield Curve</span>
+        <span class="section-badge badge-bonds">Treasuries</span>
+      </div>
+      <p class="learn-intro">Current market yields across the full Treasury curve — from 4-week bills to 30-year bonds — sourced from the U.S. Treasury's own daily rate data and cross-checked against live market quotes (CNBC, Trading Economics). Unlike bank CDs, Treasuries are backed directly by the U.S. government, are exempt from state and local income tax, and can be bought commission-free at <a href="https://www.treasurydirect.gov" target="_blank" rel="noopener" style="color:var(--gold);">TreasuryDirect.gov</a> or through any brokerage.</p>
+
+      <div class="tnote-card">
+        <div class="curve-wrap" id="yieldCurve"></div>
+      </div>
+
+      <table class="tnote-table" id="treasuryTable">
+        <thead>
+          <tr>
+            <th>Maturity</th>
+            <th>Type</th>
+            <th>Yield</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody id="treasuryTableBody"></tbody>
+      </table>
+
+      <div class="bonds-disclaimer">
+        <strong>Reading the curve:</strong> When long-term yields sit above short-term yields (an "upward-sloping" curve, as shown here), markets generally expect steady-to-rising rates ahead — the opposite of an "inverted" curve, which has historically preceded recessions. T-bills (4-week to 52-week) are sold at a discount and mature at face value; notes (2–10 year) and bonds (20–30 year) pay semiannual interest. All Treasury income is exempt from state and local tax, though it's still subject to federal tax. Yields shown are as of the most recent trading day and move daily with the market — verify current rates at <a href="https://www.treasurydirect.gov" target="_blank" rel="noopener" style="color:var(--gold);">treasurydirect.gov</a> before buying.
       </div>
     </section>
   </div>
@@ -1848,31 +1973,37 @@ function paintSkeleton(containerId, rows) {
    HYSA TRACKER — 25 institutions, hand-verified June 2026
    ============================================================ */
 const HYSA_DATA = [
-  { rank: 1, bank: "Varo Bank", sub: "Online Savings Account", apy: "5.00%", apySub: "first $5,000 only · 2.50% above", min: "$0", req: "Open Varo checking + savings; $1,000+/mo direct deposit; positive balance both accounts", notes: "Military-base transactions treated as domestic. No SWIFT code — no direct intl. wires.", status: "cond", confidence: "high" },
-  { rank: 2, bank: "Forbright Bank", sub: "Growth Savings", apy: "4.15%", apySub: "promo boost · base rate 3.85%, thru 12/31/26", min: "$0", req: "None for base rate; boost is new-customer promo", notes: "No ATM/debit card, no cash deposits. Must fund within 30 days or auto-closes.", status: "cond", confidence: "high" },
-  { rank: 3, bank: "Newtek Bank", sub: "Personal High Yield Savings", apy: "4.20%", apySub: "flat, all balances", min: "$0", req: "None", notes: "⚠ Not accepting new applications — waitlist only since mid-May 2026.", status: "warn", confidence: "high" },
-  { rank: 4, bank: "Axos Bank", sub: "ONE Savings (bundled w/ checking)", apy: "4.21%", apySub: "up to $499,999.99 · 4.01% above", min: "$0", req: "$1,500+ DD + $1,500+ avg. balance in linked checking, OR $5,000+ deposits + $5,000+ avg. balance", notes: "Also offers Summit Savings (~3.75–3.80% flat, zero requirements) as a no-bundle alternative.", status: "cond", confidence: "high" },
-  { rank: 5, bank: "Climate First Bank", sub: "Super Duper Savings Account", apy: "4.01%", apySub: "flat, no tiers", min: "$50", req: "None", notes: "FL community bank, B Corp. Zelle supported. Some physical branches in FL.", status: "none", confidence: "high" },
-  { rank: 6, bank: "Vio Bank", sub: "Online Savings Account", apy: "4.01%", apySub: "flat, no tiers", min: "$100", req: "None", notes: "Division of MidFirst Bank. 5-business-day hold on new deposits. 6 withdrawals/mo limit.", status: "none", confidence: "high" },
-  { rank: 7, bank: "CIT Bank", sub: "Platinum Savings", apy: "4.10%", apySub: "promo (code CITBoost) · 3.75% std / 0.25% below $5k", min: "$100", req: "$5,000+ balance to earn top tier; promo code required for boost", notes: "Division of First Citizens Bank. No ATM card. Rate craters below $5,000.", status: "cond", confidence: "high" },
-  { rank: 8, bank: "Peak Bank", sub: "Envision High-Yield Savings", apy: "4.01%", apySub: "flat, no tiers", min: "$100", req: "None", notes: "⚠ Funding requires Plaid — no manual account/routing number option. Division of Idaho First Bank.", status: "warn", confidence: "high" },
-  { rank: 9, bank: "Patriot Bank", sub: "High-Yield Savings (via Raisin)", apy: "4.15%", apySub: "60-day new-user promo — standing rate unconfirmed", min: "$1", req: "None beyond Raisin signup", notes: "⚠ Advertised rate is explicitly temporary. Separate branch product (\"Star Savings\") needs $15k balance.", status: "warn", confidence: "med" },
-  { rank: 10, bank: "Live Oak Bank", sub: "Personal High-Yield Savings", apy: "3.80%", apySub: "flat, direct (non-Raisin)", min: "$0", req: "None", notes: "U.S.-based phone support 8a–11p ET M–F. App ratings weak (2.5★/3.1★).", status: "none", confidence: "high" },
-  { rank: 11, bank: "Bask Bank", sub: "Interest Savings Account", apy: "4.10%", apySub: "with both boosts · base 3.75%", min: "$0", req: "New-customer funding boost (+0.10%) or $2,500+/mo automated deposits (+0.25%)", notes: "Debit card + 55,000 surcharge-free ATMs. Must fund within 15 business days.", status: "cond", confidence: "high" },
-  { rank: 12, bank: "Happen Bank", sub: "LevelUp Savings (formerly LendingClub)", apy: "4.00%", apySub: "with $250+/mo deposit · 3.00% if missed", min: "$0", req: "$250+ cumulative deposit per statement cycle for top rate", notes: "Mild penalty if missed (3.00%, not a cliff). Optional free ATM card.", status: "cond", confidence: "high" },
-  { rank: 13, bank: "ZYNLO Bank", sub: "Tomorrow Savings", apy: "~3.85%", apySub: "flat (drifts slightly by source)", min: "$0", req: "None for base rate", notes: "Division of PeoplesBank (est. 1885). Optional round-up match needs companion checking + $3k balance.", status: "none", confidence: "high" },
-  { rank: 14, bank: "Limelight Bank", sub: "High-Yield Savings", apy: "~3.90%", apySub: "flat", min: "$100", req: "None", notes: "⚠ No debit/ATM/checks — transfer, wire, or mailed check only. 6 withdrawals/4-week limit.", status: "warn", confidence: "high" },
-  { rank: 15, bank: "Popular Direct", sub: "Exclusive / Select Savings", apy: "~3.90%", apySub: "flat, \"new money\" only", min: "$100", req: "None", notes: "$25 fee if closed within 180 days. Android app rated poorly (1.3★).", status: "cond", confidence: "high" },
-  { rank: 16, bank: "EverBank", sub: "Performance Savings", apy: "3.90%", apySub: "flat, new-account rate", min: "$0", req: "None", notes: "80,000+ free ATMs, fee reimbursement up to $15/cycle. Branches in FL/CA/NY.", status: "none", confidence: "high" },
-  { rank: 17, bank: "Pibank", sub: "Savings (brand of Intercredit Bank)", apy: "4.40%", apySub: "flat, up to $5,000,000", min: "$0.01", req: "None for rate itself", notes: "⚠ Wire-transfer only — no ACH support. Biometric facial ID required to open; denials unexplained.", status: "warn", confidence: "high" },
-  { rank: 18, bank: "Marcus by Goldman Sachs", sub: "Online Savings Account", apy: "~3.40–3.65%", apySub: "flat, varies by check date", min: "$0", req: "None", notes: "No checking account at all. Joint accounts require a phone call. Same-day transfers up to $100k.", status: "none", confidence: "high" },
-  { rank: 19, bank: "Ally Bank", sub: "Online Savings Account", apy: "~3.00–3.10%", apySub: "flat", min: "$0", req: "None", notes: "10 withdrawals/cycle limit. Best feature set: buckets, round-ups, 24/7 live support.", status: "none", confidence: "high" },
-  { rank: 20, bank: "Capital One", sub: "360 Performance Savings", apy: "~3.00–3.30%", apySub: "rate contested across sources — verify directly", min: "$0", req: "None", notes: "Branch + Café network (unusual for this category). Accepts APO/FPO military addresses.", status: "cond", confidence: "med" },
-  { rank: 21, bank: "SoFi", sub: "Checking and Savings", apy: "3.10%", apySub: "with direct deposit · 0.80% without · +0.70% promo thru 12/31/26", min: "$0", req: "Eligible direct deposit (any amount) or $5,000+/31 days", notes: "\"4.50%\" claims require paid SoFi Plus ($10/mo) — not the default rate. 55,000+ fee-free ATMs.", status: "cond", confidence: "high" },
-  { rank: 22, bank: "Western Alliance Bank", sub: "High-Yield Savings Premier", apy: "3.80%", apySub: "flat, all balances", min: "$500", req: "None", notes: "ACH-only, one linked account. Joint accounts get $500k combined FDIC coverage (2x standard).", status: "none", confidence: "high" },
-  { rank: 23, bank: "Bread Savings", sub: "High-Yield Savings", apy: "~3.95–4.00%", apySub: "flat", min: "$100", req: "None", notes: "No checking account. FDIC-insured via Comenity Capital Bank. 2–3 day ACH transfers.", status: "none", confidence: "med" },
-  { rank: 24, bank: "Brio Direct", sub: "High-Yield Savings (via Raisin)", apy: "Unverified", apySub: "primarily a Raisin teaser-rate product", min: "—", req: "Unconfirmed", notes: "Same caution as Patriot Bank — treat any advertised rate as promotional until confirmed directly.", status: "warn", confidence: "med" },
-  { rank: 25, bank: "Other Raisin-listed names", sub: "Centier Bank, Union Bank & Trust, etc.", apy: "Unverified", apySub: "could not independently confirm", min: "—", req: "Unconfirmed", notes: "Appeared in earlier source tables but couldn't be verified as distinct, currently-operating retail products.", status: "warn", confidence: "med" }
+  { rank: 1, bank: "Varo Bank", sub: "Online Savings Account", apy: "5.00%", apySub: "first $5,000 only", base: "2.50%", baseSub: "balances above $5,000", min: "$0", req: "Open Varo checking + savings; $1,000+/mo direct deposit; positive balance both accounts", notes: "Military-base transactions treated as domestic. No SWIFT code — no direct intl. wires.", status: "cond", confidence: "high" },
+  { rank: 2, bank: "Forbright Bank", sub: "Growth Savings", apy: "4.15%", apySub: "new-customer promo boost", base: "3.85%", baseSub: "standing rate after promo ends 12/31/26", min: "$0", req: "None for base rate; boost is new-customer promo", notes: "No ATM/debit card, no cash deposits. Must fund within 30 days or auto-closes.", status: "cond", confidence: "high" },
+  { rank: 3, bank: "Newtek Bank", sub: "Personal High Yield Savings", apy: "4.20%", apySub: "flat, all balances", base: "4.20%", baseSub: "no promo — flat rate", min: "$0", req: "None", notes: "⚠ Not accepting new applications — waitlist only since mid-May 2026.", status: "warn", confidence: "high" },
+  { rank: 4, bank: "Axos Bank", sub: "ONE Savings (bundled w/ checking)", apy: "4.21%", apySub: "up to $499,999.99 w/ requirements met", base: "1.00%", baseSub: "if requirements not met (4.01% above $500k)", min: "$0", req: "$1,500+ DD + $1,500+ avg. balance in linked checking, OR $5,000+ deposits + $5,000+ avg. balance", notes: "Also offers Summit Savings (~3.75–3.80% flat, zero requirements) as a no-bundle alternative.", status: "cond", confidence: "high" },
+  { rank: 5, bank: "Climate First Bank", sub: "Super Duper Savings Account", apy: "4.01%", apySub: "flat, no tiers", base: "3.93%", baseSub: "interest rate (4.01% is the compounded APY)", min: "$50", req: "None", notes: "FL community bank, B Corp. Zelle supported. Some physical branches in FL.", status: "none", confidence: "high" },
+  { rank: 6, bank: "Vio Bank", sub: "Online Savings Account", apy: "4.01%", apySub: "flat, no tiers", base: "4.01%", baseSub: "no promo — flat rate", min: "$100", req: "None", notes: "Division of MidFirst Bank. 5-business-day hold on new deposits. 6 withdrawals/mo limit.", status: "none", confidence: "high" },
+  { rank: 7, bank: "CIT Bank", sub: "Platinum Savings", apy: "4.10%", apySub: "promo (code CITBoost), 6 months", base: "3.75%", baseSub: "standing rate $5k+ (0.25% below $5,000)", min: "$100", req: "$5,000+ balance to earn top tier; promo code required for boost", notes: "Division of First Citizens Bank. No ATM card. Rate craters below $5,000.", status: "cond", confidence: "high" },
+  { rank: 8, bank: "Peak Bank", sub: "Envision High-Yield Savings", apy: "4.01%", apySub: "flat, no tiers", base: "4.01%", baseSub: "no promo — flat rate", min: "$100", req: "None", notes: "⚠ Funding requires Plaid — no manual account/routing number option. Division of Idaho First Bank.", status: "warn", confidence: "high" },
+  { rank: 9, bank: "Patriot Bank", sub: "High-Yield Savings (via Raisin)", apy: "4.15%", apySub: "60-day new-user promo only", base: "Unconfirmed", baseSub: "standing post-promo rate not verifiable", min: "$1", req: "None beyond Raisin signup", notes: "⚠ Advertised rate is explicitly temporary. Separate branch product (\"Star Savings\") needs $15k balance.", status: "warn", confidence: "med" },
+  { rank: 10, bank: "Live Oak Bank", sub: "Personal High-Yield Savings", apy: "3.80%", apySub: "flat, direct (non-Raisin)", base: "3.80%", baseSub: "no promo — flat rate", min: "$0", req: "None", notes: "U.S.-based phone support 8a–11p ET M–F. App ratings weak (2.5★/3.1★).", status: "none", confidence: "high" },
+  { rank: 11, bank: "Bask Bank", sub: "Interest Savings Account", apy: "4.10%", apySub: "with both stacked boosts", base: "3.75%", baseSub: "standing rate with no boosts active", min: "$0", req: "New-customer funding boost (+0.10%) or $2,500+/mo automated deposits (+0.25%)", notes: "Debit card + 55,000 surcharge-free ATMs. Must fund within 15 business days.", status: "cond", confidence: "high" },
+  { rank: 12, bank: "Happen Bank", sub: "LevelUp Savings (formerly LendingClub)", apy: "4.00%", apySub: "with $250+/mo deposit", base: "3.00%", baseSub: "standing rate any cycle deposit is missed", min: "$0", req: "$250+ cumulative deposit per statement cycle for top rate", notes: "Mild penalty if missed (3.00%, not a cliff). Optional free ATM card.", status: "cond", confidence: "high" },
+  { rank: 13, bank: "ZYNLO Bank", sub: "Tomorrow Savings", apy: "~3.85%", apySub: "flat (drifts slightly by source)", base: "~3.85%", baseSub: "no promo — flat rate", min: "$0", req: "None for base rate", notes: "Division of PeoplesBank (est. 1885). Optional round-up match needs companion checking + $3k balance.", status: "none", confidence: "high" },
+  { rank: 14, bank: "Limelight Bank", sub: "High-Yield Savings", apy: "~3.90%", apySub: "flat", base: "~3.90%", baseSub: "no promo — flat rate", min: "$100", req: "None", notes: "⚠ No debit/ATM/checks — transfer, wire, or mailed check only. 6 withdrawals/4-week limit.", status: "warn", confidence: "high" },
+  { rank: 15, bank: "Popular Direct", sub: "Exclusive / Select Savings", apy: "~3.90%", apySub: "flat, \"new money\" only", base: "~3.90%", baseSub: "no promo — flat rate", min: "$100", req: "None", notes: "$25 fee if closed within 180 days. Android app rated poorly (1.3★).", status: "cond", confidence: "high" },
+  { rank: 16, bank: "EverBank", sub: "Performance Savings", apy: "3.90%", apySub: "flat, new-account rate", base: "3.90%", baseSub: "new-account rate; existing accounts may differ", min: "$0", req: "None", notes: "80,000+ free ATMs, fee reimbursement up to $15/cycle. Branches in FL/CA/NY.", status: "none", confidence: "high" },
+  { rank: 17, bank: "Pibank", sub: "Savings (brand of Intercredit Bank)", apy: "4.40%", apySub: "flat, up to $5,000,000", base: "4.40%", baseSub: "no promo — flat rate", min: "$0.01", req: "None for rate itself", notes: "⚠ Wire-transfer only — no ACH support. Biometric facial ID required to open; denials unexplained.", status: "warn", confidence: "high" },
+  { rank: 18, bank: "Marcus by Goldman Sachs", sub: "Online Savings Account", apy: "~3.40–3.65%", apySub: "flat, varies by check date", base: "~3.40–3.65%", baseSub: "no promo — flat rate", min: "$0", req: "None", notes: "No checking account at all. Joint accounts require a phone call. Same-day transfers up to $100k.", status: "none", confidence: "high" },
+  { rank: 19, bank: "Ally Bank", sub: "Online Savings Account", apy: "~3.00–3.10%", apySub: "flat", base: "~3.00–3.10%", baseSub: "no promo — flat rate", min: "$0", req: "None", notes: "10 withdrawals/cycle limit. Best feature set: buckets, round-ups, 24/7 live support.", status: "none", confidence: "high" },
+  { rank: 20, bank: "Capital One", sub: "360 Performance Savings", apy: "~3.00–3.30%", apySub: "rate contested across sources — verify directly", base: "~3.00–3.30%", baseSub: "no promo identified — flat rate", min: "$0", req: "None", notes: "Branch + Café network (unusual for this category). Accepts APO/FPO military addresses.", status: "cond", confidence: "med" },
+  { rank: 21, bank: "SoFi", sub: "Checking and Savings", apy: "3.80%", apySub: "+0.70% new-member promo, thru 12/31/26", base: "3.10%", baseSub: "standing rate w/ direct deposit (0.80% without)", min: "$0", req: "Eligible direct deposit (any amount) or $5,000+/31 days", notes: "\"4.50%\" claims require paid SoFi Plus ($10/mo) — not the default rate. 55,000+ fee-free ATMs.", status: "cond", confidence: "high" },
+  { rank: 22, bank: "Western Alliance Bank", sub: "High-Yield Savings Premier", apy: "3.80%", apySub: "flat, all balances", base: "3.80%", baseSub: "no promo — flat rate", min: "$500", req: "None", notes: "ACH-only, one linked account. Joint accounts get $500k combined FDIC coverage (2x standard).", status: "none", confidence: "high" },
+  { rank: 23, bank: "Bread Savings", sub: "High-Yield Savings", apy: "~3.95–4.00%", apySub: "flat", base: "~3.95–4.00%", baseSub: "no promo — flat rate", min: "$100", req: "None", notes: "No checking account. FDIC-insured via Comenity Capital Bank. 2–3 day ACH transfers.", status: "none", confidence: "med" },
+  { rank: 24, bank: "Brio Direct", sub: "High-Yield Savings (via Raisin)", apy: "Unverified", apySub: "primarily a Raisin teaser-rate product", base: "Unconfirmed", baseSub: "standing rate not verifiable", min: "—", req: "Unconfirmed", notes: "Same caution as Patriot Bank — treat any advertised rate as promotional until confirmed directly.", status: "warn", confidence: "med" },
+  { rank: 25, bank: "American Express", sub: "High Yield Savings Account", apy: "3.10%", apySub: "flat, all balances", base: "3.10%", baseSub: "no promo — flat rate", min: "$0", req: "None", notes: "No ATM/debit/checks. 24/7 customer service. Integrates with the Amex app for existing cardmembers. No withdrawal limits.", status: "none", confidence: "high" },
+  { rank: 26, bank: "Discover", sub: "Online Savings Account", apy: "~3.30–3.50%", apySub: "flat, drifts by source/date", base: "~3.30–3.50%", baseSub: "no promo — flat rate", min: "$0", req: "None", notes: "ATM card available, no withdrawal limits, 24/7 support. Discover's own page had broken rate placeholders at time of check — verify directly.", status: "cond", confidence: "med" },
+  { rank: 27, bank: "Synchrony Bank", sub: "High Yield Savings", apy: "~3.40%", apySub: "flat (sources range 3.30–3.50%)", base: "~3.40%", baseSub: "no promo — flat rate", min: "$0", req: "None", notes: "Optional ATM card — 400,000+ fee-free ATMs, rare for this category. $5/cycle out-of-network reimbursement.", status: "none", confidence: "high" },
+  { rank: 28, bank: "Barclays", sub: "Tiered Savings", apy: "3.75%", apySub: "balances $250,000+", base: "3.65%", baseSub: "standing rate below $250,000 — no requirement to earn it", min: "$0", req: "None to earn base tier", notes: "Genuinely tiered but only a 0.10% spread. No ATM/checking. Unlimited transfers — no 6/mo limit.", status: "none", confidence: "high" },
+  { rank: 29, bank: "Sallie Mae", sub: "High-Yield Savings Account", apy: "~3.75–3.90%", apySub: "flat (sources vary slightly by date)", base: "~3.75–3.90%", baseSub: "no promo — flat rate", min: "$0", req: "None", notes: "⚠ No ATM/debit card. Can be closed after 12 months of inactivity — set up auto-transfers. Mobile app rated poorly (1.5★/1.6★).", status: "warn", confidence: "med" },
+  { rank: 30, bank: "TAB Bank", sub: "TAB Save High Yield Savings", apy: "3.61%", apySub: "flat, all balances", base: "3.61%", baseSub: "no promo — flat rate", min: "$0", req: "None", notes: "Utah-based (Transportation Alliance Bank). Pairs with TAB Spend checking (2.75% APY + 1% cash back). No physical branches.", status: "none", confidence: "high" },
+  { rank: 31, bank: "Other unverified names", sub: "Centier Bank, Union Bank & Trust, etc.", apy: "Unverified", apySub: "could not independently confirm", base: "Unconfirmed", baseSub: "could not independently confirm", min: "—", req: "Unconfirmed", notes: "Appeared in earlier source tables but couldn't be verified as distinct, currently-operating retail products.", status: "warn", confidence: "med" }
 ];
 
 function statusChip(status) {
@@ -1899,7 +2030,7 @@ function renderHysaTable(filter = "all", search = "") {
   });
 
   if (!rows.length) {
-    body.innerHTML = '<tr><td colspan="8" style="text-align:center; color:var(--text2); padding:30px;">No institutions match this filter/search.</td></tr>';
+    body.innerHTML = '<tr><td colspan="9" style="text-align:center; color:var(--text2); padding:30px;">No institutions match this filter/search.</td></tr>';
     return;
   }
 
@@ -1908,6 +2039,7 @@ function renderHysaTable(filter = "all", search = "") {
       <td class="hysa-rank">${String(r.rank).padStart(2,'0')}</td>
       <td><span class="hysa-bank">${r.bank}<span class="hysa-bank-sub">${r.sub}</span></span></td>
       <td><span class="hysa-apy">${r.apy}</span><span class="hysa-apy-sub">${r.apySub}</span></td>
+      <td><span class="hysa-apy hysa-apy-base">${r.base}</span><span class="hysa-apy-sub">${r.baseSub}</span></td>
       <td class="hysa-min">${r.min}</td>
       <td class="hysa-req">${r.req}</td>
       <td class="hysa-notes">${r.notes}</td>
@@ -1933,6 +2065,120 @@ document.querySelectorAll('#hysaFilters .hysa-filter-btn').forEach(btn => {
 });
 
 renderHysaTable();
+
+/* ============================================================
+   CDs & TREASURIES — verified June 2026
+   ============================================================ */
+const CD_DATA = [
+  { rank: 1, bank: "Popular Direct", term: "1 Year", group: "mid", apy: "4.15%", min: "$10,000", notes: "Highest verified 1-year rate found. Steep $10k minimum; no specialty CDs (no bump-up/no-penalty)." },
+  { rank: 2, bank: "Live Oak Bank", term: "1 Year", group: "mid", apy: "4.10%", min: "$2,500", notes: "Recently raised rates on 6–18 month terms. 90 days' simple interest early withdrawal penalty." },
+  { rank: 3, bank: "Bask Bank", term: "1 Year", group: "mid", apy: "4.10%", min: "$1,000", notes: "Division of Texas Capital Bank. Lacks terms beyond 2 years." },
+  { rank: 4, bank: "E*TRADE", term: "1 Year", group: "mid", apy: "4.10%", min: "$0", notes: "Morgan Stanley Private Bank. No minimum deposit — rare for this rate tier." },
+  { rank: 5, bank: "America First Credit Union", term: "2 Year", group: "long", apy: "4.10%", min: "$500", notes: "Membership required (easy to join). Tied for highest 2-year rate found." },
+  { rank: 6, bank: "TAB Bank", term: "2 Year", group: "long", apy: "4.10%", min: "$1,000", notes: "Transportation Alliance Bank (Ogden, UT). No branches." },
+  { rank: 7, bank: "TAB Bank", term: "5 Year", group: "long", apy: "4.20%", min: "$1,000", notes: "One of the highest verified 5-year rates. Limited term selection overall." },
+  { rank: 8, bank: "NASA Federal Credit Union", term: "49 Month", group: "long", apy: "4.20%", min: "$1,000", notes: "Open to anyone via free National Space Society membership. Bump-up option available." },
+  { rank: 9, bank: "Limelight Bank", term: "6 Month", group: "short", apy: "4.08%", min: "$1,000", notes: "Division of Capital Community Bank (Utah). Only 4 CD terms offered, 6mo–3yr." },
+  { rank: 10, bank: "CIBC Bank USA", term: "Agility CD (varies)", group: "mid", apy: "~4.00%", min: "$1,000", notes: "Lowest early withdrawal penalty found anywhere: 30 days' simple interest on all terms, 6–30mo." },
+  { rank: 11, bank: "Newtek Bank", term: "1 Year", group: "mid", apy: "4.00%", min: "$2,500", notes: "Note: Newtek's savings account (see HYSA tab) is currently waitlisted — CDs may still be open; verify." },
+  { rank: 12, bank: "Service Credit Union", term: "1 Year", group: "mid", apy: "4.00%", min: "$500", notes: "Open via American Consumer Council membership (promo code can waive the fee)." },
+  { rank: 13, bank: "Capital One", term: "1 Year", group: "mid", apy: "4.00%", min: "$0", notes: "No minimum deposit. Branch + Café access if you want in-person service." },
+  { rank: 14, bank: "Marcus by Goldman Sachs", term: "1 Year", group: "mid", apy: "3.90%", min: "$500", notes: "10-day rate guarantee on funding. Offers rare no-penalty and bump-up CD options." },
+  { rank: 15, bank: "Bread Savings", term: "2 Year", group: "long", apy: "4.00%", min: "$1,500", notes: "Daily compounding. $1,500 minimum applies to all 9 of its CD terms (3mo–5yr)." },
+  { rank: 16, bank: "Bread Savings", term: "18 Month", group: "mid", apy: "4.00%", min: "$1,500", notes: "Same $1,500 minimum across the lineup; steeper-than-average early withdrawal penalty." },
+  { rank: 17, bank: "Bread Savings", term: "6 Month", group: "short", apy: "~4.00%", min: "$1,500", notes: "Good for CD-ladder building given the consistent rate across short and mid terms." },
+  { rank: 18, bank: "TAB Bank", term: "18 Month", group: "mid", apy: "4.05%", min: "$1,000", notes: "Mostly year-increment terms only — lacks most short-term (3–6mo) options." },
+  { rank: 19, bank: "TAB Bank", term: "1 Year", group: "mid", apy: "4.00%", min: "$1,000", notes: "Consistent ~4% across TAB's mid-to-long terms." },
+  { rank: 20, bank: "BTG Pactual", term: "1 Year", group: "mid", apy: "~4.00%", min: "$500", notes: "Acquired M.Y. Safra Bank. Also offers a competitive 13-month no-penalty CD." },
+  { rank: 21, bank: "Forbright Bank", term: "1 Year", group: "mid", apy: "~4.10%", min: "$1,000", notes: "One-year term is the standout; longer terms (2–5yr) are above-average but not top-tier." },
+  { rank: 22, bank: "First National Bank of America", term: "Varies (3mo–10yr)", group: "all", apy: "Solid across terms", min: "$1,000", notes: "Michigan-based, online nationwide. Widest term range found (3 months to 10 years). Early withdrawal penalties are steeper than average." },
+  { rank: 23, bank: "Alliant Credit Union", term: "3 Year", group: "long", apy: "~3.60%", min: "$1,000", notes: "$5 one-time membership fee (Alliant pays it via foundation donation on your behalf)." },
+  { rank: 24, bank: "Alliant Credit Union", term: "6 Month", group: "short", apy: "3.90%", min: "$1,000", notes: "Same easy-join membership structure as its 3-year term above." },
+  { rank: 25, bank: "Synchrony Bank", term: "3 Year", group: "long", apy: "Competitive", min: "$0", notes: "No minimum deposit. Pairs with Synchrony's optional-ATM-card HYSA (see HYSA tab)." },
+  { rank: 26, bank: "Capital One", term: "18 Month", group: "mid", apy: "3.60%", min: "$0", notes: "One of Capital One's standout terms; 6-month starts at 3.20%, 5-year at 3.60%." },
+  { rank: 27, bank: "Limelight Bank", term: "3 Year", group: "long", apy: "~3.65%", min: "$1,000", notes: "Solid mid-pack rate for the term; same $1,000 minimum as its 6-month CD." },
+  { rank: 28, bank: "Vio Bank", term: "Varies", group: "all", apy: "Solid yields", min: "$500", notes: "Division of MidFirst Bank. Low $500 minimum relative to most competitors on this list." },
+  { rank: 29, bank: "Popular Direct", term: "12-Month CD (Jumbo)", group: "mid", apy: "~4.05%", min: "$100,000", notes: "Jumbo CD tier — as of mid-2026, jumbo rates aren't meaningfully better than standard CDs, despite the much higher minimum." },
+  { rank: 30, bank: "SchoolsFirst Federal Credit Union", term: "Varies (1mo–5yr)", group: "all", apy: "3.10%–4.05%", min: "$100,000", notes: "Jumbo CD tier, membership required. Widest jumbo-CD term range found." }
+];
+
+const TREASURY_DATA = [
+  { maturity: "4-Week", type: "Bill", yield: "3.65%", notes: "Shortest available T-bill. Sold at a discount; matures at face value." },
+  { maturity: "6-Week", type: "Bill", yield: "3.66%", notes: "Newer benchmark, introduced Feb. 2025." },
+  { maturity: "8-Week", type: "Bill", yield: "3.69%", notes: "" },
+  { maturity: "13-Week (3-Month)", type: "Bill", yield: "3.77%", notes: "Most widely quoted short-term benchmark." },
+  { maturity: "17-Week (4-Month)", type: "Bill", yield: "3.82%", notes: "" },
+  { maturity: "26-Week (6-Month)", type: "Bill", yield: "3.91%", notes: "" },
+  { maturity: "52-Week (1-Year)", type: "Bill", yield: "3.98%", notes: "Longest-dated T-bill; rolls into the note market beyond this." },
+  { maturity: "2-Year", type: "Note", yield: "4.09%", notes: "Most sensitive to near-term Fed policy expectations." },
+  { maturity: "5-Year", type: "Note", yield: "4.13%", notes: "" },
+  { maturity: "10-Year", type: "Note", yield: "4.37%", notes: "The benchmark — influences mortgage and auto loan rates nationwide." },
+  { maturity: "20-Year", type: "Bond", yield: "4.70%", notes: "Less liquid than the 10- or 30-year; often trades at a premium yield to both." },
+  { maturity: "30-Year", type: "Bond", yield: "4.87%", notes: "Longest-dated Treasury. Most sensitive to long-run inflation expectations." }
+];
+
+function renderCdTable(filter = "all") {
+  const body = document.getElementById('cdTableBody');
+  if (!body) return;
+  const rows = CD_DATA.filter(r => filter === "all" || r.group === filter || r.group === "all");
+
+  if (!rows.length) {
+    body.innerHTML = '<tr><td colspan="6" style="text-align:center; color:var(--text2); padding:30px;">No CDs match this filter.</td></tr>';
+    return;
+  }
+
+  body.innerHTML = rows.map(r => `
+    <tr>
+      <td class="cd-rank">${String(r.rank).padStart(2,'0')}</td>
+      <td><span class="cd-bank">${r.bank}</span></td>
+      <td><span class="cd-term">${r.term}</span></td>
+      <td><span class="cd-apy">${r.apy}</span></td>
+      <td class="cd-min">${r.min}</td>
+      <td class="cd-notes">${r.notes}</td>
+    </tr>
+  `).join('');
+}
+
+document.querySelectorAll('#cdFilters .cd-filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('#cdFilters .cd-filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderCdTable(btn.dataset.term);
+  });
+});
+
+function renderYieldCurve() {
+  const wrap = document.getElementById('yieldCurve');
+  if (!wrap) return;
+  const maxYield = Math.max(...TREASURY_DATA.map(t => parseFloat(t.yield)));
+  wrap.innerHTML = TREASURY_DATA.map(t => {
+    const pct = (parseFloat(t.yield) / maxYield) * 100;
+    return `
+      <div class="curve-bar-col">
+        <div class="curve-yield">${t.yield}</div>
+        <div class="curve-bar" style="height:${pct}%;"></div>
+        <div class="curve-label">${t.maturity.replace(' (3-Month)','').replace(' (4-Month)','').replace(' (6-Month)','').replace(' (1-Year)','')}</div>
+      </div>
+    `;
+  }).join('');
+}
+
+function renderTreasuryTable() {
+  const body = document.getElementById('treasuryTableBody');
+  if (!body) return;
+  body.innerHTML = TREASURY_DATA.map(t => `
+    <tr>
+      <td class="tnote-maturity">${t.maturity}</td>
+      <td class="tnote-type">${t.type}</td>
+      <td class="tnote-yield">${t.yield}</td>
+      <td class="cd-notes">${t.notes}</td>
+    </tr>
+  `).join('');
+}
+
+renderCdTable();
+renderYieldCurve();
+renderTreasuryTable();
 
 /* ============================================================
    INITIALIZATION

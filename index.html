@@ -283,6 +283,7 @@ body {
 .badge-etf { border-color: var(--green); color: var(--green); background: var(--green-dim); }
 .badge-stock { border-color: var(--blue); color: var(--blue); background: var(--blue-dim); }
 .badge-crypto { border-color: var(--amber); color: var(--amber); background: var(--amber-dim); }
+.badge-hysa { border-color: var(--teal); color: var(--teal); background: rgba(25,227,196,0.12); }
 .badge-personal { border-color: var(--gold); color: var(--gold); }
 .badge-historical { border-color: var(--gold); color: var(--gold); }
 .badge-learn { border-color: var(--teal); color: var(--teal); background: rgba(25,227,196,0.07); }
@@ -527,6 +528,64 @@ body {
 .w-chg { font-family: var(--font-mono); font-size: 11px; font-weight: 700; margin-bottom: 7px; }
 .w-name { font-size: 10px; color: var(--text2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
+/* HYSA TRACKER */
+.hysa-controls { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px; margin-bottom: 16px; }
+.hysa-filters { display: flex; flex-wrap: wrap; gap: 8px; }
+.hysa-filter-btn {
+  padding: 7px 15px; border-radius: var(--radius-pill); border: 1px solid var(--border-2);
+  background: var(--surface-2); color: var(--text1); font-size: 12px; font-family: var(--font-sans);
+  font-weight: 600; cursor: pointer; transition: all 0.2s var(--ease);
+}
+.hysa-filter-btn:hover { color: var(--text0); border-color: var(--teal); }
+.hysa-filter-btn.active { background: var(--teal); color: #06231e; border-color: var(--teal); box-shadow: 0 4px 16px rgba(25,227,196,0.25); }
+[data-theme="light"] .hysa-filter-btn.active { color: #fff; }
+.hysa-search {
+  flex: 1; min-width: 180px; max-width: 280px; padding: 8px 14px; border-radius: var(--radius-pill);
+  border: 1px solid var(--border-2); background: var(--surface-2); color: var(--text0);
+  font-size: 12.5px; font-family: var(--font-sans);
+}
+.hysa-search:focus { outline: none; border-color: var(--teal); }
+.hysa-table-wrap { overflow-x: auto; }
+.hysa-table { width: 100%; border-collapse: separate; border-spacing: 0; min-width: 920px; }
+.hysa-table th {
+  text-align: left; padding: 13px 18px; font-size: 10.5px; font-family: var(--font-mono);
+  text-transform: uppercase; letter-spacing: 0.06em; color: var(--text2);
+  border-bottom: 1px solid var(--border-2); white-space: nowrap; position: sticky; top: 0; background: var(--surface);
+}
+.hysa-table td { padding: 14px 18px; border-bottom: 1px solid var(--border); vertical-align: top; font-size: 12.5px; }
+.hysa-table tr:last-child td { border-bottom: none; }
+.hysa-table tbody tr { transition: background 0.18s var(--ease); }
+.hysa-table tbody tr:hover td { background: var(--surface-2); }
+.hysa-rank { font-family: var(--font-mono); color: var(--text3); font-weight: 700; font-size: 12px; }
+.hysa-bank { font-weight: 700; color: var(--text0); font-size: 13px; }
+.hysa-bank-sub { display: block; font-weight: 400; color: var(--text2); font-size: 10.5px; margin-top: 2px; }
+.hysa-apy { font-family: var(--font-mono); font-weight: 800; font-size: 14.5px; color: var(--teal); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.hysa-apy-sub { display: block; font-family: var(--font-mono); font-weight: 500; font-size: 10.5px; color: var(--text2); margin-top: 2px; }
+.hysa-min { font-family: var(--font-mono); font-size: 12px; color: var(--text1); white-space: nowrap; }
+.hysa-req { font-size: 11.5px; color: var(--text1); line-height: 1.6; max-width: 260px; }
+.hysa-notes { font-size: 11px; color: var(--text2); line-height: 1.6; max-width: 280px; }
+.hysa-chip {
+  display: inline-block; padding: 2px 9px; border-radius: var(--radius-pill);
+  font-size: 9.5px; font-weight: 700; font-family: var(--font-mono); text-transform: uppercase;
+  letter-spacing: 0.04em; margin: 2px 4px 2px 0; white-space: nowrap;
+}
+.chip-none { background: var(--green-dim); color: var(--green); }
+.chip-cond { background: var(--amber-dim); color: var(--amber); }
+.chip-warn { background: var(--red-dim); color: var(--red); }
+.chip-info { background: var(--blue-dim); color: var(--blue); }
+.hysa-confidence { font-size: 10.5px; font-family: var(--font-mono); white-space: nowrap; }
+.conf-high { color: var(--green); }
+.conf-med { color: var(--amber); }
+.hysa-legend {
+  display: flex; flex-wrap: wrap; gap: 16px; padding: 14px 18px; margin-top: 4px;
+  font-size: 10.5px; color: var(--text2); font-family: var(--font-mono); align-items: center;
+}
+.hysa-legend span { display: inline-flex; align-items: center; gap: 6px; }
+.hysa-disclaimer {
+  font-size: 11px; color: var(--text2); line-height: 1.7; padding: 16px 18px; margin-top: 18px;
+  background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--radius); border-left: 3px solid var(--teal);
+}
+
 .holdings-asset-type {
   font-size: 10px; font-family: var(--font-mono); color: var(--blue);
   letter-spacing: 0.08em; text-transform: uppercase; background: var(--blue-dim);
@@ -748,6 +807,7 @@ body {
       <button class="tab-btn" role="tab" aria-selected="false" data-tab="markets">Live Markets</button>
       <button class="tab-btn" role="tab" aria-selected="false" data-tab="portfolio">Watch &amp; Holdings</button>
       <button class="tab-btn" role="tab" aria-selected="false" data-tab="learn">Investing 101</button>
+      <button class="tab-btn" role="tab" aria-selected="false" data-tab="hysa">HYSA Tracker</button>
     </nav>
   </div>
 </div>
@@ -1313,6 +1373,59 @@ body {
     </section>
   </div>
 
+  <!-- ============ TAB 5: HYSA TRACKER ============ -->
+  <div class="tab-panel" id="tab-hysa" role="tabpanel">
+
+    <section class="section">
+      <div class="section-header">
+        <span class="section-num">11</span>
+        <span class="section-title">High-Yield Savings Account Tracker</span>
+        <span class="section-badge badge-hysa">25 Institutions</span>
+      </div>
+      <p class="learn-intro">A hand-verified comparison of 25 high-yield savings accounts — sourced directly from each bank's own disclosures plus independent trackers (Bankrate, NerdWallet, Fortune/Curinos), current as of late June 2026. Promotional rates, balance tiers, and access restrictions are called out explicitly so the headline APY isn't the whole story. <strong>Rates are variable and change without notice — always confirm directly with the institution before opening an account.</strong></p>
+
+      <div class="hysa-controls">
+        <div class="hysa-filters" id="hysaFilters">
+          <button class="hysa-filter-btn active" data-filter="all">All 25</button>
+          <button class="hysa-filter-btn" data-filter="none">No Requirements</button>
+          <button class="hysa-filter-btn" data-filter="cond">Conditional Rate</button>
+          <button class="hysa-filter-btn" data-filter="warn">⚠ Caution</button>
+        </div>
+        <input type="text" class="hysa-search" id="hysaSearch" placeholder="Search bank name…" oninput="filterHysaTable()">
+      </div>
+
+      <div class="card market-card">
+        <div class="hysa-table-wrap">
+          <table class="hysa-table" id="hysaTable">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Institution</th>
+                <th>APY</th>
+                <th>Min. to Open</th>
+                <th>Requirements</th>
+                <th>Notes / Access</th>
+                <th>Status</th>
+                <th>Confidence</th>
+              </tr>
+            </thead>
+            <tbody id="hysaTableBody"></tbody>
+          </table>
+        </div>
+        <div class="hysa-legend">
+          <span><span class="hysa-chip chip-none">No Strings</span> Flat rate, no conditions</span>
+          <span><span class="hysa-chip chip-cond">Conditional</span> Requires balance / deposit / promo</span>
+          <span><span class="hysa-chip chip-warn">Caution</span> Waitlist, wire-only, or unverified standing rate</span>
+          <span><span class="hysa-chip chip-info">Info</span> Notable structural detail</span>
+        </div>
+      </div>
+
+      <div class="hysa-disclaimer">
+        <strong>How to read this table:</strong> "APY" shows the best rate currently advertised — the sub-line under it flags when that rate is promotional, tiered, or temporary rather than a permanent base rate. Institutions marked ⚠ Caution have a real practical catch (Newtek's waitlist, Pibank's wire-only transfers, Patriot Bank's unconfirmed post-promo rate) that's easy to miss in a quick rate comparison. None of this is financial advice — it's a research aid. Verify current terms directly with each institution before opening an account.
+      </div>
+    </section>
+  </div>
+
   <footer class="site-footer">
     <div class="footer-text">© 2026 Mr. Mac's Dashboard · Dynamic Real-Time Terminal Feed</div>
     <div class="footer-disclaimer">Market data is dynamically simulated to approximate real-world behavior. Educational content only — not formal investment, tax, or financial advice.</div>
@@ -1730,6 +1843,96 @@ function paintSkeleton(containerId, rows) {
   }
   document.getElementById(containerId).innerHTML = html;
 }
+
+/* ============================================================
+   HYSA TRACKER — 25 institutions, hand-verified June 2026
+   ============================================================ */
+const HYSA_DATA = [
+  { rank: 1, bank: "Varo Bank", sub: "Online Savings Account", apy: "5.00%", apySub: "first $5,000 only · 2.50% above", min: "$0", req: "Open Varo checking + savings; $1,000+/mo direct deposit; positive balance both accounts", notes: "Military-base transactions treated as domestic. No SWIFT code — no direct intl. wires.", status: "cond", confidence: "high" },
+  { rank: 2, bank: "Forbright Bank", sub: "Growth Savings", apy: "4.15%", apySub: "promo boost · base rate 3.85%, thru 12/31/26", min: "$0", req: "None for base rate; boost is new-customer promo", notes: "No ATM/debit card, no cash deposits. Must fund within 30 days or auto-closes.", status: "cond", confidence: "high" },
+  { rank: 3, bank: "Newtek Bank", sub: "Personal High Yield Savings", apy: "4.20%", apySub: "flat, all balances", min: "$0", req: "None", notes: "⚠ Not accepting new applications — waitlist only since mid-May 2026.", status: "warn", confidence: "high" },
+  { rank: 4, bank: "Axos Bank", sub: "ONE Savings (bundled w/ checking)", apy: "4.21%", apySub: "up to $499,999.99 · 4.01% above", min: "$0", req: "$1,500+ DD + $1,500+ avg. balance in linked checking, OR $5,000+ deposits + $5,000+ avg. balance", notes: "Also offers Summit Savings (~3.75–3.80% flat, zero requirements) as a no-bundle alternative.", status: "cond", confidence: "high" },
+  { rank: 5, bank: "Climate First Bank", sub: "Super Duper Savings Account", apy: "4.01%", apySub: "flat, no tiers", min: "$50", req: "None", notes: "FL community bank, B Corp. Zelle supported. Some physical branches in FL.", status: "none", confidence: "high" },
+  { rank: 6, bank: "Vio Bank", sub: "Online Savings Account", apy: "4.01%", apySub: "flat, no tiers", min: "$100", req: "None", notes: "Division of MidFirst Bank. 5-business-day hold on new deposits. 6 withdrawals/mo limit.", status: "none", confidence: "high" },
+  { rank: 7, bank: "CIT Bank", sub: "Platinum Savings", apy: "4.10%", apySub: "promo (code CITBoost) · 3.75% std / 0.25% below $5k", min: "$100", req: "$5,000+ balance to earn top tier; promo code required for boost", notes: "Division of First Citizens Bank. No ATM card. Rate craters below $5,000.", status: "cond", confidence: "high" },
+  { rank: 8, bank: "Peak Bank", sub: "Envision High-Yield Savings", apy: "4.01%", apySub: "flat, no tiers", min: "$100", req: "None", notes: "⚠ Funding requires Plaid — no manual account/routing number option. Division of Idaho First Bank.", status: "warn", confidence: "high" },
+  { rank: 9, bank: "Patriot Bank", sub: "High-Yield Savings (via Raisin)", apy: "4.15%", apySub: "60-day new-user promo — standing rate unconfirmed", min: "$1", req: "None beyond Raisin signup", notes: "⚠ Advertised rate is explicitly temporary. Separate branch product (\"Star Savings\") needs $15k balance.", status: "warn", confidence: "med" },
+  { rank: 10, bank: "Live Oak Bank", sub: "Personal High-Yield Savings", apy: "3.80%", apySub: "flat, direct (non-Raisin)", min: "$0", req: "None", notes: "U.S.-based phone support 8a–11p ET M–F. App ratings weak (2.5★/3.1★).", status: "none", confidence: "high" },
+  { rank: 11, bank: "Bask Bank", sub: "Interest Savings Account", apy: "4.10%", apySub: "with both boosts · base 3.75%", min: "$0", req: "New-customer funding boost (+0.10%) or $2,500+/mo automated deposits (+0.25%)", notes: "Debit card + 55,000 surcharge-free ATMs. Must fund within 15 business days.", status: "cond", confidence: "high" },
+  { rank: 12, bank: "Happen Bank", sub: "LevelUp Savings (formerly LendingClub)", apy: "4.00%", apySub: "with $250+/mo deposit · 3.00% if missed", min: "$0", req: "$250+ cumulative deposit per statement cycle for top rate", notes: "Mild penalty if missed (3.00%, not a cliff). Optional free ATM card.", status: "cond", confidence: "high" },
+  { rank: 13, bank: "ZYNLO Bank", sub: "Tomorrow Savings", apy: "~3.85%", apySub: "flat (drifts slightly by source)", min: "$0", req: "None for base rate", notes: "Division of PeoplesBank (est. 1885). Optional round-up match needs companion checking + $3k balance.", status: "none", confidence: "high" },
+  { rank: 14, bank: "Limelight Bank", sub: "High-Yield Savings", apy: "~3.90%", apySub: "flat", min: "$100", req: "None", notes: "⚠ No debit/ATM/checks — transfer, wire, or mailed check only. 6 withdrawals/4-week limit.", status: "warn", confidence: "high" },
+  { rank: 15, bank: "Popular Direct", sub: "Exclusive / Select Savings", apy: "~3.90%", apySub: "flat, \"new money\" only", min: "$100", req: "None", notes: "$25 fee if closed within 180 days. Android app rated poorly (1.3★).", status: "cond", confidence: "high" },
+  { rank: 16, bank: "EverBank", sub: "Performance Savings", apy: "3.90%", apySub: "flat, new-account rate", min: "$0", req: "None", notes: "80,000+ free ATMs, fee reimbursement up to $15/cycle. Branches in FL/CA/NY.", status: "none", confidence: "high" },
+  { rank: 17, bank: "Pibank", sub: "Savings (brand of Intercredit Bank)", apy: "4.40%", apySub: "flat, up to $5,000,000", min: "$0.01", req: "None for rate itself", notes: "⚠ Wire-transfer only — no ACH support. Biometric facial ID required to open; denials unexplained.", status: "warn", confidence: "high" },
+  { rank: 18, bank: "Marcus by Goldman Sachs", sub: "Online Savings Account", apy: "~3.40–3.65%", apySub: "flat, varies by check date", min: "$0", req: "None", notes: "No checking account at all. Joint accounts require a phone call. Same-day transfers up to $100k.", status: "none", confidence: "high" },
+  { rank: 19, bank: "Ally Bank", sub: "Online Savings Account", apy: "~3.00–3.10%", apySub: "flat", min: "$0", req: "None", notes: "10 withdrawals/cycle limit. Best feature set: buckets, round-ups, 24/7 live support.", status: "none", confidence: "high" },
+  { rank: 20, bank: "Capital One", sub: "360 Performance Savings", apy: "~3.00–3.30%", apySub: "rate contested across sources — verify directly", min: "$0", req: "None", notes: "Branch + Café network (unusual for this category). Accepts APO/FPO military addresses.", status: "cond", confidence: "med" },
+  { rank: 21, bank: "SoFi", sub: "Checking and Savings", apy: "3.10%", apySub: "with direct deposit · 0.80% without · +0.70% promo thru 12/31/26", min: "$0", req: "Eligible direct deposit (any amount) or $5,000+/31 days", notes: "\"4.50%\" claims require paid SoFi Plus ($10/mo) — not the default rate. 55,000+ fee-free ATMs.", status: "cond", confidence: "high" },
+  { rank: 22, bank: "Western Alliance Bank", sub: "High-Yield Savings Premier", apy: "3.80%", apySub: "flat, all balances", min: "$500", req: "None", notes: "ACH-only, one linked account. Joint accounts get $500k combined FDIC coverage (2x standard).", status: "none", confidence: "high" },
+  { rank: 23, bank: "Bread Savings", sub: "High-Yield Savings", apy: "~3.95–4.00%", apySub: "flat", min: "$100", req: "None", notes: "No checking account. FDIC-insured via Comenity Capital Bank. 2–3 day ACH transfers.", status: "none", confidence: "med" },
+  { rank: 24, bank: "Brio Direct", sub: "High-Yield Savings (via Raisin)", apy: "Unverified", apySub: "primarily a Raisin teaser-rate product", min: "—", req: "Unconfirmed", notes: "Same caution as Patriot Bank — treat any advertised rate as promotional until confirmed directly.", status: "warn", confidence: "med" },
+  { rank: 25, bank: "Other Raisin-listed names", sub: "Centier Bank, Union Bank & Trust, etc.", apy: "Unverified", apySub: "could not independently confirm", min: "—", req: "Unconfirmed", notes: "Appeared in earlier source tables but couldn't be verified as distinct, currently-operating retail products.", status: "warn", confidence: "med" }
+];
+
+function statusChip(status) {
+  if (status === "none") return '<span class="hysa-chip chip-none">No Strings</span>';
+  if (status === "cond") return '<span class="hysa-chip chip-cond">Conditional</span>';
+  if (status === "warn") return '<span class="hysa-chip chip-warn">Caution</span>';
+  return '<span class="hysa-chip chip-info">Info</span>';
+}
+
+function confidenceLabel(c) {
+  return c === "high"
+    ? '<span class="hysa-confidence conf-high">●  High</span>'
+    : '<span class="hysa-confidence conf-med">●  Medium</span>';
+}
+
+function renderHysaTable(filter = "all", search = "") {
+  const body = document.getElementById('hysaTableBody');
+  if (!body) return;
+  const q = search.trim().toLowerCase();
+  const rows = HYSA_DATA.filter(r => {
+    const matchesFilter = filter === "all" || r.status === filter;
+    const matchesSearch = !q || r.bank.toLowerCase().includes(q) || r.sub.toLowerCase().includes(q);
+    return matchesFilter && matchesSearch;
+  });
+
+  if (!rows.length) {
+    body.innerHTML = '<tr><td colspan="8" style="text-align:center; color:var(--text2); padding:30px;">No institutions match this filter/search.</td></tr>';
+    return;
+  }
+
+  body.innerHTML = rows.map(r => `
+    <tr>
+      <td class="hysa-rank">${String(r.rank).padStart(2,'0')}</td>
+      <td><span class="hysa-bank">${r.bank}<span class="hysa-bank-sub">${r.sub}</span></span></td>
+      <td><span class="hysa-apy">${r.apy}</span><span class="hysa-apy-sub">${r.apySub}</span></td>
+      <td class="hysa-min">${r.min}</td>
+      <td class="hysa-req">${r.req}</td>
+      <td class="hysa-notes">${r.notes}</td>
+      <td>${statusChip(r.status)}</td>
+      <td>${confidenceLabel(r.confidence)}</td>
+    </tr>
+  `).join('');
+}
+
+function filterHysaTable() {
+  const activeBtn = document.querySelector('#hysaFilters .hysa-filter-btn.active');
+  const filter = activeBtn ? activeBtn.dataset.filter : 'all';
+  const search = document.getElementById('hysaSearch') ? document.getElementById('hysaSearch').value : '';
+  renderHysaTable(filter, search);
+}
+
+document.querySelectorAll('#hysaFilters .hysa-filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('#hysaFilters .hysa-filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    filterHysaTable();
+  });
+});
+
+renderHysaTable();
 
 /* ============================================================
    INITIALIZATION
